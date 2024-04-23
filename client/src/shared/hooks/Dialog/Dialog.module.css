@@ -1,0 +1,27 @@
+.dialog {
+    margin: auto;
+    border: none;
+    border-radius: 0.5rem;
+    width:70%;
+    max-width: 800px;
+    height: 55%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition-duration: 1s;
+    overflow: hidden;
+}
+
+.dialogContentBox {
+    height: 100%;
+    padding: 1rem;
+    padding-inline: 1rem;
+}
+
+.floatingCloseButton {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.closeButton {
+    cursor: pointer;
+}
