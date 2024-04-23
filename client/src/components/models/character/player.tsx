@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
 import { CuboidCollider, RapierRigidBody, RigidBody } from '@react-three/rapier';
 
-import { useAvatarStore } from 'store/useStore';
+import { useAvatarStore } from 'stores/useStore';
 import { useMoving } from './useMoving';
 
 import StandingFBX from 'shared/asset/animations/Standing.fbx'
@@ -19,11 +19,11 @@ export const Player = () => {
   const { actions: walkingAction } = useAnimations(walking, scene);
 
   const { isMoving } = useMoving(player);
-  
+
   useEffect(() => {
     const standingAnimation = standingAction['mixamo.com'];
     const walkingAnimation = walkingAction['mixamo.com'];
-    if(isMoving) {
+    if (isMoving) {
       walkingAnimation?.play();
     } else {
       walkingAnimation?.stop();
@@ -38,8 +38,7 @@ export const Player = () => {
       position={[0, 2, 0]}
       colliders={false}
       name='character'
-      lockRotations
-    >
+      lockRotations >
       <CuboidCollider args={[0.3, 1, 0.3]} >
         <primitive object={scene} position={[0, -1, 0]} />
       </CuboidCollider>

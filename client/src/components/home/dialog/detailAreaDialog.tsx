@@ -24,7 +24,7 @@ export const DetailAreaDialog = ({
             <div className={styles.contentBox}>
                 <section className={styles.leftContent}>
                     <h1>
-                        <span>{firstLetterUppercase(area)}</span>
+                        <span>{firstLetterUppercase(area) + " Zone"}</span>
                     </h1>
                     <Link to={`/join-world/${area}`} className={styles.admissionButton}>입 장</Link>
                 </section>

@@ -1,0 +1,14 @@
+.openDialogBtn {
+    width: 3.5rem;
+    height: 3.5rem;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255, 0.5);
+    cursor: pointer;
+    z-index: 10;
+}

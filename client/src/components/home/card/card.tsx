@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { Text, Image, Shadow } from "@react-three/drei"
 import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
-import { useDialogStore } from "store/useStore"
+import { useDialogStore } from "stores/useStore"
 import { DetailAreaDialog } from "../dialog/detailAreaDialog"
 import { IntersectionEvent } from "@react-three/fiber/dist/declarations/src/core/events"
 

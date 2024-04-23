@@ -1,6 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { IoMdClose } from "@react-icons/all-files/io/IoMdClose";
-import { useDialogStore } from 'store/useStore';
+import { useDialogStore } from 'stores/useStore';
 
 import styles from './Dialog.module.css';
 

@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import StandingFBX from 'shared/asset/animations/Standing.fbx'
-import { useAvatarStore } from "store/useStore"
+import { useAvatarStore } from "stores/useStore"
 
 import { Sky, useAnimations, useFBX, useGLTF } from "@react-three/drei"
 
