@@ -11,6 +11,8 @@ const selector = 'div.clicker_s_o'
 
 export const lapTopZoneCrawling = async (req: Request, res: Response) => {
     try {
+        console.log("노트북존 요청");
+        
         const seatStatus = await Crawler(zone['노트북존'], selector);
 
         res.send(seatStatus)
@@ -21,6 +23,7 @@ export const lapTopZoneCrawling = async (req: Request, res: Response) => {
 
 export const digitalZoneCrawling = async (req: Request, res: Response) => {
     try {
+        console.log("디지털존 요청");
         const seatStatus = await Crawler(zone['디지털존'], selector);
 
         res.send(seatStatus)
