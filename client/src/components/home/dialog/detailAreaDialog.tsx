@@ -26,7 +26,7 @@ export const DetailAreaDialog = ({
                     <h1>
                         <span>{firstLetterUppercase(area) + " Zone"}</span>
                     </h1>
-                    <Link to={`/join-world/${area}`} className={styles.admissionButton}>입 장</Link>
+                    <Link to={`/world/${area}`} className={styles.admissionButton}>입 장</Link>
                 </section>
 
                 <section className={styles.rightContent} style={{ transform: `${toggleState ? ' translateX(0)' : 'translateX(14rem)'}` }}>
@@ -43,7 +43,7 @@ export const DetailAreaDialog = ({
                         <Canvas camera={{ fov: 24 }} style={{ width: '12rem', height: '22rem' }}>
                             <PreviewAvatar />
                         </Canvas>
-                        <Link to="/create-character" className={styles.avatarChangeButton}>캐릭터 변경</Link>
+                        <Link to="/create-avatar" className={styles.avatarChangeButton}>캐릭터 변경</Link>
                     </div>
                 </section>
             </div>

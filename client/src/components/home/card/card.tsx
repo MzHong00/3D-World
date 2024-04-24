@@ -6,10 +6,10 @@ import { easing } from 'maath'
 import { useDialogStore } from "stores/useStore"
 import { DetailAreaDialog } from "../dialog/detailAreaDialog"
 import { IntersectionEvent } from "@react-three/fiber/dist/declarations/src/core/events"
+import { Area } from "./spinCardList"
 
 interface Props {
-    areaName: string
-    areaImg: string
+    area: Area
     position: Vector3
     rotation: Euler
     hover: boolean
@@ -17,8 +17,7 @@ interface Props {
 }
 
 export const Card = ({
-    areaName,
-    areaImg,
+    area,
     position,
     rotation,
     hover,
@@ -31,7 +30,7 @@ export const Card = ({
     const pointerOut = () => setHover(false)
     const pointerClick = (e: IntersectionEvent<MouseEvent>) => {
         e.stopPropagation();
-        setDialog(<DetailAreaDialog area={areaName} bgUrl={areaImg}/>)
+        setDialog(<DetailAreaDialog area={area.name} bgUrl={area.bgUrl}/>)
         clickOpenButton()
     }
 
@@ -47,14 +46,14 @@ export const Card = ({
     return (
         <Image
             ref={cardRef}
-            url={areaImg}
+            url={area.bgUrl}
             transparent side={THREE.DoubleSide}
             onPointerOver={pointerOver}
             onPointerOut={pointerOut}
             onPointerDown={pointerClick}
             position={position}
             rotation={rotation} >
-            <Text color='black' scale={0.2} position={[-0.3, 0.3, 0.1]}>F1</Text>
+            <Text color='black' scale={0.2} position={[-0.3, 0.3, 0.1]}>{area.floor}</Text>
             <Shadow
                 scale={[0.8, 0.2, 1]}
                 position={[0, -1, 0]}

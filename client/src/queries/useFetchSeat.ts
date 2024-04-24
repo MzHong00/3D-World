@@ -4,13 +4,17 @@ import { fetchDigitalZone, fetchLabtopZone, fetchRoom1Zone, fetchRoom2Zone } fro
 export const useFetchLabtopZone = () => {
     return useQuery({
         queryKey: ['labtop'],
-        queryFn: () => fetchLabtopZone()
+        queryFn: () => fetchLabtopZone(),
+        refetchInterval: 10000,
+        staleTime: 10000
     })
 }
 export const useFetchDigitalZone = () => {
     return useQuery({
         queryKey: ['digital'],
-        queryFn: () => fetchDigitalZone()
+        queryFn: () => fetchDigitalZone(),
+        refetchInterval: 10000,
+        staleTime: 10000
     })
 }
 export const useFetchRoom1Zone = () => {

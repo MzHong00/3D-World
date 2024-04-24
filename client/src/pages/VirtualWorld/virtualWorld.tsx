@@ -2,13 +2,16 @@ import { KeyboardControls, OrbitControls, Sky } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import { useKeyControls } from "components/models/character/useKeyControls"
-import { Outlet, useLocation } from "react-router-dom"
-import { SeatDialogButton } from "components/seat/button/seatDialogButton"
+import { Outlet } from "react-router-dom"
+import { SeatDialogButton } from "components/virtualWorld/seatSearcher/button/seatDialogButton"
+import { useFetchDigitalZone, useFetchLabtopZone } from "queries/useFetchSeat"
 
 export const World = () => {
     const map = useKeyControls();
-    const navigate = useLocation();
+    const { isPending, data } = useFetchLabtopZone();
 
+    console.log(data);
+    
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <SeatDialogButton />
@@ -16,7 +19,7 @@ export const World = () => {
                 <Canvas shadows camera={{ position: [0, 10, 10], fov: 50 }}>
                     <ambientLight intensity={1} />
                     <directionalLight position={[0, 10, 0]} />
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <Sky sunPosition={[0, 1, 0]} />
                     <Outlet />
                 </Canvas>

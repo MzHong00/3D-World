@@ -23,11 +23,10 @@ export const SpinCardList = ({ radius = 3, count = 6 }) => {
     return (
         <Center bottom position={[0, 0, 0]} rotation={[0, -0.25, 0]} >
             <group rotation={[0, 3, 0]} ref={ref}>
-                {area.map((area, i) => (
+                {areaInfo.map((area, i) => (
                     <Card
                         key={i}
-                        areaName={area.name}
-                        areaImg={area.bgUrl}
+                        area={area}
                         position={[Math.sin((i / count) * Math.PI * 2) * radius, 0, Math.cos((i / count) * Math.PI * 2) * radius]}
                         rotation={[0, (i / count) * Math.PI * 2, 0]}
                         hover={hover}
@@ -38,29 +37,40 @@ export const SpinCardList = ({ radius = 3, count = 6 }) => {
     )
 }
 
-const area = [
+export interface Area {
+    name: string
+    bgUrl: string
+    floor: string
+}
+const areaInfo: Area[] = [
     {
         name: 'entrance',
-        bgUrl: '/img/entrance.jpg'
+        bgUrl: '/img/entrance.jpg',
+        floor: '1F'
     },
     {
         name: 'laptop',
-        bgUrl: '/img/laptop.jpg'
+        bgUrl: '/img/laptop.jpg',
+        floor: '3F'
     },
     {
         name: 'digital',
-        bgUrl: '/img/digital.jpg'
+        bgUrl: '/img/digital.jpg',
+        floor: '3F'
     },
     {
         name: 'room1',
-        bgUrl: '/img/room1.jpg'
+        bgUrl: '/img/room1.jpg',
+        floor: '4F'
     },
     {
         name: 'room2',
-        bgUrl: '/img/room2.jpg'
+        bgUrl: '/img/room2.jpg',
+        floor: '4F'
     },
     {
-        name: 'toilet',
-        bgUrl: '/img/toilet.jpg'
+        name: 'library',
+        bgUrl: '/img/library.jpg',
+        floor: '5F'
     },
 ]

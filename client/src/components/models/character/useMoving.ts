@@ -20,15 +20,15 @@ export const useMoving = (ref: any) => {
         const velocity = ref.current?.linvel()
         
         //camera
-        // const { x, y, z } = ref.current.translation();
-        // state.camera.position.set(x, y + 10, z + 10);
-        // state.camera.lookAt(x, y, z)
+        const { x, y, z } = ref.current?.translation();
+        state.camera.position.set(x, y + 10, z + 10);
+        state.camera.lookAt(x, y, z)
 
         // movement
         frontVector.set(0, 0, boolToNum(down) - boolToNum(up))
         sideVector.set(boolToNum(left) - boolToNum(right), 0, 0)
         direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED)
-        ref.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z }, true)
+        ref.current?.setLinvel({ x: direction.x, y: velocity.y, z: direction.z }, true)
 
         // rotation
         if (direction.x || direction.z) {
@@ -36,7 +36,7 @@ export const useMoving = (ref: any) => {
 
             const quaternion = new THREE.Quaternion();
             quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI * degree);
-            ref.current.setRotation(quaternion, true);
+            ref.current?.setRotation(quaternion, true);
         }
         
     })
