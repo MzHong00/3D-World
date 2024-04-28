@@ -9,6 +9,7 @@ export const PreviewAvatar = () => {
     const { scene } = useGLTF(`${avatar}`);
     const { animations: standing } = useFBX(StandingFBX);
     const { actions: standingAction } = useAnimations(standing, scene);
+    
     useEffect(() => {
         const standingAnimation = standingAction['mixamo.com'];
         standingAnimation?.play();

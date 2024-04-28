@@ -9,9 +9,7 @@ export const Home = () => {
 
     return (
         <>
-            <Suspense fallback="캐릭터 갱신 중...">
-                {isOpen && dialog}
-            </Suspense>
+        {isOpen && dialog}
             <Suspense fallback='월드 불러오는 중...'>
                 <Canvas shadows camera={{ position: [0, 3, 10], fov: 50 }} style={{ zIndex: isOpen ? -10 : 0 }}>
                     <ambientLight intensity={1} />

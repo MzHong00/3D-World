@@ -1,8 +1,6 @@
-import { useRef, useState } from "react"
-import { useFrame } from "@react-three/fiber"
-import { Center, useCursor } from "@react-three/drei"
+import { useRef } from "react"
+import { Center } from "@react-three/drei"
 import { Card } from "./card"
-import { easing } from 'maath'
 
 /*
     args 1: 값을 크게 하면 Card의 간격이 커짐
@@ -11,14 +9,11 @@ import { easing } from 'maath'
 
 export const SpinCardList = ({ radius = 3, count = 6 }) => {
     const ref = useRef<any>()
-    const [hover, setHover] = useState(false)
-
-    useCursor(hover)
-    useFrame((state, delta) => {
-        easing.damp3(state.camera.position, [Math.sin(state.pointer.x / 4) * 9, 1.25 + state.pointer.y, Math.cos(state.pointer.x / 4) * 9], 0.5, delta)
-        !hover && ref.current.rotateY(delta / 4)
-        state.camera.lookAt(0, 0.5, 0)
-    })
+    // useFrame((state, delta) => {
+    //     easing.damp3(state.camera.position, [Math.sin(state.pointer.x / 4) * 9, 1.25 + state.pointer.y, Math.cos(state.pointer.x / 4) * 9], 0.5, delta)
+    //     !hover && ref.current.rotateY(delta / 4)
+    //     state.camera.lookAt(0, 0.5, 0)
+    // })
 
     return (
         <Center bottom position={[0, 0, 0]} rotation={[0, -0.25, 0]} >
@@ -28,9 +23,7 @@ export const SpinCardList = ({ radius = 3, count = 6 }) => {
                         key={i}
                         area={area}
                         position={[Math.sin((i / count) * Math.PI * 2) * radius, 0, Math.cos((i / count) * Math.PI * 2) * radius]}
-                        rotation={[0, (i / count) * Math.PI * 2, 0]}
-                        hover={hover}
-                        setHover={setHover} />
+                        rotation={[0, (i / count) * Math.PI * 2, 0]}/>
                 ))}
             </group>
         </Center>
