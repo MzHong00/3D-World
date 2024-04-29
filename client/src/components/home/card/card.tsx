@@ -7,7 +7,6 @@ import { useDialogStore } from "stores/useStore"
 import { DetailAreaDialog } from "../dialog/detailAreaDialog"
 import { IntersectionEvent } from "@react-three/fiber/dist/declarations/src/core/events"
 import { Area } from "./spinCardList"
-import { HoverLoading } from "../hoverLoading/hoverLoading"
 
 interface Props {
     area: Area
@@ -53,16 +52,15 @@ export const Card = ({
     }
 
     useFrame((state, delta) => {
-
         //args 2: 값이 클수록 카드가 커짐
         easing.damp3(cardRef.current.scale,
-            hover ? [2, 1.3, 1] : 1.4,
+            hover ? [2.5, 2, 2] : 2,
             0.1,
             delta)
         //args 2: 값이 클수록 카드가 둥글어짐
         easing.damp(cardRef.current.material, 'radius', hover ? 0.03 : 0.05, 0.2, delta)
         //args 2: 값이 클수록 Zoom In
-        easing.damp(cardRef.current.material, 'zoom', hover ? 1 : 1.5, 0.2, delta, 0.4)
+        easing.damp(cardRef.current.material, 'zoom', hover ? 1.2 : 1, 0.2, delta)
     })
 
     return (
@@ -70,6 +68,7 @@ export const Card = ({
             position={position}
             rotation={rotation} >
             <Image
+                scale={2}
                 ref={cardRef}
                 url={area.bgUrl}
                 transparent side={THREE.DoubleSide}
@@ -83,7 +82,7 @@ export const Card = ({
                     colorStop={0.2}
                     opacity={0.05} />
             </Image>
-            <Text color='black' scale={0.3} position={[-0.3, 0.3, 0.1]}>{area.floor}</Text>
+            <Text color='black' scale={0.3} position={[-0.7, 0.7, 0.1]}>{area.floor}</Text>
         </group>
     )
 }

@@ -1,0 +1,64 @@
+.previewContainer {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: flex;
+    align-items: center;
+    transition-duration: 1s;
+    gap: 2rem;
+}
+
+.avatarContainer {
+    width: 20rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.avatarChangeButton {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    background: rgb(255, 255, 255, 0.9);
+}
+
+.showAvatarButton {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+}
+
+.showAvatarButton:hover {
+    animation-play-state: paused;
+    box-shadow: inset 0 8px 12px -2px rgb(0 0 0 / 0.1)
+}
+
+.bounceAnimation {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateX(-25%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+        transform: translateX(0);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
