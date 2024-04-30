@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import * as THREE from 'three'
-import { Text, Image, Shadow, useCursor, Html, } from "@react-three/drei"
+import { Text, Image, Shadow, useCursor } from "@react-three/drei"
 import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
 import { useDialogStore } from "stores/useStore"

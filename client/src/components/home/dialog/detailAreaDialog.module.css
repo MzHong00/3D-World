@@ -18,6 +18,7 @@
     color: white;
     backdrop-filter: brightness(0.7);
 }
+
 .admissionButton {
     width: 95%;
     height: 3rem;
@@ -34,6 +35,37 @@
     backdrop-filter: blur(2px);
     word-spacing: 1rem;
 }
-.admissionButton:hover{
+
+.admissionButton:hover {
     box-shadow: inset 0px 8px 18px 0px rgb(0 0 0 / 0.2);
+}
+
+.bgRightAnimation {
+    animation: bgRightFlow 70s linear;
+}
+
+@keyframes bgRightFlow {
+
+    0%,
+    100% {
+        background-position: left;
+    }
+
+    50% {
+        background-position: right;
+    }
+}
+
+.bgDownAnimation {
+    animation: bgDownFlow 3s ease forwards;
+}
+
+@keyframes bgDownFlow {
+    from {
+        background-position: top;
+    }
+
+    to {
+        background-position: bottom;
+    }
 }

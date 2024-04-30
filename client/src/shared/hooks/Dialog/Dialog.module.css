@@ -2,21 +2,13 @@
     margin: auto;
     border: none;
     border-radius: 0.5rem;
-    width:70%;
+    width: 70%;
     max-width: 800px;
     height: 55%;
     background-repeat: no-repeat;
     background-size: cover;
     transition-duration: 1s;
     overflow: hidden;
-    animation: bgDownFlow 3s ease forwards;
-}
-@keyframes bgDownFlow {
-    from{
-        background-position: top;
-    }to {
-        background-position: bottom;
-    }
 }
 
 .dialogContentBox {

@@ -1,7 +1,7 @@
 import { useRef } from "react"
+import { useFrame } from "@react-three/fiber"
 import { Center } from "@react-three/drei"
 import { Card } from "./card"
-import { useFrame } from "@react-three/fiber"
 
 /*
     args 1: 값을 크게 하면 Card의 간격이 커짐
