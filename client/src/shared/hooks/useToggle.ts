@@ -17,15 +17,17 @@ import { useState } from "react";
 */
 
 interface Props {
+    initState?: boolean;
     trueState?: any;
     falseState?: any;
 }
 
 export const useToggle = ({
+    initState = false,
     trueState,
     falseState
 }: Props = {}) => {
-    const [toggle, setToggle] = useState(false);
+    const [toggle, setToggle] = useState(initState);
 
     const changeState = () => {
         setToggle(!toggle);

@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home } from "pages/Home/home";
+
 import ReadyPlayerMe from "pages/ReadyPlayerMe/readyPlayerMe";
+
+import { Home } from "pages/Home/home";
 import { World } from "pages/VirtualWorld/virtualWorld";
-import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
 import { EntranceScene } from "components/virtualWorld/entrance/entranceScene";
+import { LaptopZoneScene } from "components/virtualWorld/laptop/laptopScene";
 
 const appRouter = createBrowserRouter([
     {
@@ -23,24 +25,24 @@ const appRouter = createBrowserRouter([
                 element: <EntranceScene />
             },
             {
-                path: 'labtop',
-                element: <EntranceScene />
+                path: 'laptop',
+                element: <LaptopZoneScene />
             },
             {
                 path: 'digital',
-                element: <DigitalZoneScene />
+                element: <div>제작중</div>
             },
             {
                 path: 'room1',
-                element: <EntranceScene />
+                element: <div>제작중</div>
             },
             {
                 path: 'room2',
-                element: <EntranceScene />
+                element: <div>제작중</div>
             },
             {
                 path: 'library',
-                element: <EntranceScene />
+                element: <div>제작중</div>
             },
         ]
     }

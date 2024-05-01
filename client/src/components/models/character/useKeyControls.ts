@@ -1,5 +1,5 @@
-import { KeyboardControlsEntry } from "@react-three/drei";
 import { useMemo } from "react"
+import { KeyboardControlsEntry } from "@react-three/drei";
 
 export enum Controls {
   up = 'up',

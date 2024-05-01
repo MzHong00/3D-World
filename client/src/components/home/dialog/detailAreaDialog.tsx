@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Dialog } from "shared/hooks/Dialog/Dialog"
+import { Dialog } from "shared/hooks/Dialog/useDialog"
 
 import { firstLetterUppercase } from "shared/utils/firstLetterUp"
 import styles from './detailAreaDialog.module.css'
@@ -12,7 +12,6 @@ interface Props {
 export const DetailAreaDialog = ({
     area, bgUrl
 }: Partial<Props>) => {
-    console.log(area);
     
     return (
         <Dialog style={{ backgroundImage: `url(${bgUrl})` }} className={`${area === 'entrance' ? styles.bgDownAnimation : styles.bgRightAnimation }`}>

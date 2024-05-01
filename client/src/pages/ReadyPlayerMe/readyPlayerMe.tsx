@@ -7,7 +7,7 @@ import {
   UserSetEvent,
 } from "@readyplayerme/react-avatar-creator";
 import { useNavigate } from "react-router-dom";
-import { useAvatarStore } from "stores/useStore";
+import { useAvatarStore } from "stores/useAvatarStore";
 
 const config: AvatarCreatorConfig = {
   clearCache: true,

@@ -1,0 +1,13 @@
+.round {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.round:hover {
+    box-shadow: inset 0 8px 10px -1px rgb(0 0 0 / 0.3)
+}

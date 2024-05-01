@@ -15,6 +15,7 @@
     height: 100%;
     padding: 1rem;
     padding-inline: 1rem;
+    transition-duration: 0.7s;
 }
 
 .floatingCloseButton {

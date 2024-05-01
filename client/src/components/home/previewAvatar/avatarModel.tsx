@@ -1,7 +1,7 @@
 
 import { useEffect } from "react"
 import StandingFBX from 'shared/asset/animations/Standing.fbx'
-import { useAvatarStore } from "stores/useStore"
+import { useAvatarStore } from "stores/useAvatarStore"
 
 import { OrbitControls, Shadow, useAnimations, useFBX, useGLTF } from "@react-three/drei"
 

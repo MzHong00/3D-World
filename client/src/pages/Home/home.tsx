@@ -2,14 +2,14 @@ import { Suspense } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Sky } from "@react-three/drei"
 import { Scene } from "components/home/scene"
-import { useDialogStore } from "stores/useStore"
 import { PreviewAvatar } from "components/home/previewAvatar/previewAvatar"
+import { useDialogStore } from "stores/useOpenDialogStore"
 
 export const Home = () => {
     const { dialog, isOpen } = useDialogStore(state => state);
 
     return (
-        <Suspense fallback='월드 불러오는 중...'>
+        <Suspense fallback='메인 페이지 불러오는 중...'>
             {isOpen && dialog}
             <Canvas shadows camera={{ position: [0, 3, 10], fov: 50 }} style={{ zIndex: isOpen ? -10 : 0 }}>
                 <ambientLight intensity={1} />

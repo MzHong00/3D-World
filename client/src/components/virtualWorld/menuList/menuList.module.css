@@ -1,0 +1,22 @@
+.menuList {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+    position: absolute;
+    right: 6rem;
+    bottom: 6rem;
+    z-index: 10;
+}
+
+.menuButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: rgb(255,255,255,0.7);
+    transition-duration: 0.3s;
+}
+
+.menuListButton {
+    background-color: rgb(255,255,255);
+    z-index: 10;
+}

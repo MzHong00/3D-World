@@ -3,10 +3,10 @@ import * as THREE from 'three'
 import { Text, Image, Shadow, useCursor } from "@react-three/drei"
 import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
-import { useDialogStore } from "stores/useStore"
 import { DetailAreaDialog } from "../dialog/detailAreaDialog"
 import { IntersectionEvent } from "@react-three/fiber/dist/declarations/src/core/events"
 import { Area } from "./spinCardList"
+import { useDialogStore } from "stores/useOpenDialogStore"
 
 interface Props {
     area: Area
@@ -21,7 +21,7 @@ export const Card = ({
 }: Props) => {
     const cardRef = useRef<any>()
 
-    const { setDialog, clickOpenButton } = useDialogStore(state => state);
+    const { setDialog, setDialogOpen } = useDialogStore(state => state);
 
     const [mouseDownPosX, setMouseDownPosX] = useState<number>(0);
     const [hover, setHover] = useState<boolean>(false)
@@ -44,7 +44,7 @@ export const Card = ({
         if (mouseInterval > 0.05) return
 
         setDialog(<DetailAreaDialog area={area.name} bgUrl={area.bgUrl} />)
-        clickOpenButton();
+        setDialogOpen();
     }
     const pointerDown = (e: IntersectionEvent<MouseEvent>) => {
         e.stopPropagation();
