@@ -1,6 +1,15 @@
 .dialog {
     width: 700px;
     height: 870px;
+    background-color: rgb(255, 255, 255, 0);
+}
+
+.dialog>div {
+    background-color: rgb(255, 255, 255, 0.8);
+}
+
+.dialog>div:hover {
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .character {

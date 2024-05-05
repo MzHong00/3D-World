@@ -11,7 +11,7 @@ export const Asphalt = () => {
     return (
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
                 <planeGeometry args={[100, 100]} />
-                <meshStandardMaterial map={asphalt} />
+                <meshStandardMaterial map={asphalt} wireframe/>
             </mesh>
     )
 }

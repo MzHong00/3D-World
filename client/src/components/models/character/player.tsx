@@ -39,7 +39,6 @@ export const Player = () => {
       mass={1}
       position={[0, 2, 0]}
       colliders={false}
-      name='character'
       lockRotations >
       <CuboidCollider args={[0.3, 1, 0.3]} >
         <primitive visible={modeState && 'invisible'} object={scene} position={[0, -1, 0]} />

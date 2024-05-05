@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { Outlet } from "react-router-dom"
 import { Canvas } from "@react-three/fiber"
-import { KeyboardControls, Sky } from "@react-three/drei"
+import { KeyboardControls, OrbitControls, Sky } from "@react-three/drei"
 
 import { useKeyControls } from "components/models/character/useKeyControls"
 import { MenuList } from "components/virtualWorld/menuList/menuList"
@@ -21,6 +21,7 @@ export const World = () => {
                     <directionalLight position={[0, 10, 0]} />
                     <Sky sunPosition={[0, 1, 0]} />
                     <Outlet />
+                    <OrbitControls />
                 </Canvas>
             </KeyboardControls>
         </Suspense>
