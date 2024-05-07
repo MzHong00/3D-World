@@ -16,7 +16,7 @@ export const World = () => {
             {isOpen && dialog}
             <MenuList />
             <KeyboardControls map={map}>
-                <Canvas shadows camera={{ position: [0, 10, 10], fov: 50 }}>
+                <Canvas shadows camera={{ position: [0, 20,20], fov: 40 }}>
                     <ambientLight intensity={1} />
                     <directionalLight position={[0, 10, 0]} />
                     <Sky sunPosition={[0, 1, 0]} />

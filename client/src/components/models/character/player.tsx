@@ -37,7 +37,7 @@ export const Player = () => {
     <RigidBody
       ref={player}
       mass={1}
-      position={[0, 2, 0]}
+      position={[3, 2, 0]}
       colliders={false}
       lockRotations >
       <CuboidCollider args={[0.3, 1, 0.3]} >
