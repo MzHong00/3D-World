@@ -1,11 +1,11 @@
 import { type Coordinate } from "shared/types/type";
 
-export const organizeTablePos = (width: number, height: number = width) => {
+export const organizeTablePos = (numberOfSeat: number, width: number, height: number = width) => {
 
     const bigTablePosition: Coordinate[] = [];
     const smallTablePosition: Coordinate[] = [];
 
-    Array.from({ length: 218 }).forEach((_, idx) => {
+    Array.from({ length: numberOfSeat }).forEach((_, idx) => {
         if (idx % 20 === 0 || idx % 20 === 3 || idx % 20 === 7) {
             const seatPosition = organizeTable(idx, width, height);
 

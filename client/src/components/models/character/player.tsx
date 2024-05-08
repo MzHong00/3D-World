@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
-import { CuboidCollider, RapierRigidBody, RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RapierRigidBody, RigidBody, type RigidBodyProps } from '@react-three/rapier';
 
 import { useAvatarStore } from 'stores/useAvatarStore';
 import { useMoving } from './useMoving';
@@ -21,7 +21,7 @@ export const Player = () => {
 
   const { isMoving } = useMoving(player);
   const { modeState } = useCameraModeStore(state => state)
-  
+
   useEffect(() => {
     const standingAnimation = standingAction['mixamo.com'];
     const walkingAnimation = walkingAction['mixamo.com'];
@@ -36,8 +36,8 @@ export const Player = () => {
   return (
     <RigidBody
       ref={player}
+      position={[0, 1, 0]}
       mass={1}
-      position={[3, 2, 0]}
       colliders={false}
       lockRotations >
       <CuboidCollider args={[0.3, 1, 0.3]} >

@@ -50,7 +50,6 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
             //state.camera.position.set(x, y + 2, z)
             if (!isMoving) return
 
-
             // movement
             frontVector.set(0, 0, boolToNum(down) - boolToNum(up))
             sideVector.set(boolToNum(left) - boolToNum(right), 0, 0)

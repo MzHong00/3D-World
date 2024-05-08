@@ -15,7 +15,14 @@
 .character {
     position: absolute;
     bottom: 0;
-    left: 50%;
+}
+
+.characterLeftPos{
+    left: 0;
+}
+
+.characterRightPos{
+    right: 0;
 }
 
 .laptopZone {

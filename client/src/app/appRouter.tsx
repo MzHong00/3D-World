@@ -6,6 +6,8 @@ import { Home } from "pages/Home/home";
 import { World } from "pages/VirtualWorld/virtualWorld";
 import { EntranceScene } from "components/virtualWorld/entrance/entranceScene";
 import { LaptopZoneScene } from "components/virtualWorld/laptop/laptopScene";
+import { Room1Scene } from "components/virtualWorld/room1/room1Scene";
+import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
 
 const appRouter = createBrowserRouter([
     {
@@ -22,7 +24,7 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: 'entrance',
-                element: <EntranceScene />
+                element: <div>제작중</div>
             },
             {
                 path: 'laptop',
@@ -30,11 +32,11 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'digital',
-                element: <div>제작중</div>
+                element: <DigitalZoneScene />
             },
             {
                 path: 'room1',
-                element: <div>제작중</div>
+                element: <Room1Scene />
             },
             {
                 path: 'room2',

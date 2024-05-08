@@ -1,12 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { DialogHTMLAttributes, useEffect, useRef } from 'react';
 import { IoMdClose } from "@react-icons/all-files/io/IoMdClose";
 
 import styles from './useDialog.module.css';
 import { useDialogStore } from 'stores/useOpenDialogStore';
 
-export const Dialog = ({
-    children, ...props
-}: any) => {
+export const Dialog = (props: DialogHTMLAttributes<HTMLDialogElement>) => {
     const dialogRef = useRef<any>(null);
     const { setDialogClose, setDialogBackdrop } = useDialogStore(state => state);
 
@@ -20,7 +18,7 @@ export const Dialog = ({
                 <div className={styles.floatingCloseButton}>
                     <IoMdClose onClick={setDialogClose} className={styles.closeButton} />
                 </div>
-                {children}
+                {props.children}
             </div>
         </dialog>
     )

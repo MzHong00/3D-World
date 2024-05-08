@@ -4,7 +4,7 @@ export interface OrganizedSeatPosition extends Coordinate {
     seat: SeatStateDto
 }
 
-export const organizeSeatPos = (seatList: SeatStateDto[], width: number, height: number = width) => {
+export const organizeSeatState = (seatList: SeatStateDto[] = [], width: number, height: number = width) => {
     const seatPositionList: OrganizedSeatPosition[] = [];
     seatList.forEach((seat) => {
         if (seat.status === undefined) return;

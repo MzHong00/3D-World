@@ -12,6 +12,8 @@
 }
 
 .dialogContentBox {
+    display: flex;
+    justify-content: center;
     height: 100%;
     padding: 1rem;
     padding-inline: 1rem;
