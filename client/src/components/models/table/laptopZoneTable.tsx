@@ -11,8 +11,8 @@ interface Props extends GroupProps {
 export const LaptopZoneTable = ({
     numberOfSeat, ...props
 }: Props) => {
-    const width = useRef<number>(6);
-    const height = useRef<number>(3);
+    const width = useRef<number>(7);
+    const height = useRef<number>(5);
 
     const tablePosition = organizeTablePos(numberOfSeat, width.current, height.current)
 

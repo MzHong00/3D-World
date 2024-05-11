@@ -6,6 +6,7 @@ export interface OrganizedSeatPosition extends Coordinate {
 
 export const organizeSeatState = (seatList: SeatStateDto[] = [], width: number, height: number = width) => {
     const seatPositionList: OrganizedSeatPosition[] = [];
+
     seatList.forEach((seat) => {
         if (seat.status === undefined) return;
         const seatPosition = organizeSeat(seat, width, height);
@@ -32,7 +33,7 @@ const organizeSeat = (seat: SeatStateDto, width: number, height: number): Organi
         if (3 <= row && row < 7) space = width * 2
         else if (7 <= row && row < 10) space = width * 4
         right = width * row + space;
-        bottom = height * col + Math.floor(col / 2) * height + height * 1.5;
+        bottom = height * (col + Math.floor(col / 2) + 1.5);
     }
 
     return { z: bottom, x: right, seat: seat }

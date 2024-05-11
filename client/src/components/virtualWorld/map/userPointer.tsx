@@ -10,12 +10,13 @@ export interface UserStartPosition {
 export const UserPointer = ({
     userStartPosition
 }: UserStartPosition) => {
-    const speed = useRef<number>(15.9);
+    const widthSpeed = useRef<number>(13.2);
+    const heightSpeed = useRef<number>(9.4);
     const { position } = useCharacterPos(state => state);
 
     return (
         <h2 
-        style={{ transform: `translate(${position.x * speed.current}px, ${position.z * speed.current}px)`}} 
+        style={{ transform: `translate(${position.x * widthSpeed.current}px, ${position.z * heightSpeed.current}px)`}} 
         className={`${styles.character} ${userStartPosition === 'left' ? styles.characterLeftPos : styles.characterRightPos}`}>@</h2>
     )
 }

@@ -5,8 +5,8 @@ import { Player } from "components/models/character/player"
 import { Asphalt } from "components/models/floor/asphalt"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchDigitalZone } from "queries/useFetchSeat"
-import { organizeSeatState } from "../laptop/position/organizeSeatState"
 import { Map } from "../map/map"
+import { digitZoneSeatState } from "./position/digitZoneSeatState"
 
 export const DigitalZoneScene = () => {
     const { isPending, data } = useFetchDigitalZone()
@@ -16,11 +16,11 @@ export const DigitalZoneScene = () => {
         const openDialog = () => {
             if(isPending) return;
             
-            const width = 28;
-            const seatPosition = organizeSeatState(data, width);
+            const width = 36;
+            const seatPosition = digitZoneSeatState(data, width);
             console.log(seatPosition);
             
-            setDialog(<Map userStartPosition="left" seatPosition={seatPosition} style={{width: '700px', height: '350px'}}/>)
+            setDialog(<Map userStartPosition="left" seatPosition={seatPosition} style={{width: '550px', height: '900px'}}/>)
         }
 
         openDialog();
