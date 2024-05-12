@@ -6,6 +6,7 @@ import { KeyboardControls, OrbitControls, Sky } from "@react-three/drei"
 import { useKeyControls } from "components/models/character/useKeyControls"
 import { MenuList } from "components/virtualWorld/menuList/menuList"
 import { useDialogStore } from "stores/useOpenDialogStore"
+import { Stats } from '@react-three/drei'
 
 export const World = () => {
     const map = useKeyControls();
@@ -24,6 +25,7 @@ export const World = () => {
                     <OrbitControls />
                 </Canvas>
             </KeyboardControls>
+            <Stats />
         </Suspense>
     )
 }

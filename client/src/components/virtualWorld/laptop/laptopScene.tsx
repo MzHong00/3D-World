@@ -22,34 +22,33 @@ export const LaptopZoneScene = () => {
 
     useEffect(() => {
         const initDialog = () => {
-            if(isPending) return;
+            if (isPending) return;
 
             const width = 28;
             const organizedSeat = organizeSeatState(data, width);
-            
-            setDialog(<Map seatPosition={organizedSeat} style={{width: '550px', height: '900px'}}/>)
+
+            setDialog(<Map seatPosition={organizedSeat} style={{ width: '550px', height: '900px' }} />)
         }
-        
+
         initDialog();
     }, [isPending, data, setDialog]);
-    
+
     useEffect(() => {
         const initOccupiedPosition = () => {
-            if(isPending) return;
-            
+            if (isPending) return;
+
             const numberOfSeat = 200;
-            const seatWidth = 1.37;
+            const seatWidth = 2.057;
 
             const seatPosition = organizeSeatPos(numberOfSeat, seatWidth)
 
-            const occpiedSeat = data.map((seat:SeatStateDto) => {
-                
-                if (seat.status === '배정가능'){
-                    return seatPosition[seat.number-1]
+            const occupiedSeat = data.slice(0, numberOfSeat).map((seat: SeatStateDto, idx: number) => {
+                if (seat.status === '배정가능') {
+                    return seatPosition[seat.number - 1]
                 }
             });
 
-            setOccupiedSeatPosition(occpiedSeat);
+            setOccupiedSeatPosition(occupiedSeat);
         }
 
         initOccupiedPosition();
@@ -66,14 +65,14 @@ export const LaptopZoneScene = () => {
 
         initSeatPosition();
     }, []);
-    
+
     return (
         <Physics>
-            <Player/>
+            <Player />
             <RigidBody type='fixed' >
-                <Asphalt position={[-20, 0, -48]}/>
+                <Asphalt position={[-20, 0, -48]} />
             </RigidBody>
-            {!isPending && <SeatedUserInstance numberOfSeat={200} seatPosition={occupiedSeatPosition } position={[-10.7, 0, -6.5]}/>}
+            {!isPending && <SeatedUserInstance numberOfSeat={200} seatPosition={occupiedSeatPosition} position={[-10.7, 0, -6.5]} />}
             <LaptopZoneTable numberOfSeat={200} position={[-12.7, 0, -2.5]} />
             <ChairInstance numberOfSeat={200} seatPosition={seatPosition} position={[-10.7, 0, -6.5]} />
         </Physics>

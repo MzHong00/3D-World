@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useAnimations, useFBX, useGLTF } from '@react-three/drei';
-import { CuboidCollider, RapierRigidBody, RigidBody, type RigidBodyProps } from '@react-three/rapier';
+import { CuboidCollider, RapierRigidBody, RigidBody } from '@react-three/rapier';
 
 import { useAvatarStore } from 'stores/useAvatarStore';
 import { useMoving } from './useMoving';
