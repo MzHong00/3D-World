@@ -1,11 +1,7 @@
-import { SeatStateDto, type Coordinate } from "shared/types/type";
+import { type SeatState, type SeatStateDto } from "shared/types/type";
 
-export interface OrganizedSeatPosition extends Coordinate {
-    seat: SeatStateDto
-}
-
-export const organizeSeatState = (seatList: SeatStateDto[] = [], width: number, height: number = width) => {
-    const seatPositionList: OrganizedSeatPosition[] = [];
+export const organizeMapPosition = (seatList: SeatStateDto[] = [], width: number, height: number = width) => {
+    const seatPositionList: SeatState[] = [];
 
     seatList.forEach((seat) => {
         if (seat.status === undefined) return;
@@ -16,7 +12,7 @@ export const organizeSeatState = (seatList: SeatStateDto[] = [], width: number, 
     return seatPositionList;
 }
 
-const organizeSeat = (seat: SeatStateDto, width: number, height: number): OrganizedSeatPosition => {
+const organizeSeat = (seat: SeatStateDto, width: number, height: number): SeatState => {
     let bottom, right;
 
     if (seat.number > 200) {
@@ -36,5 +32,5 @@ const organizeSeat = (seat: SeatStateDto, width: number, height: number): Organi
         bottom = height * (col + Math.floor(col / 2) + 1.5);
     }
 
-    return { z: bottom, x: right, seat: seat }
+    return { x: right, z: bottom, seat: seat }
 }

@@ -1,3 +1,5 @@
-export type Coordinate = { x: number, z: number }
+export interface Coordinate { x: number, z: number }
 
-export type SeatStateDto = { number: number, status: string }
+export interface SeatStateDto { number: number, status: string }
+
+export interface SeatState extends Coordinate { seat: SeatStateDto }

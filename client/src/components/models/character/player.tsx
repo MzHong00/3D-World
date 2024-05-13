@@ -36,7 +36,7 @@ export const Player = () => {
   return (
     <RigidBody
       ref={player}
-      position={[0, 1, 0]}
+      position={[0, 2, 0]}
       mass={1}
       colliders={false}
       lockRotations >

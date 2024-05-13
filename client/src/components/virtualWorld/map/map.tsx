@@ -1,12 +1,12 @@
-import { OrganizedSeatPosition } from "../laptop/position/organizeSeatState"
 import { UserPointer, type UserStartPosition } from "./userPointer"
 import { Dialog } from "shared/hooks/Dialog/useDialog"
 
 import styles from './map.module.css'
 import { DialogHTMLAttributes } from "react"
+import { SeatState } from "shared/types/type"
 
 interface Props extends DialogHTMLAttributes<HTMLDialogElement>, UserStartPosition {
-    seatPosition: OrganizedSeatPosition[]
+    seatPosition: SeatState[]
 }
 
 export const Map = ({

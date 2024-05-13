@@ -40,5 +40,5 @@ const organizeTable = (seat: number, width: number, height: number): Coordinate 
         bottom = height * (col + Math.floor(col / 2) + 1.5)
     }
 
-    return { z: bottom, x: right }
+    return { x: right, z: bottom }
 }
