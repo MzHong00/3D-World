@@ -4,10 +4,10 @@ import ReadyPlayerMe from "pages/ReadyPlayerMe/readyPlayerMe";
 
 import { Home } from "pages/Home/home";
 import { World } from "pages/VirtualWorld/virtualWorld";
-import { EntranceScene } from "components/virtualWorld/entrance/entranceScene";
 import { LaptopZoneScene } from "components/virtualWorld/laptop/laptopScene";
 import { Room1Scene } from "components/virtualWorld/room1/room1Scene";
 import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
+import { Room2Scene } from "components/virtualWorld/room2/room2Scene";
 
 const appRouter = createBrowserRouter([
     {
@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'room2',
-                element: <div>제작중</div>
+                element: <Room2Scene />
             },
             {
                 path: 'library',

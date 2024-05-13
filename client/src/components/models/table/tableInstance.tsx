@@ -4,7 +4,7 @@ import { Coordinate } from "shared/types/type"
 
 interface Props {
     position: Coordinate[]
-    headCount: 6 | 8
+    headCount: 4 | 6 | 8
 }
 export const TableInstance = ({
     position, headCount

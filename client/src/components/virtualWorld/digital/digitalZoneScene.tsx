@@ -1,37 +1,83 @@
-import { useEffect } from "react"
+import { useState, useEffect, useLayoutEffect, useRef } from "react"
 import { Physics, RigidBody } from "@react-three/rapier"
+
+import { Map } from "../map/map"
+import { digitZoneMapState } from "./position/digitZoneMapPosition"
+import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition"
 
 import { Player } from "components/models/character/player"
 import { Asphalt } from "components/models/floor/asphalt"
+import { LaptopZoneTable } from "components/models/table/laptopZoneTable"
+import { ChairInstance } from "components/models/chair/chairInstance"
+import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchDigitalZone } from "queries/useFetchSeat"
-import { Map } from "../map/map"
-import { digitZoneSeatState } from "./position/digitZoneSeatState"
+import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
 
 export const DigitalZoneScene = () => {
+    const numberOfSeat = useRef<number>(50);
+    const itemsPerLine = useRef<number>(5);
+    
     const { isPending, data } = useFetchDigitalZone()
     const { setDialog } = useDialogStore();
 
+    const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
+    const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>([]);
+
     useEffect(() => {
-        const openDialog = () => {
-            if(isPending) return;
-            
+        const initMap = () => {
+            if (isPending) return;
+
             const width = 36;
-            const seatPosition = digitZoneSeatState(data, width);
-            console.log(seatPosition);
-            
-            setDialog(<Map userStartPosition="left" seatPosition={seatPosition} style={{width: '550px', height: '900px'}}/>)
+            const seatPosition = digitZoneMapState(data, width);
+
+            setDialog(<Map seatPosition={seatPosition} style={{ width: '350px', height: '900px' }} userStartPosition="left" />)
         }
 
-        openDialog();
-    }, [data, setDialog]);
-    
+        initMap();
+    }, [isPending, data, setDialog]);
+
+    useEffect(() => {
+        const initPerson = () => {
+            if (isPending) return;
+
+            const seatWidth = 2.057;
+            const seatPosition = digitZoneSeatPosition(numberOfSeat.current, seatWidth)
+
+            const occupiedSeat = data.slice(0, numberOfSeat.current).map(
+                (seat: SeatStateDto) => {
+                    const seatState: SeatState = { ...seatPosition[seat.number - 1], seat }
+
+                    return seatState
+                }
+            );
+
+            setOccupiedSeatPosition(occupiedSeat);
+        }
+
+        initPerson();
+    }, [isPending, data]);
+
+    useLayoutEffect(() => {
+        const initSeat = () => {
+            const seatWidth = 1.466;
+            const seatPosition = digitZoneSeatPosition(numberOfSeat.current, seatWidth)
+
+            setSeatPosition(seatPosition);
+        }
+
+        initSeat();
+    }, []);
+
     return (
         <Physics>
             <Player />
             <RigidBody type='fixed' >
-                <Asphalt />
+                <Asphalt position={[20, 0, -48]} />
             </RigidBody>
+            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[16.5, 0.05, -4.7]} itemsPerLine={itemsPerLine.current}/>}
+            <LaptopZoneTable numberOfSeat={numberOfSeat.current} position={[35.7, 0, -1]} />
+            <ChairInstance seatPosition={seatPosition} position={[16.5, 0, -4.7]} itemsPerLine={itemsPerLine.current}/>
         </Physics>
     )
 }

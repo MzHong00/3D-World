@@ -8,10 +8,11 @@ import { useEffect } from "react"
 
 interface Props extends GroupProps {
     seatPosition: SeatState[]
+    itemsPerLine: number
 }
 
 export const SeatedUserInstance = ({
-    seatPosition,...props
+    seatPosition, itemsPerLine, ...props
 }: Props) => {
     const { scene } = useGLTF(`${personModel}`);
     const { animations: sit } = useFBX(sitAnimation);
@@ -24,10 +25,10 @@ export const SeatedUserInstance = ({
 
     return (
         <group {...props}>
-            {seatPosition.map((seat, idx) => (Math.floor((seat.seat.number - 1) % 20 / 10)) === 0 ?
-                <Clone key={idx} object={scene} position={[-seat.x, 0, 1.4 - seat.z]} rotation={[0, Math.PI, 0]} />
+            {seatPosition.map((seat, idx) => (Math.floor((seat.seat.number - 1) % (itemsPerLine * 2) / itemsPerLine)) === 0 ?
+                <Clone key={idx} object={scene} position={[seat.x, 0, 1.4 - seat.z]} rotation={[0, Math.PI, 0]} />
                 :
-                <Clone key={idx} object={scene} position={[-seat.x, 0, 0.3 - seat.z]} />
+                <Clone key={idx} object={scene} position={[seat.x, 0, 0.3 - seat.z]} />
             )}
         </group>
     )

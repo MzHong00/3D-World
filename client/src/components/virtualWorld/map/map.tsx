@@ -3,19 +3,24 @@ import { Dialog } from "shared/hooks/Dialog/useDialog"
 
 import styles from './map.module.css'
 import { DialogHTMLAttributes } from "react"
-import { SeatState } from "shared/types/type"
+import { CharSpeed, SeatState } from "shared/types/type"
 
-interface Props extends DialogHTMLAttributes<HTMLDialogElement>, UserStartPosition {
+interface Props extends DialogHTMLAttributes<HTMLDialogElement>, Partial<UserStartPosition>, Partial<CharSpeed> {
     seatPosition: SeatState[]
 }
 
 export const Map = ({
-    seatPosition = [], userStartPosition = 'right', children, ...props
-}: Partial<Props>) => {
+    seatPosition = [], 
+    userStartPosition = 'right', 
+    xSpeed,
+    ySpeed,
+    children,
+    ...props
+}: Props) => {
 
     return (
         <Dialog className={styles.dialog} {...props}>
-            <UserPointer userStartPosition={userStartPosition} />
+            <UserPointer userStartPosition={userStartPosition} xSpeed={xSpeed} ySpeed={ySpeed}/>
             <div className={styles.laptopZone}>
                 {
                     seatPosition?.map((seat, idx) => (

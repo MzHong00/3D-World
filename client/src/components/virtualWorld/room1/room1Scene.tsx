@@ -16,6 +16,7 @@ import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types
 
 export const Room1Scene = () => {
     const numberOfSeat = useRef<number>(180);
+    const itemsPerLine = useRef<number>(10);
 
     const { isPending, data } = useFetchRoom1Zone();
     const { setDialog } = useDialogStore();
@@ -24,20 +25,20 @@ export const Room1Scene = () => {
     const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>([]);
 
     useEffect(() => {
-        const initDialog = () => {
+        const initMap = () => {
             if (isPending) return;
 
             const width = 28;
             const organizedSeat = organizeMapPosition(data, width);
 
-            setDialog(<Map seatPosition={organizedSeat} style={{ width: '550px', height: '900px' }} />)
+            setDialog(<Map seatPosition={organizedSeat} style={{ width: '550px', height: '900px' }} xSpeed={13.2} ySpeed={9.4}/>)
         }
 
-        initDialog();
+        initMap();
     }, [isPending, data, setDialog]);
 
     useEffect(() => {
-        const initOccupiedPosition = () => {
+        const initPerson = () => {
             if (isPending) return;
 
             const seatWidth = 2.057;
@@ -56,18 +57,18 @@ export const Room1Scene = () => {
             setOccupiedSeatPosition(occupiedSeat);
         }
 
-        initOccupiedPosition();
+        initPerson();
     }, [isPending, data]);
 
     useLayoutEffect(() => {
-        const initSeatPosition = () => {
+        const initSeat = () => {
             const seatWidth = 1.466;
             const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth)
 
             setSeatPosition(seatPosition);
         }
 
-        initSeatPosition();
+        initSeat();
     }, []);
 
     return (
@@ -76,9 +77,9 @@ export const Room1Scene = () => {
             <RigidBody type='fixed' >
                 <Asphalt position={[-20, 0, -48]} />
             </RigidBody>
-            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[-10.7, 0, -6.5]} />}
+            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[-38.3, 0, -6.5]} itemsPerLine={itemsPerLine.current}/>}
             <LaptopZoneTable numberOfSeat={numberOfSeat.current} position={[-12.7, 0, -2.5]} />
-            <ChairInstance seatPosition={seatPosition} position={[-10.7, 0, -6.5]} />
+            <ChairInstance seatPosition={seatPosition} position={[-38.3, 0, -6.5]} itemsPerLine={itemsPerLine.current}/>
         </Physics>
     )
 }
