@@ -15,6 +15,7 @@ export const organizeMapPosition = (seatList: SeatStateDto[] = [], width: number
 const organizeSeat = (seat: SeatStateDto, width: number, height: number): SeatState => {
     let bottom, right;
 
+    // 좌석번호 201번 부터 포지션의 일관성이 깨짐 현재는 else 부분만 사용 중
     if (seat.number > 200) {
         const slicedNum = seat.number - 200;
         const top = height * 19 + Math.floor(19 / 2) * height;

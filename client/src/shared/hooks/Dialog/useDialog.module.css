@@ -26,5 +26,6 @@
 }
 
 .closeButton {
+    visibility: hidden;
     cursor: pointer;
 }

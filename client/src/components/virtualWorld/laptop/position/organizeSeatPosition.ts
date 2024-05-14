@@ -2,6 +2,7 @@ import { type Coordinate } from "shared/types/type";
 
 export const organizeSeatPos = (numberOfSeat: number, width: number, height: number = width) => {
     const seatPositionList: Coordinate[] = [];
+    
     Array.from({ length: numberOfSeat }).forEach((_, idx) => {
         const seatPosition = organizeSeat(idx, width, height);
         seatPositionList.push(seatPosition);
@@ -13,6 +14,7 @@ export const organizeSeatPos = (numberOfSeat: number, width: number, height: num
 const organizeSeat = (seat: number, width: number, height: number): Coordinate => {
     let bottom, right;
 
+    // 좌석번호 201번 부터 포지션의 일관성이 깨짐 현재는 else 부분만 사용 중
     if (seat + 1 > 200) {
         const slicedNum = seat + 1 - 200;
         const top = height * (19 + Math.floor(19 / 2));

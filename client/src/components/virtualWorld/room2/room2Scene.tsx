@@ -7,12 +7,12 @@ import { room2SeatPosition } from "./position/room2SeatPosition"
 
 import { Player } from "components/models/character/player"
 import { Asphalt } from "components/models/floor/asphalt"
-import { LaptopZoneTable } from "components/models/table/laptopZoneTable"
 import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchRoom2Zone } from "queries/useFetchSeat"
 import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
+import { Room2Table } from "./models/room2ZoneTable"
 
 export const Room2Scene = () => {
     const numberOfSeat = useRef<number>(240);
@@ -31,7 +31,12 @@ export const Room2Scene = () => {
             const width = 28;
             const organizedSeat = room2MapPosition(data, width);
 
-            setDialog(<Map seatPosition={organizedSeat} style={{ width: '500px', height: '900px' }}  userStartPosition="left" />)
+            setDialog(
+                <Map
+                    seatPosition={organizedSeat}
+                    style={{ width: '500px', height: '900px' }}
+                    userStartPosition="left"
+                    ySpeed={9.6} />)
         }
 
         initMap();
@@ -44,7 +49,9 @@ export const Room2Scene = () => {
             const seatWidth = 2.057;
             const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth)
 
-            const occupiedSeat = data.slice(0, numberOfSeat.current).map(
+            const occupiedSeat = data.slice(0, numberOfSeat.current).filter(
+                (seat: SeatStateDto) => seat.status === '사용 중'
+            ).map(
                 (seat: SeatStateDto) => {
                     const seatState: SeatState = { ...seatPosition[seat.number - 1], seat }
 
@@ -75,9 +82,9 @@ export const Room2Scene = () => {
             <RigidBody type='fixed' >
                 <Asphalt position={[20, 0, -48]} />
             </RigidBody>
-            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[8.4, 0.05, -4.8]} itemsPerLine={itemsPerLine.current}/>}
-            <LaptopZoneTable numberOfSeat={numberOfSeat.current} position={[12.7, 0, -2.5]} />
-            <ChairInstance seatPosition={seatPosition} position={[8.4, 0, -4.7]} itemsPerLine={itemsPerLine.current}/>
+            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[8.4, 0.05, -4.8]} itemsPerLine={itemsPerLine.current} />}
+            <Room2Table numberOfSeat={numberOfSeat.current} position={[40, 0, -5.4]} itemsPerLine={itemsPerLine.current} />
+            <ChairInstance seatPosition={seatPosition} position={[8.4, 0, -4.7]} itemsPerLine={itemsPerLine.current} />
         </Physics>
     )
 }

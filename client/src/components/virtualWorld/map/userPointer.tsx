@@ -9,7 +9,7 @@ export interface UserStartPosition extends Partial<CharSpeed> {
 }
 
 export const UserPointer = ({
-    userStartPosition, xSpeed=10, ySpeed=xSpeed
+    userStartPosition, xSpeed=10, ySpeed=10
 }: UserStartPosition) => {
     const widthSpeed = useRef<number>(xSpeed);
     const heightSpeed = useRef<number>(ySpeed);

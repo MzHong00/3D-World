@@ -4,10 +4,10 @@ import { Physics, RigidBody } from "@react-three/rapier"
 import { Map } from "../map/map"
 import { organizeMapPosition } from "../laptop/position/organizeMapPosition"
 import { organizeSeatPos } from "../laptop/position/organizeSeatPosition"
+import { LaptopZoneTable } from "../laptop/models/laptopZoneTable"
 
 import { Player } from "components/models/character/player"
 import { Asphalt } from "components/models/floor/asphalt"
-import { LaptopZoneTable } from "components/models/table/laptopZoneTable"
 import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
@@ -77,9 +77,21 @@ export const Room1Scene = () => {
             <RigidBody type='fixed' >
                 <Asphalt position={[-20, 0, -48]} />
             </RigidBody>
-            {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[-38.3, 0, -6.5]} itemsPerLine={itemsPerLine.current}/>}
-            <LaptopZoneTable numberOfSeat={numberOfSeat.current} position={[-12.7, 0, -2.5]} />
-            <ChairInstance seatPosition={seatPosition} position={[-38.3, 0, -6.5]} itemsPerLine={itemsPerLine.current}/>
+            {
+                !isPending &&
+                <SeatedUserInstance
+                    seatPosition={occupiedSeatPosition}
+                    position={[-38.3, 0, -6.5]}
+                    itemsPerLine={itemsPerLine.current} />
+            }
+            <LaptopZoneTable
+                position={[-12.7, 0, -2.5]}
+                numberOfSeat={numberOfSeat.current}
+                itemsPerLine={itemsPerLine.current} />
+            <ChairInstance
+                position={[-38.3, 0, -6.5]}
+                seatPosition={seatPosition}
+                itemsPerLine={itemsPerLine.current} />
         </Physics>
     )
 }
