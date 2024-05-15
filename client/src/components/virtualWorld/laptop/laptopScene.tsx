@@ -6,13 +6,15 @@ import { organizeMapPosition } from "./position/organizeMapPosition"
 import { organizeSeatPos } from "./position/organizeSeatPosition"
 import { LaptopZoneTable } from "./models/laptopZoneTable"
 
+import { ZoneFloor } from "components/models/floor/zoneFloor"
 import { Player } from "components/models/character/player"
-import { Asphalt } from "components/models/floor/asphalt"
 import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchLabtopZone } from "queries/useFetchSeat"
 import { SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
+import { CenterWall } from "components/models/wall/centerWall"
+import { SideWall } from "components/models/wall/sideWall"
 
 export const LaptopZoneScene = () => {
     //총 좌석의 개수, 한 줄당 좌석의 개수
@@ -86,7 +88,7 @@ export const LaptopZoneScene = () => {
         <Physics>
             <Player />
             <RigidBody type='fixed' >
-                <Asphalt position={[-20, 0, -48]} />
+                <ZoneFloor position={[-19.5, 0, -48]} args={[41, 100]} />
             </RigidBody>
             {
                 !isPending &&
@@ -103,6 +105,9 @@ export const LaptopZoneScene = () => {
                 position={[-38.3, 0, -6.5]}
                 seatPosition={seatPosition}
                 itemsPerLine={itemsPerLine.current} />
+
+            <SideWall position={[-40, 0.5, -48]} />
+            <CenterWall />
         </Physics>
     )
 }

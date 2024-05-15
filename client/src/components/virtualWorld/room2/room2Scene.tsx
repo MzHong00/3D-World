@@ -4,15 +4,16 @@ import { Physics, RigidBody } from "@react-three/rapier"
 import { Map } from "../map/map"
 import { room2MapPosition } from "./position/room2MapPosition"
 import { room2SeatPosition } from "./position/room2SeatPosition"
+import { Room2Table } from "./models/room2ZoneTable"
 
 import { Player } from "components/models/character/player"
-import { Asphalt } from "components/models/floor/asphalt"
+import { ZoneFloor } from "components/models/floor/zoneFloor"
 import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchRoom2Zone } from "queries/useFetchSeat"
 import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
-import { Room2Table } from "./models/room2ZoneTable"
+import { SideWall } from "components/models/wall/sideWall"
 
 export const Room2Scene = () => {
     const numberOfSeat = useRef<number>(240);
@@ -80,11 +81,13 @@ export const Room2Scene = () => {
         <Physics>
             <Player />
             <RigidBody type='fixed' >
-                <Asphalt position={[20, 0, -48]} />
+                <ZoneFloor position={[21, 0, -48]} args={[45, 100]}/>
             </RigidBody>
             {!isPending && <SeatedUserInstance seatPosition={occupiedSeatPosition} position={[8.4, 0.05, -4.8]} itemsPerLine={itemsPerLine.current} />}
             <Room2Table numberOfSeat={numberOfSeat.current} position={[40, 0, -5.4]} itemsPerLine={itemsPerLine.current} />
             <ChairInstance seatPosition={seatPosition} position={[8.4, 0, -4.7]} itemsPerLine={itemsPerLine.current} />
+            
+            <SideWall position={[43.6, 0.5, -48]} rotation={[0, Math.PI, 0]}/>
         </Physics>
     )
 }

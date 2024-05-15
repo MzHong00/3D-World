@@ -6,13 +6,14 @@ import { organizeMapPosition } from "../laptop/position/organizeMapPosition"
 import { organizeSeatPos } from "../laptop/position/organizeSeatPosition"
 import { LaptopZoneTable } from "../laptop/models/laptopZoneTable"
 
+import { ZoneFloor } from "components/models/floor/zoneFloor"
 import { Player } from "components/models/character/player"
-import { Asphalt } from "components/models/floor/asphalt"
 import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
 import { useFetchRoom1Zone } from "queries/useFetchSeat"
 import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
+import { SideWall } from "components/models/wall/sideWall"
 
 export const Room1Scene = () => {
     const numberOfSeat = useRef<number>(180);
@@ -31,7 +32,7 @@ export const Room1Scene = () => {
             const width = 28;
             const organizedSeat = organizeMapPosition(data, width);
 
-            setDialog(<Map seatPosition={organizedSeat} style={{ width: '550px', height: '900px' }} xSpeed={13.2} ySpeed={9.4}/>)
+            setDialog(<Map seatPosition={organizedSeat} style={{ width: '550px', height: '900px' }} xSpeed={13.2} ySpeed={9.4} />)
         }
 
         initMap();
@@ -75,7 +76,7 @@ export const Room1Scene = () => {
         <Physics>
             <Player />
             <RigidBody type='fixed' >
-                <Asphalt position={[-20, 0, -48]} />
+                <ZoneFloor position={[-19.5, 0, -48]} args={[41, 100]} />
             </RigidBody>
             {
                 !isPending &&
@@ -92,6 +93,8 @@ export const Room1Scene = () => {
                 position={[-38.3, 0, -6.5]}
                 seatPosition={seatPosition}
                 itemsPerLine={itemsPerLine.current} />
+
+            <SideWall position={[-40, 0.5, -48]} />
         </Physics>
     )
 }

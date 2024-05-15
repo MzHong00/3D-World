@@ -7,12 +7,14 @@ import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition"
 import { DigitalZoneTable } from "./models/digitalZoneTable"
 
 import { Player } from "components/models/character/player"
-import { Asphalt } from "components/models/floor/asphalt"
-import { ChairInstance } from "components/models/chair/chairInstance"
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance"
 import { useDialogStore } from "stores/useOpenDialogStore"
+import { ZoneFloor } from "components/models/floor/zoneFloor"
+import { ChairInstance } from "components/models/chair/chairInstance"
 import { useFetchDigitalZone } from "queries/useFetchSeat"
 import { type SeatState, type Coordinate, type SeatStateDto } from "shared/types/type"
+import { MonitorInstance } from "components/models/items/monitor"
+import { SideWall } from "components/models/wall/sideWall"
 
 export const DigitalZoneScene = () => {
     const numberOfSeat = useRef<number>(50);
@@ -79,7 +81,7 @@ export const DigitalZoneScene = () => {
         <Physics>
             <Player />
             <RigidBody type='fixed' >
-                <Asphalt position={[20, 0, -48]} />
+                <ZoneFloor position={[16.5, 0, -48]} args={[35, 100]} />
             </RigidBody>
             {!isPending && <SeatedUserInstance
                 position={[16.5, 0.05, -4.7]}
@@ -93,6 +95,12 @@ export const DigitalZoneScene = () => {
                 position={[16.5, 0, -4.7]}
                 seatPosition={seatPosition}
                 itemsPerLine={itemsPerLine.current} />
+            <MonitorInstance
+                position={[16.5, 0, -4.7]}
+                seatPosition={seatPosition}
+                itemsPerLine={itemsPerLine.current} />
+                
+            <SideWall position={[33.6, 0.5, -48]} rotation={[0, Math.PI, 0]}/>
         </Physics>
     )
 }

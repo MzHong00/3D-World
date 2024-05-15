@@ -15,7 +15,7 @@ export const TableInstance = ({
         <>
             <Instances>
                 <boxGeometry args={[adjustXSize, 0.1, adjustZSize]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial color='white' />
                 {position.map(
                     (position, idx) => (
                         <Instance
