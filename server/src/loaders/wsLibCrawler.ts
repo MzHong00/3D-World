@@ -4,7 +4,8 @@ import * as cheerio from 'cheerio';
 export default async (url: string, selector: string) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
+    
+    const status = await page.goto(url, {timeout: 0});
 
     const content = await page.content();
     const $ = cheerio.load(content);
