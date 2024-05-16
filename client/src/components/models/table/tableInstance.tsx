@@ -31,7 +31,7 @@ export const TableInstance = ({
 
             <Instances>
                 <boxGeometry args={[0.1, 1, 0.1]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance
@@ -46,7 +46,7 @@ export const TableInstance = ({
             </Instances>
             <Instances>
                 <boxGeometry args={[0.1, 1, 0.1]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance
@@ -61,7 +61,7 @@ export const TableInstance = ({
             </Instances>
             <Instances>
                 <boxGeometry args={[0.1, 1, 0.1]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance
@@ -76,7 +76,7 @@ export const TableInstance = ({
             </Instances>
             <Instances>
                 <boxGeometry args={[0.1, 1, 0.1]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance
@@ -92,7 +92,7 @@ export const TableInstance = ({
 
             <Instances>
                 <boxGeometry args={[0.1, 0.1, adjustZSize]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance
@@ -107,7 +107,7 @@ export const TableInstance = ({
             </Instances>
             <Instances>
                 <boxGeometry args={[0.1, 0.1, adjustZSize]} />
-                <meshStandardMaterial wireframe />
+                <meshStandardMaterial  />
                 {position.map(
                     (position, idx) => (
                         <Instance

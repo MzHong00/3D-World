@@ -31,7 +31,7 @@ export const SideWall = (props: GroupProps) => {
 
             const position: Coordinate[] = Array.from({ length: numberOfWindow }).map((_, i) => {
                 const space = Math.floor(i / sliceGroup) * 1.05;
-                const thinSpace = i % sliceGroup === 0 ? -0.05 : 0
+                const thinSpace = i % sliceGroup === 0 ? -0.5 : 0
                 return {
                     x: 0,
                     z: i * windowWidth + space - 46.1 + thinSpace
@@ -50,12 +50,12 @@ export const SideWall = (props: GroupProps) => {
             <RigidBody type="fixed">
                 <mesh>
                     <boxGeometry args={[1, 1, 100]} />
-                    <meshStandardMaterial />
+                    <meshStandardMaterial color='#565A62' emissive='#ababab'/>
                 </mesh>
             </RigidBody>
             <PillarInstance pillarPosition={pillarPosition} />
-            <WindowInstance position={[-0.5, 0.95, 0]} windowPosition={windowPosition} />
-            <WindowInstance position={[-0.5, 2, 0]} windowPosition={windowPosition} />
+            <WindowInstance position={[-0.5, 0.95, 0.1]} windowPosition={windowPosition} />
+            <WindowInstance position={[-0.5, 2, 0.1]} windowPosition={windowPosition} />
         </group>
     )
 }

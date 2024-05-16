@@ -17,9 +17,9 @@ export const PillarInstance = ({
         <group {...props}>
             <Instances>
                 <boxGeometry args={[width.current, height.current, width.current]} />
-                <meshStandardMaterial/>
+                <meshPhongMaterial color='cccccc' emissive='#cccccc' />
 
-                {pillarPosition.map((position) => <Instance position={[position.x, 1.5, position.z]} />)}
+                {pillarPosition.map((position, idx) => <Instance key={idx} position={[position.x, 1.5, position.z]} />)}
             </Instances>
         </group>
     )
