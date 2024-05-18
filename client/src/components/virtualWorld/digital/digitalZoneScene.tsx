@@ -124,7 +124,7 @@ export const DigitalZoneScene = () => {
       />
 
       <SideWall position={[33.6, 0.5, -48]} rotation={[0, Math.PI, 0]} />
-      <CenterWall position={[-20.5, -0.75, -48]} scale={1.5} />
+      {/* <CenterWall position={[-20.5, -0.75, -48]} scale={1.5} /> */}
     </Physics>
   );
 };

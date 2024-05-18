@@ -1,7 +1,8 @@
+import { useRef } from "react"
 import { type GroupProps } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
+
 import { Coordinate } from "shared/types/type"
-import { useRef } from "react"
 
 interface Props extends GroupProps {
     pillarPosition: Coordinate[]
@@ -17,7 +18,7 @@ export const PillarInstance = ({
         <group {...props}>
             <Instances>
                 <boxGeometry args={[width.current, height.current, width.current]} />
-                <meshPhongMaterial color='cccccc' emissive='#cccccc' />
+                <meshStandardMaterial  />
 
                 {pillarPosition.map((position, idx) => <Instance key={idx} position={[position.x, 1.5, position.z]} />)}
             </Instances>

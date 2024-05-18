@@ -22,7 +22,7 @@ import { SideWall } from "components/models/wall/sideWall";
 
 export const LaptopZoneScene = () => {
   //총 좌석의 개수, 한 줄당 좌석의 개수
-  const numberOfSeat = useRef<number>(200);
+  const numberOfSeat = useRef<number>(100);
   const itemsPerLine = useRef<number>(10);
 
   //크롤링한 도서관 Data 상태
