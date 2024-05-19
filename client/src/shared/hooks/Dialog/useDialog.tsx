@@ -5,7 +5,7 @@ import { useDialogStore } from 'stores/useOpenDialogStore';
 
 export const Dialog = (props: DialogHTMLAttributes<HTMLDialogElement>) => {
     const dialogRef = useRef<any>(null);
-    const { setDialogClose, setDialogBackdrop } = useDialogStore(state => state);
+    const { setDialogBackdrop } = useDialogStore(state => state);
 
     useEffect(() => {
         dialogRef.current.showModal()

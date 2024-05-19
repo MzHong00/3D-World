@@ -16,15 +16,15 @@ export const room2TablePosition = (numberOfSeat: number, itemsPerLine: number) =
 }
 
 const organizeTable = (seat: number, itemsPerLine: number): Coordinate => {
-    const widthGap = 9, heightGap = 4.78;
+    const widthGap = 6.8, heightGap = 3.5;
     let bottom, right, space = 0;
 
     const row = seat % itemsPerLine;
     const col = Math.floor(seat / itemsPerLine);
 
-    if (6 <= row && row < 12) space = widthGap * 1.2;
+    if (6 <= row && row < 12) space = widthGap;
 
-    right = widthGap * row + space;
+    right = widthGap * row + space * 0.7;
     bottom = heightGap * (col + Math.floor(col / 2));
 
     return { x: right, z: bottom }

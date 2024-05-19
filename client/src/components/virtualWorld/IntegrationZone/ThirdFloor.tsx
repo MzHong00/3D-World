@@ -11,7 +11,7 @@ import { organizeMapPosition } from "../laptop/position/organizeMapPosition";
 import { digitZoneMapPosition } from "../digital/position/digitZoneMapPosition";
 import { Map } from "../map/map";
 
-export const LibraryScene = () => {
+export const ThirdFloor = () => {
   //크롤링한 도서관 Data 상태
   const { isPending: LaptopPending, data: LaptopData } = useFetchLabtopZone();
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();

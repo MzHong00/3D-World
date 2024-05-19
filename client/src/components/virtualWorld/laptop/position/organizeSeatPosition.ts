@@ -2,7 +2,7 @@ import { type Coordinate } from "shared/types/type";
 
 export const organizeSeatPos = (numberOfSeat: number, width: number, height: number = width) => {
     const seatPositionList: Coordinate[] = [];
-    
+
     Array.from({ length: numberOfSeat }).forEach((_, idx) => {
         const seatPosition = organizeSeat(idx, width, height);
         seatPositionList.push(seatPosition);
@@ -29,7 +29,7 @@ const organizeSeat = (seat: number, width: number, height: number): Coordinate =
         if (3 <= row && row < 7) space = width
         else if (7 <= row && row < 10) space = width * 2
         right = width * row + space;
-        bottom = height * (col + Math.floor(col / 2)*0.5)*1.2
+        bottom = height * (col + Math.floor(col / 2) * 0.3) * 1.3
     }
 
     return { x: right, z: bottom }

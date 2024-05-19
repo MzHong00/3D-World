@@ -1,13 +1,16 @@
 .dialog {
-    width: 800px;
-    height: 870px;
+    width: 100vw;
+    min-width: 860px;
+    max-width: 970px;
+    height: 100vh;
+    max-height: 700px;
     background-color: rgb(255, 255, 255, 0);
-    overflow: scroll;
+    overflow: auto;
 }
 
 .dialog>div {
+    height: 700px;
     position: relative;
-    height: 750px;
     background-color: rgb(255, 255, 255, 0.3);
 }
 
@@ -17,18 +20,32 @@
 
 .character {
     position: absolute;
-    width: 24px;
-    height: 24px;
-    left: 420px;
-    bottom: 0;
+    right: -49px;
+    bottom: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 18px;
+    height: 18px;
+    background-color: red;
     z-index: 10;
+    filter: blur(0.7px);
+    animation: character 3s ease infinite
 }
 
-.characterLeftPos{
+@keyframes character {
+    0%, 100% {
+        opacity: 0.7;
+    } 50% {
+        opacity: 1;
+    }
+}
+.characterLeftPos {
     left: 0;
 }
 
-.characterRightPos{
+.characterRightPos {
     right: 0;
 }
 

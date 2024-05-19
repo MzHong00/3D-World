@@ -4,11 +4,10 @@ import ReadyPlayerMe from "pages/ReadyPlayerMe/readyPlayerMe";
 
 import { Home } from "pages/Home/home";
 import { World } from "pages/VirtualWorld/virtualWorld";
-import { LaptopZoneScene } from "components/virtualWorld/laptop/laptopScene";
-import { Room1Scene } from "components/virtualWorld/room1/room1Scene";
 import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
 import { Room2Scene } from "components/virtualWorld/room2/room2Scene";
-import { LibraryScene } from "components/virtualWorld/library/libraryScene";
+import { ThirdFloor } from "components/virtualWorld/IntegrationZone/ThirdFloor";
+import { FourFloor } from "components/virtualWorld/IntegrationZone/FourFloor";
 
 const appRouter = createBrowserRouter([
     {
@@ -29,7 +28,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'laptop',
-                element: <LaptopZoneScene />
+                element: <ThirdFloor />
             },
             {
                 path: 'digital',
@@ -37,7 +36,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'room1',
-                element: <Room1Scene />
+                element: <FourFloor />
             },
             {
                 path: 'room2',
@@ -45,7 +44,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'library',
-                element: <LibraryScene />
+                element: <div>제작중</div>
             },
         ]
     }

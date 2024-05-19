@@ -17,10 +17,10 @@ const organizeSeat = (seat: number, width: number, height: number): Coordinate =
     const col = Math.floor(seat / 12);
 
     let space = 0
-    if (6 <= row && row < 12) space = width * 1.4;
+    if (6 <= row && row < 12) space = width;
 
-    right = width * row * 1.35 + space;
-    bottom = height * (col + Math.floor(col / 2)) * 1.4;
+    right = width * row * 1.49 + space * 0.7;
+    bottom = height * (col + Math.floor(col / 2) * 0.5) * 1.8;
 
     return { x: right, z: bottom }
 }

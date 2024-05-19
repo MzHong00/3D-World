@@ -5,7 +5,6 @@ import { useLayoutEffect, useState } from "react";
 import { Coordinate } from "shared/types/type";
 import { CustomWindowInstance } from "./customWindowInstance";
 import { RigidBody } from "@react-three/rapier";
-import { ZoneFloor } from "../floor/zoneFloor";
 import { ZoneEntryFloor } from "../floor/zoneEntryFloor";
 
 export const CenterWall = (props: GroupProps) => {

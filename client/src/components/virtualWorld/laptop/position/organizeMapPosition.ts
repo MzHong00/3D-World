@@ -28,7 +28,7 @@ const organizeSeat = (
     const slicedNum = seat.number - 200;
     const top = height * 19 + Math.floor(19 / 2) * height;
 
-    right = -120;
+    right = -160;
     bottom =
       top -
       (height * (slicedNum - 1) + Math.floor((slicedNum - 1) / 2) * height);
@@ -40,7 +40,7 @@ const organizeSeat = (
     if (3 <= row && row < 7) space = width;
     else if (7 <= row && row < 10) space = width * 2;
     right = width * row + space * 0.95 + 95;
-    bottom = height * (col + Math.floor(col / 2)) + 5;
+    bottom = height * (col + Math.floor(col / 2) * 0.5) + 20;
   }
 
   return { x: right, z: bottom, seat: seat };

@@ -36,10 +36,11 @@ export const DigitalZoneScene = ({
     const initPerson = () => {
       if (isPending) return;
 
-      const seatWidth = 2.057;
+      const personWidth = 2.057;
+
       const seatPosition = digitZoneSeatPosition(
         numberOfSeat.current,
-        seatWidth
+        personWidth
       );
 
       const occupiedSeat = data
@@ -79,7 +80,7 @@ export const DigitalZoneScene = ({
       <WallGroup position={[19.6, 0, -32.5]} rotation={[0, Math.PI, 0]} />
       {!isPending && (
         <SeatedUserInstance
-          position={[16.5, 0.05, -4.7]}
+          position={[20.5, 0.1, -6.8]}
           seatPosition={occupiedSeatPosition}
           itemsPerLine={itemsPerLine.current}
         />

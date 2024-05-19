@@ -5,7 +5,6 @@ import {
   Environment,
   KeyboardControls,
   OrbitControls,
-  Sky,
 } from "@react-three/drei";
 
 import { useKeyControls } from "components/models/character/useKeyControls";
@@ -22,7 +21,7 @@ export const World = () => {
       {isOpen && dialog}
       <MenuList />
       <KeyboardControls map={map}>
-        <Canvas shadows camera={{ position: [0, 20, 20], fov: 40 }}>
+        <Canvas shadows camera={{ position: [0, 20, 20], fov: 40}}>
           <Outlet />
           <Environment preset="apartment" />
           <OrbitControls />

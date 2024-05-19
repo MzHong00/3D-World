@@ -21,8 +21,8 @@ export const Map = ({
 }: Props) => {
   return (
     <Dialog className={styles.dialog} {...props}>
-      <UserPointer xSpeed={xSpeed} ySpeed={ySpeed} />
       <div className={styles.laptopZone}>
+      <UserPointer xSpeed={xSpeed} ySpeed={ySpeed} />
         {seatPosition?.map((seat, idx) => (
           <div
             key={idx}
@@ -32,7 +32,7 @@ export const Map = ({
               bottom: seat.z,
               backgroundColor: `${
                 seat.seat.status === "배정가능" ? "#85d604" : "#f18fee"
-              }`,
+              }`
             }}
           >
             <span className={styles.seatFont}>{seat.seat.number}</span>

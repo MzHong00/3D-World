@@ -9,14 +9,14 @@ export interface UserStartPosition extends Partial<CharSpeed> {
 }
 
 export const UserPointer = ({
-    userStartPosition, xSpeed=10, ySpeed=10
+    xSpeed = 10, ySpeed = 10
 }: UserStartPosition) => {
     const widthSpeed = useRef<number>(xSpeed);
     const heightSpeed = useRef<number>(ySpeed);
     const { position } = useCharacterPos(state => state);
 
     return (
-        <h2 style={{ transform: `translate(${position.x * widthSpeed.current}px, ${position.z * heightSpeed.current}px)`}} 
-            className={`${styles.character} ${userStartPosition === 'left' ? styles.characterLeftPos : styles.characterRightPos}`}>@</h2>
+        <div style={{ transform: `translate(${position.x * widthSpeed.current}px, ${position.z * heightSpeed.current}px)` }}
+            className={`${styles.character}`} />
     )
 }

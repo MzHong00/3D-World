@@ -22,10 +22,10 @@ const organizeSeat = (seat: SeatStateDto, width: number, height: number): Organi
     const col = Math.floor((seat.number - 1) / 12);
     let space = 0
 
-    if (0 <= row && row < 6) space = width
+    if (0 <= row && row < 6) space = width * 0.5
 
-    right = -width * row + space + 240
-    bottom = height * (col + Math.floor(col / 2)) + 20
+    right = -width * row + space - 200
+    bottom = height * (col + Math.floor(col / 2) * 0.55) + 27
 
     return { z: bottom, x: right, seat: seat }
 }

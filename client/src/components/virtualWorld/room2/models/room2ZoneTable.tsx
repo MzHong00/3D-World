@@ -16,7 +16,7 @@ export const Room2Table = ({
     
     return (
         <group {...props} dispose={null}>
-            <TableInstance position={tablePosition} adjustXSize={8} adjustZSize={3}/>
+            <TableInstance position={tablePosition} adjustXSize={6.1} adjustZSize={3.3}/>
         </group>
     )
 }
