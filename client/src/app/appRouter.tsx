@@ -8,7 +8,7 @@ import { LaptopZoneScene } from "components/virtualWorld/laptop/laptopScene";
 import { Room1Scene } from "components/virtualWorld/room1/room1Scene";
 import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
 import { Room2Scene } from "components/virtualWorld/room2/room2Scene";
-import { LibraryScene } from "components/virtualWorld/Library/libraryScene";
+import { LibraryScene } from "components/virtualWorld/library/libraryScene";
 
 const appRouter = createBrowserRouter([
     {

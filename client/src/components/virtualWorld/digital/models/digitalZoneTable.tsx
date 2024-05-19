@@ -17,8 +17,8 @@ export const DigitalZoneTable = ({
 
     return (
         <group {...props} dispose={null}>
-            <TableInstance position={tablePosition.smallTable} adjustXSize={8} adjustZSize={4.2}/>
-            <TableInstance position={tablePosition.bigTable} adjustXSize={10} adjustZSize={4.2}/>
+            <TableInstance position={tablePosition.smallTable} adjustXSize={6} adjustZSize={3.3}/>
+            <TableInstance position={tablePosition.bigTable} adjustXSize={8} adjustZSize={3.3}/>
         </group>
     )
 }

@@ -1,56 +1,36 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { Physics, RigidBody } from "@react-three/rapier";
 
-import { Map } from "../map/map";
-import { digitZoneMapState } from "./position/digitZoneMapPosition";
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
 
-import { Player } from "components/models/character/player";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
-import { useDialogStore } from "stores/useOpenDialogStore";
-import { ZoneFloor } from "components/models/floor/zoneFloor";
 import { ChairInstance } from "components/models/chair/chairInstance";
-import { useFetchDigitalZone } from "queries/useFetchSeat";
 import {
   type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
 import { MonitorInstance } from "components/models/items/monitor";
-import { SideWall } from "components/models/wall/sideWall";
-import { CenterWall } from "components/models/wall/centerWall";
+import { GroupProps } from "@react-three/fiber";
+import { WallGroup } from "components/models/wall/wallGroup";
 
-export const DigitalZoneScene = () => {
+interface Props extends GroupProps {
+  isPending?: boolean;
+  data?: Array<any>;
+}
+
+export const DigitalZoneScene = ({
+  isPending = true,
+  data = [],
+  ...props
+}: Props) => {
   const numberOfSeat = useRef<number>(50);
   const itemsPerLine = useRef<number>(5);
-
-  const { isPending, data } = useFetchDigitalZone();
-  const { setDialog } = useDialogStore();
 
   const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
   const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
   );
-
-  useEffect(() => {
-    const initMap = () => {
-      if (isPending) return;
-
-      const width = 36;
-      const seatPosition = digitZoneMapState(data, width);
-
-      setDialog(
-        <Map
-          seatPosition={seatPosition}
-          style={{ width: "350px", height: "900px" }}
-          userStartPosition="left"
-        />
-      );
-    };
-
-    initMap();
-  }, [isPending, data, setDialog]);
 
   useEffect(() => {
     const initPerson = () => {
@@ -95,11 +75,8 @@ export const DigitalZoneScene = () => {
   }, []);
 
   return (
-    <Physics>
-      <Player />
-      <RigidBody type="fixed">
-        <ZoneFloor position={[16.5, 0, -48]} args={[35, 100]} />
-      </RigidBody>
+    <group {...props}>
+      <WallGroup position={[19.6, 0, -32.5]} rotation={[0, Math.PI, 0]} />
       {!isPending && (
         <SeatedUserInstance
           position={[16.5, 0.05, -4.7]}
@@ -108,23 +85,20 @@ export const DigitalZoneScene = () => {
         />
       )}
       <DigitalZoneTable
-        position={[30, 0, 1.8]}
+        position={[30, 0, -7]}
         numberOfSeat={numberOfSeat.current}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        position={[16.5, 0, -4.7]}
+        position={[20.5, 0, -6.8]}
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />
       <MonitorInstance
-        position={[16.5, 0, -4.7]}
+        position={[20.5, 0, -6.8]}
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />
-
-      <SideWall position={[33.6, 0.5, -48]} rotation={[0, Math.PI, 0]} />
-      {/* <CenterWall position={[-20.5, -0.75, -48]} scale={1.5} /> */}
-    </Physics>
+    </group>
   );
 };

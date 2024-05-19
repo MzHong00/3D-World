@@ -1,87 +1,105 @@
 import { useState } from "react";
-import * as THREE from "three"
-import { useFrame } from '@react-three/fiber';
-import { useKeyboardControls } from '@react-three/drei';
+import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
+import { useKeyboardControls } from "@react-three/drei";
 import { RapierRigidBody } from "@react-three/rapier";
 
-import { Controls } from './useKeyControls';
+import { Controls } from "./useKeyControls";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { useCharacterPos } from "stores/useCharacterPos";
 
-const SPEED = 3
-const direction = new THREE.Vector3()
-const frontVector = new THREE.Vector3()
-const sideVector = new THREE.Vector3()
+const SPEED = 3;
+const direction = new THREE.Vector3();
+const frontVector = new THREE.Vector3();
+const sideVector = new THREE.Vector3();
 
 export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
-    const [, get] = useKeyboardControls<Controls>()
-    const [isMoving, setIsMoving] = useState<boolean>(false);
-    const { setPosition } = useCharacterPos();
-    const { modeState } = useCameraModeStore(state => state)
+  const [, get] = useKeyboardControls<Controls>();
+  const [isMoving, setIsMoving] = useState<boolean>(false);
+  const { setPosition } = useCharacterPos();
+  const { modeState } = useCameraModeStore((state) => state);
 
-    useFrame((state) => {
-        const { up, down, left, right } = get()
-        setIsMoving(up || down || left || right);
+  useFrame((state) => {
+    const { up, down, left, right } = get();
+    setIsMoving(up || down || left || right);
 
-        if (!ref.current) return;
-        const { x, y, z } = ref.current!.translation();
-        const velocity = ref.current?.linvel()
+    if (!ref.current) return;
+    const { x, y, z } = ref.current!.translation();
+    const velocity = ref.current?.linvel();
 
-        if (modeState) {
-            //camera
-            //state.camera.position.set(x, 10, z + 10);
-            if (!isMoving) return
+    if (y < -0.5) ref.current.setTranslation({ x: 0, y: 5, z: 0 }, true);
 
-            // movement
-            frontVector.set(0, 0, boolToNum(down) - boolToNum(up))
-            sideVector.set(boolToNum(left) - boolToNum(right), 0, 0)
-            direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED)
-            ref.current?.setLinvel({ x: direction.x, y: velocity!.y, z: direction.z }, true)
+    if (modeState) {
+      //camera
+      // state.camera.position.set(x, 10, z + 10);
+      if (!isMoving) return;
 
-            // rotation
-            if (direction.x || direction.z) {
-                const degree = calcRotation(direction.x, direction.z);
+      // movement
+      frontVector.set(0, 0, boolToNum(down) - boolToNum(up));
+      sideVector.set(boolToNum(left) - boolToNum(right), 0, 0);
+      direction
+        .subVectors(frontVector, sideVector)
+        .normalize()
+        .multiplyScalar(SPEED);
+      ref.current?.setLinvel(
+        { x: direction.x, y: velocity!.y, z: direction.z },
+        true
+      );
 
-                const quaternion = new THREE.Quaternion();
-                quaternion.setFromAxisAngle(new THREE.Vector3(0, 1, 0), Math.PI * degree);
-                ref.current?.setRotation(quaternion, true);
-            }
-        } else {
-            //state.camera.position.set(x, y + 2, z)
-            if (!isMoving) return
+      // rotation
+      if (direction.x || direction.z) {
+        const degree = calcRotation(direction.x, direction.z);
 
-            // movement
-            frontVector.set(0, 0, boolToNum(down) - boolToNum(up))
-            sideVector.set(boolToNum(left) - boolToNum(right), 0, 0)
-            direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED).applyEuler(state.camera.rotation)
-            ref.current?.setLinvel({ x: direction.x, y: velocity!.y, z: direction.z }, true)
-        }
-        
-        setPosition({ x: x, z: z })
-    })
+        const quaternion = new THREE.Quaternion();
+        quaternion.setFromAxisAngle(
+          new THREE.Vector3(0, 1, 0),
+          Math.PI * degree
+        );
+        ref.current?.setRotation(quaternion, true);
+      }
+    } else {
+      //state.camera.position.set(x, y + 2, z)
+      if (!isMoving) return;
 
-    return {
-        isMoving: isMoving
+      // movement
+      frontVector.set(0, 0, boolToNum(down) - boolToNum(up));
+      sideVector.set(boolToNum(left) - boolToNum(right), 0, 0);
+      direction
+        .subVectors(frontVector, sideVector)
+        .normalize()
+        .multiplyScalar(SPEED)
+        .applyEuler(state.camera.rotation);
+      ref.current?.setLinvel(
+        { x: direction.x, y: velocity!.y, z: direction.z },
+        true
+      );
     }
-}
+
+    setPosition({ x: x, z: z });
+  });
+
+  return {
+    isMoving: isMoving,
+  };
+};
 
 const boolToNum = (bool: boolean): number => {
-    return bool ? 1 : 0;
-}
+  return bool ? 1 : 0;
+};
 
 const calcRotation = (x: number, z: number): number => {
-    const isVertical = x * z === 0 ? true : false;
-    if (isVertical) {
-        if (x === 0) {
-            return z > 0 ? 0 : 1
-        } else {
-            return x > 0 ? 0.5 : -0.5
-        }
+  const isVertical = x * z === 0 ? true : false;
+  if (isVertical) {
+    if (x === 0) {
+      return z > 0 ? 0 : 1;
     } else {
-        if (x > 0) {
-            return z > 0 ? 0.25 : 0.75
-        } else {
-            return z > 0 ? -0.25 : -0.75
-        }
+      return x > 0 ? 0.5 : -0.5;
     }
-}
+  } else {
+    if (x > 0) {
+      return z > 0 ? 0.25 : 0.75;
+    } else {
+      return z > 0 ? -0.25 : -0.75;
+    }
+  }
+};

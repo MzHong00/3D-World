@@ -23,10 +23,9 @@ export const World = () => {
       <MenuList />
       <KeyboardControls map={map}>
         <Canvas shadows camera={{ position: [0, 20, 20], fov: 40 }}>
-          <Sky />
           <Outlet />
-          <OrbitControls />
           <Environment preset="apartment" />
+          <OrbitControls />
         </Canvas>
       </KeyboardControls>
       <Stats />

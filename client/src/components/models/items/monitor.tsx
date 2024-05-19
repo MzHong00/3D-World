@@ -19,9 +19,9 @@ export const MonitorInstance = ({
             <Instances geometry={nodes.defaultMaterial.geometry} material={materials.Material} scale={1.43}>
                 {seatPosition.map((seat, idx) => {
                     return (Math.floor(idx % (itemsPerLine * 2) / itemsPerLine)) === 0 ?
-                        <Instance key={idx} position={[seat.x * 0.98, 0.74, (1 - seat.z) * 0.98 - 1.3]} rotation={[Math.PI * 1.5, 0, Math.PI]} />
+                        <Instance key={idx} position={[seat.x * 0.98, 0.74, (1 - seat.z) * 0.98 - 0.8]} rotation={[Math.PI * 1.5, 0, Math.PI]} />
                         :
-                        <Instance key={idx} position={[seat.x * 0.98, 0.74, - seat.z * 0.98 + 1.3]} rotation={[Math.PI * 1.5, 0, 0]} />
+                        <Instance key={idx} position={[seat.x * 0.98, 0.74, - seat.z * 0.98 + 0.8]} rotation={[Math.PI * 1.5, 0, 0]} />
                 })}
             </Instances>
         </group>

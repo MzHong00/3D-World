@@ -23,7 +23,7 @@ export const organizeTablePos = (numberOfSeat: number, itemsPerLine: number) => 
 }
 
 const organizeTable = (seat: number, itemsPerLine: number): Coordinate => {
-    const widthGap = 7, heightGap = 5;
+    const widthGap = 7, heightGap = 3.5;
     let bottom, right;
 
     // 좌석번호 201번 부터 포지션의 일관성이 깨짐 현재는 else 부분만 사용 중
@@ -40,11 +40,11 @@ const organizeTable = (seat: number, itemsPerLine: number): Coordinate => {
         // 좌석과 좌석 사이의 공간이 존재함
         // 상수로 +, -, * 연산은 모두 좌표에 맞게 보정을 하기 위함
         let space = 0
-        if (3 <= row && row < 7) space = widthGap * 2
-        else if (7 <= row && row < 10) space = widthGap * 4
+        if (3 <= row && row < 7) space = widthGap
+        else if (7 <= row && row < 10) space = widthGap * 2
 
-        right = widthGap * row + space * 1.07;
-        bottom = heightGap * (col + Math.floor(col / 2) + 1.5)
+        right = widthGap * row + space;
+        bottom = heightGap * (col + Math.floor(col / 2) * 0.93)
     }
 
     return { x: right, z: bottom }

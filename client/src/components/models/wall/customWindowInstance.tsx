@@ -6,16 +6,16 @@ interface Props extends GroupProps {
 }
 
 const windowPosition: InstanceProps[] = [
-  { position: [9, 0, 23.5], rotation: [0, Math.PI * 0.75, 0] },
-  { position: [9, 0, -23.5], rotation: [0, Math.PI * 0.25, 0] },
-  { position: [0, 0, 27], rotation: [0, Math.PI / 2, 0] },
-  { position: [-9, 0, 23.5], rotation: [0, Math.PI * 0.25, 0] },
-  { position: [-9, 0, -23.5], rotation: [0, Math.PI * 0.75, 0] },
-  { position: [0, 0, -27], rotation: [0, Math.PI / 2, 0] },
+  { position: [6, 0, 22.5], rotation: [0, Math.PI * 0.75, 0] },
+  { position: [6, 0, -22.5], rotation: [0, Math.PI * 0.25, 0] },
+  { position: [0, 0, 25], rotation: [0, Math.PI / 2, 0] },
+  { position: [-6, 0, 22.5], rotation: [0, Math.PI * 0.25, 0] },
+  { position: [-6, 0, -22.5], rotation: [0, Math.PI * 0.75, 0] },
+  { position: [0, 0, -25], rotation: [0, Math.PI / 2, 0] },
 ];
 
 export const CustomWindowInstance = ({
-  windowSize = [0.1, 2, 10],
+  windowSize = [0.1, 2, 7],
   ...props
 }: Props) => {
   return (

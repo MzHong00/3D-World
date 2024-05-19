@@ -1,33 +1,31 @@
 import { useState, useEffect, useLayoutEffect, useRef } from "react";
-import { Physics, RigidBody } from "@react-three/rapier";
+import { GroupProps, extend } from "@react-three/fiber";
 
-import { Map } from "../map/map";
-import { organizeMapPosition } from "./position/organizeMapPosition";
 import { organizeSeatPos } from "./position/organizeSeatPosition";
 import { LaptopZoneTable } from "./models/laptopZoneTable";
 
-import { ZoneFloor } from "components/models/floor/zoneFloor";
-import { Player } from "components/models/character/player";
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
-import { useDialogStore } from "stores/useOpenDialogStore";
-import { useFetchLabtopZone } from "queries/useFetchSeat";
 import {
   SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-import { CenterWall } from "components/models/wall/centerWall";
-import { SideWall } from "components/models/wall/sideWall";
 
-export const LaptopZoneScene = () => {
+import { WallGroup } from "components/models/wall/wallGroup";
+
+interface Props extends GroupProps {
+  isPending?: boolean;
+  data?: Array<any>;
+}
+export const LaptopZoneScene = ({
+  isPending = true,
+  data = [],
+  ...props
+}: Props) => {
   //총 좌석의 개수, 한 줄당 좌석의 개수
-  const numberOfSeat = useRef<number>(100);
+  const numberOfSeat = useRef<number>(200);
   const itemsPerLine = useRef<number>(10);
-
-  //크롤링한 도서관 Data 상태
-  const { isPending, data } = useFetchLabtopZone();
-  const { setDialog } = useDialogStore();
 
   //모든 좌석의 좌표
   const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
@@ -37,31 +35,10 @@ export const LaptopZoneScene = () => {
   );
 
   useEffect(() => {
-    const initMap = () => {
-      if (isPending) return;
-
-      const width = 28;
-      const organizedSeat = organizeMapPosition(data, width);
-
-      setDialog(
-        <Map
-          seatPosition={organizedSeat}
-          style={{ width: "550px", height: "900px" }}
-          xSpeed={13.2}
-          ySpeed={9.4}
-        />
-      );
-    };
-
-    initMap();
-  }, [isPending, data, setDialog]);
-
-  useEffect(() => {
     const initPerson = () => {
       if (isPending) return;
 
       const seatWidth = 2.057;
-
       const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
 
       const occupiedSeat = data
@@ -93,31 +70,25 @@ export const LaptopZoneScene = () => {
   }, []);
 
   return (
-    <Physics>
-      <Player />
-      <RigidBody type="fixed">
-        <ZoneFloor position={[-19.5, 0, -48]} args={[41, 100]} />
-      </RigidBody>
+    <group {...props}>
+      <WallGroup position={[-18.5, 0, -32.5]} />
       {!isPending && (
         <SeatedUserInstance
+          position={[-30.8, 0, -4.3]}
           seatPosition={occupiedSeatPosition}
-          position={[-38.3, 0, -6.5]}
           itemsPerLine={itemsPerLine.current}
         />
       )}
       <LaptopZoneTable
-        position={[-12.7, 0, -2.5]}
+        position={[-10, 0, -4.7]}
         numberOfSeat={numberOfSeat.current}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        position={[-38.3, 0, -6.5]}
+        position={[-30.8, 0, -4.3]}
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />
-
-      <SideWall position={[-40, 0.5, -48]} />
-      <CenterWall position={[20.5, -0.75, -48]} scale={1.5} />
-    </Physics>
+    </group>
   );
 };

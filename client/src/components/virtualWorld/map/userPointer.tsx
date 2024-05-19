@@ -5,7 +5,7 @@ import styles from './map.module.css'
 import { type CharSpeed } from "shared/types/type"
 
 export interface UserStartPosition extends Partial<CharSpeed> {
-    userStartPosition: 'left' | 'right'
+    userStartPosition?: 'left' | 'right'
 }
 
 export const UserPointer = ({

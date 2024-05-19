@@ -20,14 +20,14 @@ export const digitalZoneTablePosition = (numberOfSeat: number,  itemsPerLine: nu
 }
 
 const organizeTable = (seat: number, itemsPerLine: number): Coordinate => {
-    const widthGap = 13, heightGap = 8.25;
+    const widthGap = 10, heightGap = 5;
     let bottom, right;
 
     const row = seat % itemsPerLine;
     const col = Math.floor(seat / itemsPerLine);
 
     right = widthGap * row
-    bottom = heightGap * (col + Math.floor(col / 2) + 1.5)
+    bottom = heightGap * (col + Math.floor(col / 2))
 
     return { x: right, z: bottom }
 }

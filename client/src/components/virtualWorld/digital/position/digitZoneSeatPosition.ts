@@ -6,7 +6,6 @@ export const digitZoneSeatPosition = (numberOfSeat: number, width: number, heigh
         const seatPosition = organizeSeat(idx, width, height);
         seatPositionList.push(seatPosition);
     });
-    console.log(seatPositionList);
     
     return seatPositionList;
 }
@@ -17,8 +16,8 @@ const organizeSeat = (seat: number, width: number, height: number): Coordinate =
     const row = seat % 5;
     const col = Math.floor(seat / 5);
 
-    right = width * row * 1.76;
-    bottom = height * (col + Math.floor(col / 2) * 2.25) * 1.7;
+    right = width * row * 1.3;
+    bottom = height * (col + Math.floor(col / 2) * 2.4);
 
     return { x: right, z: bottom }
 }
