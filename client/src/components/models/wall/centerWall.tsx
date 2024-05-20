@@ -4,13 +4,15 @@ import { WindowInstance } from "./windowInstance";
 import { useLayoutEffect, useState } from "react";
 import { Coordinate } from "shared/types/type";
 import { CustomWindowInstance } from "./customWindowInstance";
+import { ZoneConnectFloor } from "../floor/zoneConnectFloor";
 import { RigidBody } from "@react-three/rapier";
-import { ZoneEntryFloor } from "../floor/zoneEntryFloor";
+import { Box, Plane } from "@react-three/drei";
+import { ZoneTriangleFloor } from "../floor/zoneTriangleFloor";
 
 export const CenterWall = (props: GroupProps) => {
   const [bigWindowPosition, setBigWindowPosition] = useState<Coordinate[]>([]);
   const [pillarPosition, setPillarPosition] = useState<Coordinate[]>([]);
-  
+
   useLayoutEffect(() => {
     const xGap = 17,
       zGap = 13;
@@ -50,18 +52,21 @@ export const CenterWall = (props: GroupProps) => {
 
   return (
     <group {...props}>
-      <PillarInstance pillarPosition={pillarPosition} />
+      <PillarInstance position={[0, 0, 0]} pillarPosition={pillarPosition} />
       <WindowInstance
-        position={[0, 1.5, 0]}
+        position={[0, 1, 0]}
         windowPosition={bigWindowPosition}
         windowSize={[0.1, 2, 12]}
       />
-      <CustomWindowInstance position={[-4.5, 1.5, 0]} />
-      <RigidBody>
-        <ZoneEntryFloor args={[17.1, 7.95]} position={[-4.45, 0.75, 29.025]}/>
+      <CustomWindowInstance position={[-4.5, 1, 0]} />
+      <ZoneConnectFloor />
+      <ZoneTriangleFloor />
+
+      <RigidBody type="fixed" includeInvisible>
+        <Plane args={[73, 66]} position={[-4, 0, 0]} rotation={[Math.PI * 1.5, 0, 0]} visible={false} />
       </RigidBody>
-      <RigidBody>
-        <ZoneEntryFloor args={[17.1, 7.95]} position={[-4.45, 0.75, -29.025]}/>
+      <RigidBody type="fixed" includeInvisible>
+        <Box args={[18, 1, 40]} position={[-4.5, 0, 0]} visible={false} />
       </RigidBody>
     </group>
   );

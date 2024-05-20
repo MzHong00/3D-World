@@ -74,7 +74,7 @@ export const LaptopZoneScene = ({
       <WallGroup position={[-18.5, 0, -32.5]} />
       {!isPending && (
         <SeatedUserInstance
-          position={[-30.8, 0.1, -4.5]}
+          position={[-7.9, 0.1, -4.5]}
           seatPosition={occupiedSeatPosition}
           itemsPerLine={itemsPerLine.current}
         />
@@ -85,7 +85,7 @@ export const LaptopZoneScene = ({
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        position={[-30.8, 0, -4.3]}
+        position={[-7.9, 0, -4.3]}
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />

@@ -32,7 +32,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'digital',
-                element: <DigitalZoneScene />
+                element: <ThirdFloor />
             },
             {
                 path: 'room1',
@@ -40,7 +40,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path: 'room2',
-                element: <Room2Scene />
+                element: <FourFloor />
             },
             {
                 path: 'library',

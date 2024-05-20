@@ -77,7 +77,7 @@ export const DigitalZoneScene = ({
 
   return (
     <group {...props}>
-      <WallGroup position={[19.6, 0, -32.5]} rotation={[0, Math.PI, 0]} />
+      <WallGroup position={[19.55, 0, -32.5]} rotation={[0, Math.PI, 0]} />
       {!isPending && (
         <SeatedUserInstance
           position={[20.5, 0.1, -6.8]}

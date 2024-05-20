@@ -54,7 +54,7 @@ export const SideWall = (props: GroupProps) => {
   return (
     <group {...props}>
       <LaidPillar />
-      <PillarInstance position={[0, 0, - 32.5]} pillarPosition={pillarPosition} />
+      <PillarInstance position={[0, 0.5, - 32.5]} pillarPosition={pillarPosition} />
       <WindowInstance
         position={[-0.5, 0.95, - 32.5]}
         windowSize={[0.1, 1, windowWidth.current]}

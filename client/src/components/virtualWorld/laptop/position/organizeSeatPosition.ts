@@ -28,7 +28,7 @@ const organizeSeat = (seat: number, width: number, height: number): Coordinate =
 
         if (3 <= row && row < 7) space = width
         else if (7 <= row && row < 10) space = width * 2
-        right = width * row + space;
+        right = -(width * row * 1.03 + space)
         bottom = height * (col + Math.floor(col / 2) * 0.3) * 1.3
     }
 

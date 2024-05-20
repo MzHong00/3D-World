@@ -20,7 +20,7 @@ export const PillarInstance = ({
                 <boxGeometry args={[width.current, height.current, width.current]} />
                 <meshStandardMaterial  />
 
-                {pillarPosition.map((position, idx) => <Instance key={idx} position={[position.x, 1.5, position.z]} />)}
+                {pillarPosition.map((position, idx) => <Instance key={idx} position={[position.x, 1, position.z]} />)}
             </Instances>
         </group>
     )

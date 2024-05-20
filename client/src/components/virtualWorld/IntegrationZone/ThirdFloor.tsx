@@ -54,7 +54,7 @@ export const ThirdFloor = () => {
         isPending={DigitPending}
         data={DigitData}
       />
-      <CenterWall position={[4.5, -0.75, -32.5]} />
+      <CenterWall position={[4.5, 0, -32.5]} />
     </Physics>
   );
 };

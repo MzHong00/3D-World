@@ -54,7 +54,7 @@ export const FourFloor = () => {
         isPending={Room2Pending}
         data={Room2Data}
       />
-      <CenterWall position={[4.5, -0.75, -32.5]} />
+      <CenterWall position={[4.5, -0, -32.5]} />
     </Physics>
   );
 };
