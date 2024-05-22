@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { type GroupProps } from "@react-three/fiber";
 
 import { PillarInstance } from "./pillarInstance";
-import { WindowInstance } from "./windowInstance";
+import { WindowInstance } from "../window/windowInstance";
 import { LaidPillar } from "./laidPillar";
 import { Coordinate } from "shared/types/type";
 

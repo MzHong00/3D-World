@@ -1,46 +1,52 @@
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
 
-import { room2SeatPosition } from "./position/room2SeatPosition";
-import { Room2Table } from "./models/room2ZoneTable";
+import { organizeSeatPos } from "./position/organizeSeatPosition";
+import { LaptopZoneTable } from "./models/laptopZoneTable";
 
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
-import { WallGroup } from "components/models/wall/wallGroup";
 import {
-  type SeatState,
+  SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-
 
 interface Props extends GroupProps {
   isPending?: boolean;
   data?: Array<any>;
 }
-
-export const Room2Scene = ({
+export const LaptopZoneScene = ({
   isPending = true,
   data = [],
   ...props
 }: Props) => {
-  const numberOfSeat = useRef<number>(240);
-  const itemsPerLine = useRef<number>(12);
-
-  const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
-  const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
+  //총 좌석의 개수, 한 줄당 좌석의 개수
+  const numberOfSeat = useRef<number>(200);
+  const itemsPerLine = useRef<number>(10);
+  
+  //사용 중인 좌석들의 좌표
+  const [occupiedPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
   );
-  
+
+  //모든 좌석의 좌표
+  const seatPosition: Coordinate[] = useMemo(() => {
+    const seatWidth = 1.466;
+
+      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
+
+      return seatPosition;
+  }, [])  
+
   useEffect(() => {
     const initPerson = () => {
       if (isPending) return;
 
-      const seatWidth = 1.4;
-      const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
+      const seatWidth = 2.057;
+      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
 
       const occupiedSeat = data
-        .slice(0, numberOfSeat.current)
         .filter((seat: SeatStateDto) => seat.status === "사용 중")
         .map((seat: SeatStateDto) => {
           const seatState: SeatState = {
@@ -57,35 +63,23 @@ export const Room2Scene = ({
     initPerson();
   }, [isPending, data]);
 
-  useLayoutEffect(() => {
-    const initSeat = () => {
-      const seatWidth = 1;
-      const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
-
-      setSeatPosition(seatPosition);
-    };
-
-    initSeat();
-  }, []);
-
   return (
     <group {...props}>
-      <WallGroup position={[19.6, 0, -32.5]} rotation={[0, Math.PI, 0]} />
       {!isPending && (
         <SeatedUserInstance
-          seatPosition={occupiedSeatPosition}
-          position={[8.8, 0.1, -5.15]}
+          position={[-7.9, 0.1, -4.5]}
+          seatPosition={occupiedPosition}
           itemsPerLine={itemsPerLine.current}
         />
       )}
-      <Room2Table
+      <LaptopZoneTable
+        position={[-10, 0, -4.7]}
         numberOfSeat={numberOfSeat.current}
-        position={[30, 0, -5.4]}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
+        position={[-7.9, 0, -4.3]}
         seatPosition={seatPosition}
-        position={[8.15, 0, -5]}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

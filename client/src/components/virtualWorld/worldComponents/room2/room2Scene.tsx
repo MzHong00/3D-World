@@ -1,10 +1,9 @@
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
 
-import { organizeSeatPos } from "../laptop/position/organizeSeatPosition";
-import { LaptopZoneTable } from "../laptop/models/laptopZoneTable";
+import { room2SeatPosition } from "./position/room2SeatPosition";
+import { Room2Table } from "./models/room2ZoneTable";
 
-import { WallGroup } from "components/models/wall/wallGroup";
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import {
@@ -17,25 +16,33 @@ interface Props extends GroupProps {
   isPending?: boolean;
   data?: Array<any>;
 }
-export const Room1Scene = ({
+
+export const Room2Scene = ({
   isPending = true,
   data = [],
   ...props
 }: Props) => {
-  const numberOfSeat = useRef<number>(180);
-  const itemsPerLine = useRef<number>(10);
+  const numberOfSeat = useRef<number>(240);
+  const itemsPerLine = useRef<number>(12);
 
-  const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
   const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
   );
+
+  //모든 좌석의 좌표
+  const seatPosition: Coordinate[] = useMemo(() => {
+    const seatWidth = 1;
+    const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
+
+    return seatPosition;
+  }, []);
 
   useEffect(() => {
     const initPerson = () => {
       if (isPending) return;
 
-      const seatWidth = 2.057;
-      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
+      const seatWidth = 1.4;
+      const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
 
       const occupiedSeat = data
         .slice(0, numberOfSeat.current)
@@ -55,35 +62,23 @@ export const Room1Scene = ({
     initPerson();
   }, [isPending, data]);
 
-  useLayoutEffect(() => {
-    const initSeat = () => {
-      const seatWidth = 1.466;
-      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
-
-      setSeatPosition(seatPosition);
-    };
-
-    initSeat();
-  }, []);
-
   return (
     <group {...props}>
-      <WallGroup position={[-18.5, 0, -32.5]} />
       {!isPending && (
         <SeatedUserInstance
-          position={[-30.8, 0.1, -4.5]}
           seatPosition={occupiedSeatPosition}
+          position={[8.15, 0.1, -5.15]}
           itemsPerLine={itemsPerLine.current}
         />
       )}
-      <LaptopZoneTable
-        position={[-10, 0, -4.7]}
+      <Room2Table
         numberOfSeat={numberOfSeat.current}
+        position={[30, 0, -5.4]}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        position={[-30.8, 0, -4.3]}
         seatPosition={seatPosition}
+        position={[8.15, 0, -5]}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

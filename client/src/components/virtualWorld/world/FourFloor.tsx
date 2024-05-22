@@ -1,15 +1,16 @@
+import { useEffect } from "react";
 import { Physics } from "@react-three/rapier";
 
+import { AppearanceTophography } from "../worldComponents/laptop/models/appearanceTophography";
+import { ColliderTophography } from "../worldComponents/laptop/models/colliderTophography";
 import { Player } from "components/models/character/player";
-import { CenterWall } from "components/models/wall/centerWall";
-import { useEffect } from "react";
+import { Map } from "components/virtualWorld/map/map";
+import { Room1Scene } from "components/virtualWorld/worldComponents/room1/room1Scene";
+import { Room2Scene } from "components/virtualWorld/worldComponents/room2/room2Scene";
+import { organizeMapPosition } from "components/virtualWorld/worldComponents/laptop/position/organizeMapPosition";
+import { room2MapPosition } from "components/virtualWorld/worldComponents/room2/position/room2MapPosition";
 import { useFetchRoom1Zone, useFetchRoom2Zone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
-import { organizeMapPosition } from "../laptop/position/organizeMapPosition";
-import { Map } from "../map/map";
-import { room2MapPosition } from "../room2/position/room2MapPosition";
-import { Room1Scene } from "../room1/room1Scene";
-import { Room2Scene } from "../room2/room2Scene";
 
 export const FourFloor = () => {
   //크롤링한 도서관 Data 상태
@@ -28,13 +29,9 @@ export const FourFloor = () => {
       const Floor4SeatPosition = [...room1SeatPosition, ...room2SeatPosition];
 
       console.log(Floor4SeatPosition);
-      
+
       setDialog(
-        <Map
-          seatPosition={Floor4SeatPosition}
-          xSpeed={12.05}
-          ySpeed={10.2}
-        />
+        <Map seatPosition={Floor4SeatPosition} xSpeed={12.05} ySpeed={10.2} />
       );
     };
 
@@ -54,7 +51,8 @@ export const FourFloor = () => {
         isPending={Room2Pending}
         data={Room2Data}
       />
-      <CenterWall position={[4.5, -0, -32.5]} />
+      <AppearanceTophography position={[4.5, 0, -32.5]} />
+      <ColliderTophography position={[4.5, 0, -32.5]} />
     </Physics>
   );
 };

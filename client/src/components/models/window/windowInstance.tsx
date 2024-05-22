@@ -16,7 +16,7 @@ export const WindowInstance = ({
     <group {...props}>
       <Instances>
         <boxGeometry args={windowSize as any} />
-        <meshPhongMaterial emissive="#d8f6fd" />
+        <meshPhysicalMaterial color="#bee5fe" roughness={0} metalness={1}/>
 
         {windowPosition.map((position, idx) => (
           <Instance

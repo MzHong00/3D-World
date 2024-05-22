@@ -4,10 +4,8 @@ import ReadyPlayerMe from "pages/ReadyPlayerMe/readyPlayerMe";
 
 import { Home } from "pages/Home/home";
 import { World } from "pages/VirtualWorld/virtualWorld";
-import { DigitalZoneScene } from "components/virtualWorld/digital/digitalZoneScene";
-import { Room2Scene } from "components/virtualWorld/room2/room2Scene";
-import { ThirdFloor } from "components/virtualWorld/IntegrationZone/ThirdFloor";
-import { FourFloor } from "components/virtualWorld/IntegrationZone/FourFloor";
+import { ThirdFloor } from "components/virtualWorld/world/ThirdFloor";
+import { FourFloor } from "components/virtualWorld/world/FourFloor";
 
 const appRouter = createBrowserRouter([
     {

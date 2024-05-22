@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef } from "react";
+import { useState, useEffect,  useRef, useMemo } from "react";
 
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
@@ -10,9 +10,9 @@ import {
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-import { MonitorInstance } from "components/models/items/monitor";
+import { MonitorInstance } from "components/models/items/monitorInstance";
 import { GroupProps } from "@react-three/fiber";
-import { WallGroup } from "components/models/wall/wallGroup";
+import { CylinderTableInstance } from "components/models/table/cylinderTableInstance";
 
 interface Props extends GroupProps {
   isPending?: boolean;
@@ -27,10 +27,21 @@ export const DigitalZoneScene = ({
   const numberOfSeat = useRef<number>(50);
   const itemsPerLine = useRef<number>(5);
 
-  const [seatPosition, setSeatPosition] = useState<Coordinate[]>([]);
   const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
   );
+
+  //모든 좌석의 좌표
+  const seatPosition: Coordinate[] = useMemo(() => {
+    const seatWidth = 1.466;
+    const seatPosition = digitZoneSeatPosition(
+      numberOfSeat.current,
+      seatWidth
+    );
+
+      return seatPosition;
+  }, [])  
+
 
   useEffect(() => {
     const initPerson = () => {
@@ -61,23 +72,8 @@ export const DigitalZoneScene = ({
     initPerson();
   }, [isPending, data]);
 
-  useLayoutEffect(() => {
-    const initSeat = () => {
-      const seatWidth = 1.466;
-      const seatPosition = digitZoneSeatPosition(
-        numberOfSeat.current,
-        seatWidth
-      );
-
-      setSeatPosition(seatPosition);
-    };
-
-    initSeat();
-  }, []);
-
   return (
     <group {...props}>
-      <WallGroup position={[19.55, 0, -32.5]} rotation={[0, Math.PI, 0]} />
       {!isPending && (
         <SeatedUserInstance
           position={[20.5, 0.1, -6.8]}
@@ -100,6 +96,7 @@ export const DigitalZoneScene = ({
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />
+      <CylinderTableInstance position={[15, 0, -40]}/>
     </group>
   );
 };

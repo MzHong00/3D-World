@@ -1,17 +1,19 @@
+import { useEffect } from "react";
 import { Physics } from "@react-three/rapier";
 
-import { LaptopZoneScene } from "../laptop/laptopScene";
-import { DigitalZoneScene } from "../digital/digitalZoneScene";
 import { Player } from "components/models/character/player";
-import { CenterWall } from "components/models/wall/centerWall";
-import { useEffect } from "react";
+import { Map } from "components/virtualWorld/map/map";
+
+import { AppearanceTophography } from "../worldComponents/laptop/models/appearanceTophography";
+import { ColliderTophography } from "../worldComponents/laptop/models/colliderTophography";
+import { LaptopZoneScene } from "components/virtualWorld/worldComponents/laptop/laptopScene";
+import { organizeMapPosition } from "components/virtualWorld/worldComponents/laptop/position/organizeMapPosition";
+import { DigitalZoneScene } from "components/virtualWorld/worldComponents//digital/digitalZoneScene";
+import { digitZoneMapPosition } from "components/virtualWorld/worldComponents/digital/position/digitZoneMapPosition";
 import { useFetchDigitalZone, useFetchLabtopZone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
-import { organizeMapPosition } from "../laptop/position/organizeMapPosition";
-import { digitZoneMapPosition } from "../digital/position/digitZoneMapPosition";
-import { Map } from "../map/map";
 
-export const LibraryScene = () => {
+export const ThirdFloor = () => {
   //크롤링한 도서관 Data 상태
   const { isPending: LaptopPending, data: LaptopData } = useFetchLabtopZone();
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();
@@ -28,13 +30,9 @@ export const LibraryScene = () => {
       const Floor3SeatPosition = [...laptopSeatPosition, ...digitSeatPosition];
 
       console.log(Floor3SeatPosition);
-      
+
       setDialog(
-        <Map
-          seatPosition={Floor3SeatPosition}
-          xSpeed={12}
-          ySpeed={10.2}
-        />
+        <Map seatPosition={Floor3SeatPosition} xSpeed={12} ySpeed={10.2} />
       );
     };
 
@@ -54,7 +52,8 @@ export const LibraryScene = () => {
         isPending={DigitPending}
         data={DigitData}
       />
-      <CenterWall position={[4.5, -0.75, -32.5]} />
+      <AppearanceTophography position={[4.5, 0, -32.5]} />
+      <ColliderTophography position={[4.5, 0, -32.5]} />
     </Physics>
   );
 };

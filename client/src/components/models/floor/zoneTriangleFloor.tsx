@@ -33,7 +33,7 @@ export const ZoneTriangleFloor = () => {
         <Instances geometry={geometry}>
 
             <meshStandardMaterial map={texture} side={THREE.DoubleSide} />
-            {position.map((pos, idx) => <Instance rotation={[Math.PI * 1.5, 0, Math.PI * (0.5 * idx)]} position={pos as any} />)}
+            {position.map((pos, idx) => <Instance key={idx} rotation={[Math.PI * 1.5, 0, Math.PI * (0.5 * idx)]} position={pos as any} />)}
         </Instances>
     )
 }

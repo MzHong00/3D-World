@@ -1,8 +1,8 @@
 import { GroupProps } from "@react-three/fiber"
 import { Instance, Instances, useGLTF } from "@react-three/drei"
 
-import chairGlb from 'shared/asset/3d/chair.glb'
 import { Coordinate } from "shared/types/type"
+import chairGlb from 'shared/asset/3d/chair.glb'
 
 interface Props extends GroupProps {
     seatPosition: Coordinate[]
