@@ -1,6 +1,5 @@
 import { GroupProps } from "@react-three/fiber"
 
-
 import { digitalZoneTablePosition } from "../position/digitZoneTablePosition"
 import { TableInstance } from "components/models/table/tableInstance"
 
@@ -17,8 +16,8 @@ export const DigitalZoneTable = ({
 
     return (
         <group {...props} dispose={null}>
-            <TableInstance position={tablePosition.smallTable} adjustXSize={6} adjustZSize={3.3}/>
-            <TableInstance position={tablePosition.bigTable} adjustXSize={8} adjustZSize={3.3}/>
+            <TableInstance tablePosition={tablePosition.smallTable} adjustXSize={6} adjustZSize={3.3}/>
+            <TableInstance tablePosition={tablePosition.bigTable} adjustXSize={8} adjustZSize={3.3}/>
         </group>
     )
 }

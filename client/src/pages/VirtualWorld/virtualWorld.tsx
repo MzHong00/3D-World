@@ -14,8 +14,8 @@ import { Stats } from "@react-three/drei";
 
 export const World = () => {
   const map = useKeyControls();
-  const { dialog, isOpen } = useDialogStore();
-
+  const { dialog, isOpen }= useDialogStore();
+  
   return (
     <Suspense fallback={<div>월드 불러오는 중...</div>}>
       {isOpen && dialog}

@@ -26,12 +26,9 @@ const organizeSeat = (
   // 좌석번호 201번 부터 포지션의 일관성이 깨짐 현재는 else 부분만 사용 중
   if (seat.number > 200) {
     const slicedNum = seat.number - 200;
-    const top = height * 19 + Math.floor(19 / 2) * height;
 
-    right = -160;
-    bottom =
-      top -
-      (height * (slicedNum - 1) + Math.floor((slicedNum - 1) / 2) * height);
+    right = -164;
+    bottom = height * (slicedNum + Math.floor((slicedNum - 1) / 6)*0.3) * 0.85 + 105;
   } else {
     const row = (seat.number - 1) % 10;
     const col = Math.floor((seat.number - 1) / 10);

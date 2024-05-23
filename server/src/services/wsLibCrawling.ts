@@ -12,8 +12,8 @@ const selector = 'div.clicker_s_o'
 export const lapTopZoneCrawling = async (req: Request, res: Response) => {
     try {
         console.log("노트북존 요청");
-        
         const seatStatus = await Crawler(zone['노트북존'], selector);
+        console.log("노트북존 응답");
 
         res.send(seatStatus)
     } catch (error) {
@@ -25,6 +25,7 @@ export const digitalZoneCrawling = async (req: Request, res: Response) => {
     try {
         console.log("디지털존 요청");
         const seatStatus = await Crawler(zone['디지털존'], selector);
+        console.log("디지털존 응답");
 
         res.send(seatStatus)
     } catch (error) {
@@ -34,6 +35,7 @@ export const digitalZoneCrawling = async (req: Request, res: Response) => {
 
 export const firstReadingRoomCrawling = async (req: Request, res: Response) => {
     try {
+        console.log("제 1열람실 요청");
         const seatStatus = await Crawler(zone['제1열람실'], selector);
 
         res.send(seatStatus)
@@ -44,6 +46,7 @@ export const firstReadingRoomCrawling = async (req: Request, res: Response) => {
 
 export const secondReadingRoomCrawling = async (req: Request, res: Response) => {
     try {
+        console.log("제 2열람실 요청");
         const seatStatus = await Crawler(zone['제2열람실'], selector);
 
         res.send(seatStatus)

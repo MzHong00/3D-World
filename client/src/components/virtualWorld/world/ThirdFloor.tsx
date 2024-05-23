@@ -18,7 +18,7 @@ export const ThirdFloor = () => {
   const { isPending: LaptopPending, data: LaptopData } = useFetchLabtopZone();
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();
   const { setDialog } = useDialogStore();
-
+  
   useEffect(() => {
     const initMap = () => {
       if (LaptopPending || DigitPending) return;

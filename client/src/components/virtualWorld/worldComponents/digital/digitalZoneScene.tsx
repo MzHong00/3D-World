@@ -1,18 +1,19 @@
-import { useState, useEffect,  useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { GroupProps } from "@react-three/fiber";
 
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
 
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import { ChairInstance } from "components/models/chair/chairInstance";
+import { MonitorInstance } from "components/models/items/monitorInstance";
+import { CylinderTableInstance } from "components/models/table/cylinderTableInstance";
+import { HemiRoundTable } from "components/models/table/hemiRoundTable";
 import {
   type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-import { MonitorInstance } from "components/models/items/monitorInstance";
-import { GroupProps } from "@react-three/fiber";
-import { CylinderTableInstance } from "components/models/table/cylinderTableInstance";
 
 interface Props extends GroupProps {
   isPending?: boolean;
@@ -34,14 +35,10 @@ export const DigitalZoneScene = ({
   //모든 좌석의 좌표
   const seatPosition: Coordinate[] = useMemo(() => {
     const seatWidth = 1.466;
-    const seatPosition = digitZoneSeatPosition(
-      numberOfSeat.current,
-      seatWidth
-    );
+    const seatPosition = digitZoneSeatPosition(numberOfSeat.current, seatWidth);
 
-      return seatPosition;
-  }, [])  
-
+    return seatPosition;
+  }, []);
 
   useEffect(() => {
     const initPerson = () => {
@@ -96,7 +93,8 @@ export const DigitalZoneScene = ({
         seatPosition={seatPosition}
         itemsPerLine={itemsPerLine.current}
       />
-      <CylinderTableInstance position={[15, 0, -40]}/>
+      <CylinderTableInstance numberOfTable={4} position={[13, 0, -50]} />
+      <HemiRoundTable position={[12, 1, -1]} frustumCulled />
     </group>
   );
 };

@@ -7,7 +7,7 @@ import { LaptopZoneTable } from "./models/laptopZoneTable";
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import {
-  SeatState,
+  type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
@@ -22,22 +22,17 @@ export const LaptopZoneScene = ({
   ...props
 }: Props) => {
   //총 좌석의 개수, 한 줄당 좌석의 개수
-  const numberOfSeat = useRef<number>(200);
+  const numberOfSeat = useRef<number>(218);
   const itemsPerLine = useRef<number>(10);
-  
+
   //사용 중인 좌석들의 좌표
-  const [occupiedPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
-    []
-  );
+  const [occupiedPosition, setOccupiedSeatPosition] = useState<SeatState[]>([]);
 
   //모든 좌석의 좌표
-  const seatPosition: Coordinate[] = useMemo(() => {
-    const seatWidth = 1.466;
-
-      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
-
-      return seatPosition;
-  }, [])  
+  const seatPosition: Coordinate[] = useMemo(
+    () => organizeSeatPos(numberOfSeat.current, 1.466),
+    []
+  );
 
   useEffect(() => {
     const initPerson = () => {

@@ -5,8 +5,13 @@ import { Instance, Instances, useGLTF } from "@react-three/drei";
 import { RoundedBoxGeometry } from "shared/ui/BufferGeometry/roundedBoxGeometry";
 import chairGlb from "shared/asset/3d/chair.glb";
 import ComputerGlb from "shared/asset/3d/generic_monitor_low_poly.glb";
+import { Coordinate } from "shared/types/type";
 
-export const CylinderTableInstance = (props: GroupProps) => {
+interface Props extends GroupProps {
+  numberOfTable: number;
+}
+
+export const CylinderTableInstance = ({ numberOfTable, ...props }: Props) => {
   const { nodes: chairNodes, materials: chairMaterials }: any = useGLTF(
     `${chairGlb}`
   );
@@ -20,45 +25,49 @@ export const CylinderTableInstance = (props: GroupProps) => {
   );
 
   const divideSeatPosition = useMemo(() => {
-    return [
+    const zGap = -6;
+    const pentagonPos = [
       { x: 1, z: 0 },
       { x: 0.309, z: -0.951 },
       { x: -0.809, z: -0.588 },
       { x: -0.809, z: 0.588 },
       { x: 0.309, z: 0.951 },
-
-      { x: 1, z: -4 },
-      { x: 0.309, z: -4.951 },
-      { x: -0.809, z: -4.588 },
-      { x: -0.809, z: -3.412 },
-      { x: 0.309, z: -3.049 },
-
-      { x: 1, z: -8 },
-      { x: 0.309, z: -8.951 },
-      { x: -0.809, z: -8.588 },
-      { x: -0.809, z: -7.412 },
-      { x: 0.309, z: -7.049 },
     ];
-  }, []);
+    const numberOfSeat = pentagonPos.length;
+
+    const allCylinderTablePosition: Coordinate[] = Array.from({
+      length: numberOfSeat * numberOfTable,
+    }).map((_, i) => ({
+      x: pentagonPos[i % numberOfSeat].x,
+      z: pentagonPos[i % numberOfSeat].z + zGap * Math.floor(i / numberOfSeat),
+    }));
+
+    return allCylinderTablePosition;
+  }, [numberOfTable]);
 
   return (
     <group {...props}>
       <Instances>
         <cylinderGeometry args={[1, 1, 2]} />
         <meshStandardMaterial />
-        <Instance position={[0, 1, 0]} />
+        {Array.from({ length: numberOfTable }).map((_, i) => (
+          <Instance key={i} position={[0, 1, i * 12]} />
+        ))}
       </Instances>
       <Instances>
         <cylinderGeometry args={[2, 2, 0.1]} />
         <meshStandardMaterial />
-        <Instance position={[0, 1, 0]} />
+        {Array.from({ length: numberOfTable }).map((_, i) => (
+          <Instance key={i} position={[0, 1, i * 12]} />
+        ))}
       </Instances>
 
       <Instances geometry={roundedBoxGeometry}>
         <meshPhysicalMaterial color="#d6efff" roughness={0} metalness={0.05} />
         {divideSeatPosition.map((pos, idx) => (
           <Instance
-            position={[pos.x, 1, pos.z  + Math.floor(idx / 5) * 12]}
+            key={idx}
+            position={[pos.x, 1, pos.z + Math.floor(idx / 5) * 18]}
             rotation={[0, Math.PI * ((idx % 5) * 0.4), 0]}
           />
         ))}
@@ -89,7 +98,11 @@ export const CylinderTableInstance = (props: GroupProps) => {
         {divideSeatPosition.map((pos, idx) => (
           <Instance
             key={idx}
-            position={[pos.x * 1.5, 0, pos.z * 1.5 + Math.floor(idx / 5) * -2]}
+            position={[
+              pos.x * 1.5,
+              0,
+              pos.z * 1.668 + Math.floor(idx / 5) * -2,
+            ]}
             rotation={[
               Math.PI * 1.5,
               0,

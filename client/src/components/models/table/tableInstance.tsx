@@ -1,23 +1,25 @@
 import { Instance, Instances } from "@react-three/drei";
+import { GroupProps } from "@react-three/fiber";
 
 import { Coordinate } from "shared/types/type";
 
-interface Props {
-  position: Coordinate[];
+interface Props extends GroupProps {
+  tablePosition: Coordinate[];
   adjustXSize: number;
   adjustZSize: number;
 }
 export const TableInstance = ({
-  position,
+  tablePosition,
   adjustXSize,
   adjustZSize,
+  ...props
 }: Props) => {
   return (
-    <>
+    <group {...props}>
       <Instances>
         <boxGeometry args={[adjustXSize, 0.1, adjustZSize]} />
         <meshPhysicalMaterial color="white" />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -32,7 +34,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 1, 0.1]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -46,7 +48,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 1, 0.1]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -60,7 +62,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 1, 0.1]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -74,7 +76,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 1, 0.1]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -89,7 +91,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 0.1, adjustZSize]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -103,7 +105,7 @@ export const TableInstance = ({
       <Instances>
         <boxGeometry args={[0.1, 0.1, adjustZSize]} />
         <meshStandardMaterial />
-        {position.map((position, idx) => (
+        {tablePosition.map((position, idx) => (
           <Instance
             key={idx}
             position={[
@@ -114,6 +116,6 @@ export const TableInstance = ({
           />
         ))}
       </Instances>
-    </>
+    </group>
   );
 };

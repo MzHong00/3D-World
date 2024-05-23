@@ -9,7 +9,6 @@ import { Coordinate } from "shared/types/type";
 import { ZoneFloor } from "components/models/floor/zoneFloor";
 import { SideWall } from "components/models/wall/sideWall";
 import { CylinderPillarInstance } from "components/models/wall/cylinderPillarInstance";
-import { HemiRoundTable } from "components/models/table/hemiRoundTable";
 
 export const AppearanceTophography = (props: GroupProps) => {
   const xGap = useRef<number>(17);
@@ -92,7 +91,6 @@ export const AppearanceTophography = (props: GroupProps) => {
         <ZoneFloor args={[28, 66]} />
         <SideWall position={[-14, 0.5, 0]} />
       </group>
-      <HemiRoundTable position={[10, 1, 31.5]} frustumCulled />
     </group>
   );
 };
