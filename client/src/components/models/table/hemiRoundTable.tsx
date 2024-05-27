@@ -14,7 +14,7 @@ export const HemiRoundTable = (props: GroupProps) => {
       </mesh>
       <mesh rotation={[Math.PI * 1.5, 0, 0]}>
         <ringGeometry args={[2.5, 3.3, 50, 1, 0, Math.PI]} />
-        <meshPhysicalMaterial roughness={0} metalness={1} />
+        <meshPhysicalMaterial roughness={0.2} metalness={1} />
       </mesh>
       <mesh position={[-2.9, -0.5, 0]}>
         <planeGeometry args={[0.8, 1]} />

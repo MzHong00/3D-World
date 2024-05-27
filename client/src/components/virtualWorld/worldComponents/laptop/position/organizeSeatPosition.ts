@@ -26,8 +26,8 @@ const organizeSeat = (
   if (seat + 1 > 200) {
     const slicedNum = seat - 200;
     
-    right = 15.5;
-    bottom = height * (slicedNum + Math.floor(slicedNum / 6)) + 8;
+    right = 15.9;
+    bottom = height * (slicedNum + Math.floor(slicedNum / 6) * 0.38) + 7.1;
   } else {
     const row = seat % 10;
     const col = Math.floor(seat / 10);

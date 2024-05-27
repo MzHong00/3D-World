@@ -1,15 +1,10 @@
 import { useMemo } from "react";
 import * as THREE from "three";
-import { MeshProps } from "@react-three/fiber";
 import { Instance, Instances, useTexture } from "@react-three/drei";
 
 import ZoneFloorTexture from "shared/asset/image/zoneEntryFloor.png";
 
-interface Props extends MeshProps {
-  args: any;
-}
-
-export const ZoneConnectFloor = ({ args, ...props }: Partial<Props>) => {
+export const ZoneConnectFloor = () => {
   const zone = useTexture(`${ZoneFloorTexture}`);
   zone.repeat.set(15, 7);
   zone.wrapS = zone.wrapT = THREE.RepeatWrapping;

@@ -69,7 +69,6 @@ export const LaptopZoneScene = ({
       )}
       <LaptopZoneTable
         position={[-10, 0, -4.7]}
-        numberOfSeat={numberOfSeat.current}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance

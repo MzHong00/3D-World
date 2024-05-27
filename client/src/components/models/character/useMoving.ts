@@ -31,7 +31,8 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
 
     if (modeState) {
       //camera
-      // state.camera.position.set(x, 10, z + 10);
+      state.camera.rotation.set(-0.7853981633974484, 0, 0);
+      state.camera.position.set(x, 10, z + 10);
       if (!isMoving) return;
 
       // movement
@@ -58,7 +59,7 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
         ref.current?.setRotation(quaternion, true);
       }
     } else {
-      //state.camera.position.set(x, y + 2, z)
+      state.camera.position.set(x, y + 1, z);
       if (!isMoving) return;
 
       // movement

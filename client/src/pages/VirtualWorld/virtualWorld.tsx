@@ -1,32 +1,36 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
+import { Stats } from "@react-three/drei";
 import {
   Environment,
   KeyboardControls,
-  OrbitControls,
+  PointerLockControls,
 } from "@react-three/drei";
 
 import { useKeyControls } from "components/models/character/useKeyControls";
 import { MenuList } from "components/virtualWorld/menuList/menuList";
 import { useDialogStore } from "stores/useOpenDialogStore";
-import { Stats } from "@react-three/drei";
+import { useCameraModeStore } from "stores/useCameraModeStore";
+import { CameraAdjusting } from "shared/ui/Loading/CameraAdjusting/cameraAdjusting";
 
 export const World = () => {
   const map = useKeyControls();
-  const { dialog, isOpen }= useDialogStore();
-  
+  const { dialog, isOpen } = useDialogStore();
+  const { modeState } = useCameraModeStore((state) => state);
+
   return (
     <Suspense fallback={<div>월드 불러오는 중...</div>}>
       {isOpen && dialog}
       <MenuList />
       <KeyboardControls map={map}>
-        <Canvas shadows camera={{ position: [0, 20, 20], fov: 40}}>
+        <Canvas shadows camera={{ position: [0, 20, 20], fov: 40 }}>
           <Outlet />
           <Environment preset="apartment" />
-          <OrbitControls />
+          {!modeState && <PointerLockControls />}
         </Canvas>
       </KeyboardControls>
+      <CameraAdjusting />
       <Stats />
     </Suspense>
   );

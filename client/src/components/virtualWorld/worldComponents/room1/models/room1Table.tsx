@@ -1,14 +1,17 @@
 import { GroupProps } from "@react-three/fiber";
 
 import { TableInstance } from "../../../../models/table/tableInstance";
-import { organizeTablePos } from "../position/organizeTablePosition";
+import { organizeTablePos } from "../../laptop/position/organizeTablePosition";
 
 interface Props extends GroupProps {
   itemsPerLine: number;
 }
 
-export const LaptopZoneTable = ({ itemsPerLine, ...props }: Props) => {
-  const tablePosition = organizeTablePos(200, itemsPerLine);
+export const Room1Table = ({
+  itemsPerLine,
+  ...props
+}: Props) => {
+  const tablePosition = organizeTablePos(180, itemsPerLine);
 
   return (
     <group {...props}>
@@ -21,12 +24,6 @@ export const LaptopZoneTable = ({ itemsPerLine, ...props }: Props) => {
         tablePosition={tablePosition.bigTable}
         adjustXSize={8}
         adjustZSize={3.3}
-      />
-      <TableInstance
-        rotation={[0, Math.PI / 2, 0]}
-        tablePosition={tablePosition.xLargeTable}
-        adjustXSize={12}
-        adjustZSize={1.5}
       />
     </group>
   );

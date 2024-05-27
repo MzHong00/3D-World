@@ -1,35 +1,57 @@
-import { GroupProps } from "@react-three/fiber"
-import { Clone, useAnimations, useFBX, useGLTF } from "@react-three/drei"
+import { GroupProps } from "@react-three/fiber";
+import { Clone, useAnimations, useFBX, useGLTF } from "@react-three/drei";
 
-import { type SeatState } from "shared/types/type"
-import personModel from 'shared/asset/3d/man.glb'
-import sitAnimation from 'shared/asset/animations/Sitting.fbx'
-import { useEffect } from "react"
+import { type SeatState } from "shared/types/type";
+import personModel from "shared/asset/3d/man.glb";
+import sitAnimation from "shared/asset/animations/Sitting.fbx";
+import { useEffect } from "react";
 
 interface Props extends GroupProps {
-    seatPosition: SeatState[]
-    itemsPerLine: number
+  seatPosition: SeatState[];
+  itemsPerLine: number;
 }
 
 export const SeatedUserInstance = ({
-    seatPosition, itemsPerLine, ...props
+  seatPosition,
+  itemsPerLine,
+  ...props
 }: Props) => {
-    const { scene } = useGLTF(`${personModel}`);
-    const { animations: sit } = useFBX(sitAnimation);
+  const { scene } = useGLTF(`${personModel}`);
+  const { animations: sit } = useFBX(sitAnimation);
 
-    const { actions: sitAction } = useAnimations(sit, scene);
+  const { actions: sitAction } = useAnimations(sit, scene);
 
-    useEffect(() => {
-        sitAction['mixamo.com']?.play();
-    }, [sitAction])
+  useEffect(() => {
+    sitAction["mixamo.com"]?.play();
+  }, [sitAction]);
 
-    return (
-        <group {...props}>
-            {seatPosition.map((seat, idx) => (Math.floor((seat.seat.number - 1) % (itemsPerLine * 2) / itemsPerLine)) === 0 ?
-                <Clone key={idx} object={scene} position={[seat.x, 0, 1.4 - seat.z]} rotation={[0, Math.PI, 0]} />
-                :
-                <Clone key={idx} object={scene} position={[seat.x, 0, 0.3 - seat.z]} />
-            )}
-        </group>
-    )
-}
+  return (
+    <group {...props}>
+      {seatPosition.map((seat, idx) => {
+        const isUTurn =
+          Math.floor(
+            ((seat.seat.number - 1) % (itemsPerLine * 2)) / itemsPerLine
+          ) === 0;
+
+        if (seat.seat.number >= 200)
+          return (
+            <Clone
+              key={idx}
+              object={scene}
+              position={[6.3 + seat.x, 0, -2.6 - seat.z]}
+              rotation={[0, Math.PI * 1.5, 0]}
+            />
+          );
+
+        return (
+          <Clone
+            key={idx}
+            object={scene}
+            position={[seat.x, 0, (isUTurn ? 1.4 : 0.3) - seat.z]}
+            rotation={[0, isUTurn ? Math.PI : 0, 0]}
+          />
+        );
+      })}
+    </group>
+  );
+};

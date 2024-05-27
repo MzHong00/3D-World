@@ -3,7 +3,9 @@ import { GroupProps } from "@react-three/fiber";
 
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
+import { MultiFlexZone } from "./models/multiFlexZone";
 
+import { Plant } from "components/models/items/plant";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { MonitorInstance } from "components/models/items/monitorInstance";
@@ -95,6 +97,9 @@ export const DigitalZoneScene = ({
       />
       <CylinderTableInstance numberOfTable={4} position={[13, 0, -50]} />
       <HemiRoundTable position={[12, 1, -1]} frustumCulled />
+      <MultiFlexZone rotation={[0, Math.PI*0.25, 0]}  position={[26, 0, -53]}/>
+      <MultiFlexZone rotation={[0, Math.PI*0.25, 0]}  position={[15, 0, -59]}/>
+      <Plant position={[5, 0, -10]} scale={0.35}/>
     </group>
   );
 };

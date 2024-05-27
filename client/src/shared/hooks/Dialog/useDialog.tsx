@@ -1,15 +1,17 @@
 import { DialogHTMLAttributes, useEffect, useRef } from 'react';
 
-import styles from './useDialog.module.css';
 import { useDialogStore } from 'stores/useOpenDialogStore';
+import styles from './useDialog.module.css';
 
 export const Dialog = (props: DialogHTMLAttributes<HTMLDialogElement>) => {
-    const dialogRef = useRef<any>(null);
-    const { setDialogBackdrop } = useDialogStore(state => state);
+    const dialogRef = useRef<HTMLDialogElement>(null);
+    const { setDialogBackdrop, setDialogClose } = useDialogStore(state => state);
 
     useEffect(() => {
-        dialogRef.current.showModal()
-    }, [])
+          dialogRef.current!.showModal();
+          dialogRef.current!.addEventListener('close', setDialogClose);
+      }, [setDialogClose]);
+      
 
     return (
         <dialog ref={dialogRef} onClick={setDialogBackdrop} className={`${styles.dialog} ${props.className}`} style={props.style}>

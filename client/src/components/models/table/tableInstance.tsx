@@ -18,7 +18,7 @@ export const TableInstance = ({
     <group {...props}>
       <Instances>
         <boxGeometry args={[adjustXSize, 0.1, adjustZSize]} />
-        <meshPhysicalMaterial color="white" />
+        <meshPhysicalMaterial color="white" roughness={0.2} metalness={1}/>
         {tablePosition.map((position, idx) => (
           <Instance
             key={idx}

@@ -26,7 +26,11 @@ export const CustomWindowInstance = (props: GroupProps) => {
       >
         <instancedMesh args={[undefined, undefined, 6]} count={6}>
           <boxGeometry args={[0.1, 2, 7]} />
-          <meshPhysicalMaterial color="#bee5fe" roughness={0.1} metalness={0.7} />
+          <meshPhysicalMaterial
+            color="#bee5fe"
+            roughness={0.3}
+            metalness={0.9}
+          />
         </instancedMesh>
       </InstancedRigidBodies>
     </group>

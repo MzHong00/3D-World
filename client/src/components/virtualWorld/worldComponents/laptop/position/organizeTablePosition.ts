@@ -9,7 +9,7 @@ export const organizeTablePos = (
   const smallTablePosition: Coordinate[] = [];
 
   // 의자(좌석)의 개수로 연산을 통해 0, 3, 7번 째 자리의 위치를 알게 됨
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < numberOfSeat; i++) {
     if (
       i % (itemsPerLine * 2) === 0 ||
       i % (itemsPerLine * 2) === 3 ||
@@ -28,10 +28,11 @@ export const organizeTablePos = (
   seatPositionList.smallTable = smallTablePosition;
   seatPositionList.bigTable = bigTablePosition;
   seatPositionList.xLargeTable = [
-    { x: -59.3, z: -39.5 },
-    { x: -102.6, z: -39.5 },
-    { x: -146, z: -39.5 },
+    { x: -59.3, z: -39 },
+    { x: -102.6, z: -39 },
+    { x: -146, z: -39 },
   ];
+  
   return seatPositionList;
 };
 

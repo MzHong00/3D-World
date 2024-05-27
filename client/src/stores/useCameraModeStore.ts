@@ -1,10 +1,10 @@
 import { create } from "zustand"
 
-interface AvatarState {
+interface ModeState {
     modeState: boolean
     setModeState: (mode: boolean) => void
 }
-export const useCameraModeStore = create<AvatarState>()((set) => ({
+export const useCameraModeStore = create<ModeState>()((set) => ({
     modeState: true,
     setModeState: (mode) => set(() => ({ modeState: mode })),
 }))
