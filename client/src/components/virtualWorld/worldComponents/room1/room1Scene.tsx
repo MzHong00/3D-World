@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
 
 import { organizeSeatPos } from "../laptop/position/organizeSeatPosition";
+import { Room1Table } from "./models/room1Table";
 
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
@@ -10,12 +11,12 @@ import {
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-import { Room1Table } from "./models/room1Table";
 
 interface Props extends GroupProps {
   isPending?: boolean;
   data?: Array<any>;
 }
+
 export const Room1Scene = ({
   isPending = true,
   data = [],
@@ -67,6 +68,7 @@ export const Room1Scene = ({
         <SeatedUserInstance
           position={[-7.9, 0.1, -4.5]}
           seatPosition={occupiedSeatPosition}
+          consistencyBreakPoint={180}
           itemsPerLine={itemsPerLine.current}
         />
       )}
@@ -77,6 +79,7 @@ export const Room1Scene = ({
       <ChairInstance
         position={[-7.9, 0, -4.3]}
         seatPosition={seatPosition}
+        consistencyBreakPoint={180}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

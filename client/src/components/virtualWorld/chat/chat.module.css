@@ -1,0 +1,81 @@
+.chatContainer {
+    width: 250px;
+    height: 400px;
+    position: absolute;
+    bottom: 70px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    border: 0.5px solid silver;
+    z-index: 10;
+}
+
+.chatDisplay {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: none;
+    overflow-y: auto;
+}
+
+.chatDisplay::-webkit-scrollbar {
+    width: 3px;
+}
+
+.chatDisplay::-webkit-scrollbar-thumb {
+    background-color: rgb(78, 78, 78);
+    border-radius: 10px;
+}
+
+.chatDisplay::-webkit-scrollbar-track {
+    background-color: silver;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+.chatBalloon {
+    width: fit-content;
+    border-radius: 10px;
+    margin-right: 8px;
+    padding: 5px;
+    padding-inline: 10px;
+    background-color: whitesmoke;
+    list-style: none;
+    overflow-wrap: anywhere;
+}
+
+.chatTextName {
+    font-weight: bold;
+}
+
+.chatTextTime {
+    margin-left: 10px;
+    color: silver;
+    font-size: small;
+    font-weight: lighter;
+}
+
+.chatSend {
+    display: flex;
+    align-items: center;
+}
+
+.chatSendInput {
+    width: 85%;
+    border: none;
+    padding-right: 10px;
+    outline: none;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.chatSendButton {
+    width: 15%;
+    cursor: pointer;
+}

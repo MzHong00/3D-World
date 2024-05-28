@@ -12,7 +12,6 @@ export const Dialog = (props: DialogHTMLAttributes<HTMLDialogElement>) => {
           dialogRef.current!.addEventListener('close', setDialogClose);
       }, [setDialogClose]);
       
-
     return (
         <dialog ref={dialogRef} onClick={setDialogBackdrop} className={`${styles.dialog} ${props.className}`} style={props.style}>
             <div className={styles.dialogContentBox}>

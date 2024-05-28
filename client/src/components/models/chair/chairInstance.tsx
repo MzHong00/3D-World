@@ -7,11 +7,13 @@ import chairGlb from "shared/asset/3d/chair.glb";
 interface Props extends GroupProps {
   seatPosition: Coordinate[];
   itemsPerLine: number;
+  consistencyBreakPoint: number;
 }
 
 export const ChairInstance = ({
   seatPosition,
   itemsPerLine,
+  consistencyBreakPoint,
   ...props
 }: Props) => {
   const { nodes, materials }: any = useGLTF(`${chairGlb}`);
@@ -24,7 +26,7 @@ export const ChairInstance = ({
         scale={1.4}
       >
         {seatPosition.map((seat, idx) => {
-          if (idx >= 200)
+          if (idx >= consistencyBreakPoint)
             return (
               <Instance
                 key={idx}

@@ -12,13 +12,15 @@ import { DigitalZoneScene } from "components/virtualWorld/worldComponents//digit
 import { digitZoneMapPosition } from "components/virtualWorld/worldComponents/digital/position/digitZoneMapPosition";
 import { useFetchDigitalZone, useFetchLabtopZone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
+import { useWebSocket } from "shared/hooks/useWebSocket";
 
 export const ThirdFloor = () => {
   //크롤링한 도서관 Data 상태
   const { isPending: LaptopPending, data: LaptopData } = useFetchLabtopZone();
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();
   const { setDialog } = useDialogStore();
-  
+  useWebSocket();
+
   useEffect(() => {
     const initMap = () => {
       if (LaptopPending || DigitPending) return;
@@ -29,8 +31,6 @@ export const ThirdFloor = () => {
 
       const Floor3SeatPosition = [...laptopSeatPosition, ...digitSeatPosition];
 
-      console.log(Floor3SeatPosition);
-
       setDialog(
         <Map seatPosition={Floor3SeatPosition} xSpeed={12} ySpeed={10.2} />
       );
@@ -38,6 +38,8 @@ export const ThirdFloor = () => {
 
     initMap();
   }, [LaptopPending, DigitPending, LaptopData, DigitData, setDialog]);
+
+ 
 
   return (
     <Physics>

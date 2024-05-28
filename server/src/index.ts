@@ -1,18 +1,9 @@
-import express from 'express';
-import config from 'config'
-
-import loaders from 'loaders';
+import expressLoader from 'loaders/express'
+import webSocketLoader from 'loaders/webSocket'
 
 async function server() {
-    const app = express();
-
-    await loaders({
-        expressApp: app
-    });
-
-    app.listen(config.port, () => {
-        console.log(`http://localhost:${config.port}`);
-    });
+    const http = expressLoader();
+    webSocketLoader(http);    
 }
 
 server();

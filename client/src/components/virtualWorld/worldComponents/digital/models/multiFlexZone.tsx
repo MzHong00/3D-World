@@ -14,10 +14,10 @@ export const MultiFlexZone = (props: GroupProps) => {
   const logo = useTexture(`${WSULogo}`);
 
   const monitorPosition = useRef([
-    [0, 40, 35.5],
-    [35.5, 40, 0],
-    [0, 40, -35.5],
-    [-35.5, 40, 0],
+    [0, 44, 35.5],
+    [35.5, 44, 0],
+    [0, 44, -35.5],
+    [-35.5, 44, 0],
   ]);
 
   const partitionPaperPosition = useRef([
@@ -30,8 +30,8 @@ export const MultiFlexZone = (props: GroupProps) => {
   return (
     <group {...props}>
       <MultiFlexSofa rotation={[0, Math.PI * 0.35, 0]} />
-      <mesh position={[0, 1, 0]}>
-        <boxGeometry args={[2, 2, 2]} />
+      <mesh position={[0, 1.25, 0]}>
+        <boxGeometry args={[2, 2.5, 2]} />
         <meshPhysicalMaterial color="#7859A6" />
       </mesh>
       <Instances
@@ -47,7 +47,7 @@ export const MultiFlexZone = (props: GroupProps) => {
           />
         ))}
       </Instances>
-      <Instances rotation={[0, Math.PI * 0.25, 0]}>
+      <Instances position={[0, 0.25, 0]} rotation={[0, Math.PI * 0.25, 0]}>
         <planeGeometry args={[2, 2.5]} />
         <meshPhysicalMaterial side={DoubleSide} map={logo} />
         {partitionPaperPosition.current.map((position, i) => (

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
-import { Stats } from "@react-three/drei";
+import { Sky, Stats } from "@react-three/drei";
 import {
   Environment,
   KeyboardControls,
@@ -27,6 +27,7 @@ export const World = () => {
         <Canvas shadows camera={{ position: [0, 20, 20], fov: 40 }}>
           <Outlet />
           <Environment preset="apartment" />
+          <Sky />
           {!modeState && <PointerLockControls />}
         </Canvas>
       </KeyboardControls>

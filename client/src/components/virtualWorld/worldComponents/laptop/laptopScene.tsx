@@ -64,6 +64,7 @@ export const LaptopZoneScene = ({
         <SeatedUserInstance
           position={[-7.9, 0.1, -4.5]}
           seatPosition={occupiedPosition}
+          consistencyBreakPoint={200}
           itemsPerLine={itemsPerLine.current}
         />
       )}
@@ -74,6 +75,7 @@ export const LaptopZoneScene = ({
       <ChairInstance
         position={[-7.9, 0, -4.3]}
         seatPosition={seatPosition}
+        consistencyBreakPoint={200}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

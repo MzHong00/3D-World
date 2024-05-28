@@ -77,6 +77,7 @@ export const DigitalZoneScene = ({
         <SeatedUserInstance
           position={[20.5, 0.1, -6.8]}
           seatPosition={occupiedSeatPosition}
+          consistencyBreakPoint={50}
           itemsPerLine={itemsPerLine.current}
         />
       )}
@@ -88,6 +89,7 @@ export const DigitalZoneScene = ({
       <ChairInstance
         position={[20.5, 0, -6.8]}
         seatPosition={seatPosition}
+        consistencyBreakPoint={50}
         itemsPerLine={itemsPerLine.current}
       />
       <MonitorInstance
@@ -97,9 +99,15 @@ export const DigitalZoneScene = ({
       />
       <CylinderTableInstance numberOfTable={4} position={[13, 0, -50]} />
       <HemiRoundTable position={[12, 1, -1]} frustumCulled />
-      <MultiFlexZone rotation={[0, Math.PI*0.25, 0]}  position={[26, 0, -53]}/>
-      <MultiFlexZone rotation={[0, Math.PI*0.25, 0]}  position={[15, 0, -59]}/>
-      <Plant position={[5, 0, -10]} scale={0.35}/>
+      <MultiFlexZone
+        rotation={[0, Math.PI * 0.25, 0]}
+        position={[26, 0, -53]}
+      />
+      <MultiFlexZone
+        rotation={[0, Math.PI * 0.25, 0]}
+        position={[15, 0, -59]}
+      />
+      <Plant position={[5, 0, -10]} scale={0.35} />
     </group>
   );
 };

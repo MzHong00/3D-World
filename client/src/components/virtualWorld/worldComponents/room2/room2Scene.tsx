@@ -66,9 +66,10 @@ export const Room2Scene = ({
     <group {...props}>
       {!isPending && (
         <SeatedUserInstance
+        position={[8.15, 0.1, -5.15]}
           seatPosition={occupiedSeatPosition}
-          position={[8.15, 0.1, -5.15]}
-          itemsPerLine={itemsPerLine.current}
+        consistencyBreakPoint={240}
+        itemsPerLine={itemsPerLine.current}
         />
       )}
       <Room2Table
@@ -77,8 +78,9 @@ export const Room2Scene = ({
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        seatPosition={seatPosition}
         position={[8.15, 0, -5]}
+        seatPosition={seatPosition}
+        consistencyBreakPoint={240}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

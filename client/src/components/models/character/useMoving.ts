@@ -8,7 +8,6 @@ import { Controls } from "./useKeyControls";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { useCharacterPos } from "stores/useCharacterPos";
 
-const SPEED = 3;
 const direction = new THREE.Vector3();
 const frontVector = new THREE.Vector3();
 const sideVector = new THREE.Vector3();
@@ -18,6 +17,7 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const { setPosition } = useCharacterPos();
   const { modeState } = useCameraModeStore((state) => state);
+  const SPEED = 6;
 
   useFrame((state) => {
     const { up, down, left, right } = get();
@@ -27,7 +27,7 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
     const { x, y, z } = ref.current!.translation();
     const velocity = ref.current?.linvel();
 
-    if (y < -0.5) ref.current.setTranslation({ x: 0, y: 5, z: 0 }, true);
+    if (y < -0.5) ref.current.setTranslation({ x: 0, y: 2, z: 0 }, true);
 
     if (modeState) {
       //camera

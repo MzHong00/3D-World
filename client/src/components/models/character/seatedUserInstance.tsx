@@ -8,11 +8,13 @@ import { useEffect } from "react";
 
 interface Props extends GroupProps {
   seatPosition: SeatState[];
+  consistencyBreakPoint: number;
   itemsPerLine: number;
 }
 
 export const SeatedUserInstance = ({
   seatPosition,
+  consistencyBreakPoint,
   itemsPerLine,
   ...props
 }: Props) => {
@@ -33,7 +35,7 @@ export const SeatedUserInstance = ({
             ((seat.seat.number - 1) % (itemsPerLine * 2)) / itemsPerLine
           ) === 0;
 
-        if (seat.seat.number >= 200)
+        if (seat.seat.number >= consistencyBreakPoint)
           return (
             <Clone
               key={idx}

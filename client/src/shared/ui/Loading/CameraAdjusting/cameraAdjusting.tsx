@@ -28,7 +28,6 @@ export const CameraAdjusting = () => {
 
     // Cleanup function to remove the event listener
     return () => {
-      console.log("pointer Lock 클린업");
       document.removeEventListener(
         "pointerlockchange",
         handlePointerLockChange

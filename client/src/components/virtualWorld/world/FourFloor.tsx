@@ -21,14 +21,12 @@ export const FourFloor = () => {
   useEffect(() => {
     const initMap = () => {
       if (Room1Pending || Room2Pending) return;
-
+      
       const width = 25;
-      const room1SeatPosition = organizeMapPosition(Room1Data, width);
+      const room1SeatPosition = organizeMapPosition(Room1Data.slice(0, 180), width);
       const room2SeatPosition = room2MapPosition(Room2Data, width);
 
       const Floor4SeatPosition = [...room1SeatPosition, ...room2SeatPosition];
-
-      console.log(Floor4SeatPosition);
 
       setDialog(
         <Map seatPosition={Floor4SeatPosition} xSpeed={12.05} ySpeed={10.2} />

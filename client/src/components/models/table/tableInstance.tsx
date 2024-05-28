@@ -1,13 +1,14 @@
 import { Instance, Instances } from "@react-three/drei";
 import { GroupProps } from "@react-three/fiber";
 
-import { Coordinate } from "shared/types/type";
+import { type Coordinate } from "shared/types/type";
 
 interface Props extends GroupProps {
   tablePosition: Coordinate[];
   adjustXSize: number;
   adjustZSize: number;
 }
+
 export const TableInstance = ({
   tablePosition,
   adjustXSize,
@@ -15,6 +16,7 @@ export const TableInstance = ({
   ...props
 }: Props) => {
   return (
+
     <group {...props}>
       <Instances>
         <boxGeometry args={[adjustXSize, 0.1, adjustZSize]} />
