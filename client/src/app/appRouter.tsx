@@ -21,28 +21,12 @@ const appRouter = createBrowserRouter([
         element: <World />,
         children: [
             {
-                path: 'entrance',
-                element: <div>제작중</div>
-            },
-            {
-                path: 'laptop',
+                path: '3F',
                 element: <ThirdFloor />
             },
             {
-                path: 'digital',
-                element: <ThirdFloor />
-            },
-            {
-                path: 'room1',
+                path: '4F',
                 element: <FourFloor />
-            },
-            {
-                path: 'room2',
-                element: <FourFloor />
-            },
-            {
-                path: 'library',
-                element: <div>제작중</div>
             },
         ]
     }

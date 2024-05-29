@@ -11,6 +11,7 @@ import {
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 
 interface Props extends GroupProps {
   isPending?: boolean;
@@ -24,6 +25,7 @@ export const Room2Scene = ({
 }: Props) => {
   const numberOfSeat = useRef<number>(240);
   const itemsPerLine = useRef<number>(12);
+  const { PerformanceMode } = usePerformanceMode();
 
   const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
@@ -37,6 +39,18 @@ export const Room2Scene = ({
     return seatPosition;
   }, []);
 
+  const seatPositionLowPerformance = useMemo(() => {
+    if (isPending) return [];
+
+    //사용중인 좌석번호에 좌표를 결합
+    return data
+      .filter((seat: SeatStateDto) => seat.status === "사용 중")
+      .map((seat: SeatStateDto) => ({
+        ...seatPosition[seat.number - 1],
+        seat,
+      }));
+  }, [isPending, data, seatPosition]);
+
   useEffect(() => {
     const initPerson = () => {
       if (isPending) return;
@@ -45,16 +59,11 @@ export const Room2Scene = ({
       const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
 
       const occupiedSeat = data
-        .slice(0, numberOfSeat.current)
         .filter((seat: SeatStateDto) => seat.status === "사용 중")
-        .map((seat: SeatStateDto) => {
-          const seatState: SeatState = {
-            ...seatPosition[seat.number - 1],
-            seat,
-          };
-
-          return seatState;
-        });
+        .map((seat: SeatStateDto) => ({
+          ...seatPosition[seat.number - 1],
+          seat,
+        }));
 
       setOccupiedSeatPosition(occupiedSeat);
     };
@@ -66,10 +75,10 @@ export const Room2Scene = ({
     <group {...props}>
       {!isPending && (
         <SeatedUserInstance
-        position={[8.15, 0.1, -5.15]}
+          position={[8.15, 0.1, -5.15]}
           seatPosition={occupiedSeatPosition}
-        consistencyBreakPoint={240}
-        itemsPerLine={itemsPerLine.current}
+          consistencyBreakPoint={240}
+          itemsPerLine={itemsPerLine.current}
         />
       )}
       <Room2Table
@@ -79,7 +88,9 @@ export const Room2Scene = ({
       />
       <ChairInstance
         position={[8.15, 0, -5]}
-        seatPosition={seatPosition}
+        seatPosition={
+          PerformanceMode === "low" ? seatPositionLowPerformance : seatPosition as SeatState[]
+        }
         consistencyBreakPoint={240}
         itemsPerLine={itemsPerLine.current}
       />

@@ -1,7 +1,9 @@
 import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { Center } from "@react-three/drei"
+
 import { Card } from "./card"
+import { type Area } from "shared/types/type"
 
 /*
     args 1: 값을 크게 하면 Card의 간격이 커짐
@@ -10,7 +12,7 @@ import { Card } from "./card"
 
 export const SpinCardList = ({ radius = 3, count = 6 }) => {
     const ref = useRef<any>()
-    useFrame((state, delta) => {
+    useFrame((_, delta) => {
         ref.current.rotation.y += delta / 10
     })
 
@@ -29,11 +31,6 @@ export const SpinCardList = ({ radius = 3, count = 6 }) => {
     )
 }
 
-export interface Area {
-    name: string
-    bgUrl: string
-    floor: string
-}
 const areaInfo: Area[] = [
     {
         name: 'entrance',

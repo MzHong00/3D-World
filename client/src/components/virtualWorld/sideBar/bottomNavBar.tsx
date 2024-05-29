@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import { GrMapLocation } from "@react-icons/all-files/gr/GrMapLocation";
 import { RiVidiconFill } from "@react-icons/all-files/ri/RiVidiconFill";
 import { RiVidiconLine } from "@react-icons/all-files/ri/RiVidiconLine";
@@ -11,23 +9,24 @@ import { RoundButton } from "shared/ui/Button/roundButton";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { useDialogStore } from "stores/useOpenDialogStore";
 
-import styles from "./menuList.module.css";
+import styles from "./bottomNavBar.module.css";
 
-export const MenuList = () => {
+export const BottomNavBar = () => {
   const { state: isTopCameraMode, handler: handleCameraMode } = useToggle({
     initState: true,
   });
   const { state: isChatOpen, handler: handleChatOpen } = useToggle();
 
   const { setDialogOpen } = useDialogStore();
-  const { setModeState } = useCameraModeStore((state) => state);
+  const { setModeState } = useCameraModeStore();
 
-  useEffect(() => {
-    setModeState(isTopCameraMode);
-  }, [isTopCameraMode, setModeState]);
+  const onClickCameraMode = () => {
+    handleCameraMode();
+    setModeState(!isTopCameraMode);
+  };
 
   return (
-    <nav className={styles.menuContainer} onClick={(e) => e.stopPropagation()}>
+    <nav className={styles.bottomNavBarContainer} onClick={(e) => e.stopPropagation()}>
       <RoundButton className={styles.menuButton} onClick={handleChatOpen}>
         <BsChatDots />
       </RoundButton>
@@ -36,7 +35,7 @@ export const MenuList = () => {
         className={`${styles.menuButton} ${
           !isTopCameraMode && styles.middleCameraModeButton
         } `}
-        onClick={handleCameraMode}
+        onClick={onClickCameraMode}
       >
         {isTopCameraMode ? (
           <RiVidiconLine className={styles.topCameraModeImage} />

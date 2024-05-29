@@ -11,6 +11,7 @@ import {
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 
 interface Props extends GroupProps {
   isPending?: boolean;
@@ -24,7 +25,7 @@ export const LaptopZoneScene = ({
   //총 좌석의 개수, 한 줄당 좌석의 개수
   const numberOfSeat = useRef<number>(218);
   const itemsPerLine = useRef<number>(10);
-
+  const { PerformanceMode } = usePerformanceMode();
   //사용 중인 좌석들의 좌표
   const [occupiedPosition, setOccupiedSeatPosition] = useState<SeatState[]>([]);
 
@@ -33,6 +34,18 @@ export const LaptopZoneScene = ({
     () => organizeSeatPos(numberOfSeat.current, 1.466),
     []
   );
+
+  const seatPositionLowPerformance = useMemo(() => {
+    if (isPending) return [];
+
+    //사용중인 좌석번호에 좌표를 결합
+    return data
+      .filter((seat: SeatStateDto) => seat.status === "사용 중")
+      .map((seat: SeatStateDto) => ({
+        ...seatPosition[seat.number - 1],
+        seat,
+      }));
+  }, [isPending, data, seatPosition]);
 
   useEffect(() => {
     const initPerson = () => {
@@ -43,14 +56,10 @@ export const LaptopZoneScene = ({
 
       const occupiedSeat = data
         .filter((seat: SeatStateDto) => seat.status === "사용 중")
-        .map((seat: SeatStateDto) => {
-          const seatState: SeatState = {
-            ...seatPosition[seat.number - 1],
-            seat,
-          };
-
-          return seatState;
-        });
+        .map((seat: SeatStateDto) => ({
+          ...seatPosition[seat.number - 1],
+          seat,
+        }));
 
       setOccupiedSeatPosition(occupiedSeat);
     };
@@ -74,7 +83,9 @@ export const LaptopZoneScene = ({
       />
       <ChairInstance
         position={[-7.9, 0, -4.3]}
-        seatPosition={seatPosition}
+        seatPosition={
+          PerformanceMode === "low" ? seatPositionLowPerformance : seatPosition as SeatState[]
+        }
         consistencyBreakPoint={200}
         itemsPerLine={itemsPerLine.current}
       />

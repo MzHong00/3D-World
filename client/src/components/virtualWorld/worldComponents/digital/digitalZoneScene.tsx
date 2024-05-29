@@ -11,6 +11,7 @@ import { ChairInstance } from "components/models/chair/chairInstance";
 import { MonitorInstance } from "components/models/items/monitorInstance";
 import { CylinderTableInstance } from "components/models/table/cylinderTableInstance";
 import { HemiRoundTable } from "components/models/table/hemiRoundTable";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 import {
   type SeatState,
   type Coordinate,
@@ -29,6 +30,8 @@ export const DigitalZoneScene = ({
 }: Props) => {
   const numberOfSeat = useRef<number>(50);
   const itemsPerLine = useRef<number>(5);
+  
+  const { PerformanceMode } = usePerformanceMode();
 
   const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
     []
@@ -41,6 +44,18 @@ export const DigitalZoneScene = ({
 
     return seatPosition;
   }, []);
+  
+  const seatPositionLowPerformance = useMemo(() => {
+    if (isPending) return [];
+
+    //사용중인 좌석번호에 좌표를 결합
+    return data
+      .filter((seat: SeatStateDto) => seat.status === "사용 중")
+      .map((seat: SeatStateDto) => ({
+        ...seatPosition[seat.number - 1],
+        seat,
+      }));
+  }, [isPending, data, seatPosition]);
 
   useEffect(() => {
     const initPerson = () => {
@@ -54,16 +69,11 @@ export const DigitalZoneScene = ({
       );
 
       const occupiedSeat = data
-        .slice(0, numberOfSeat.current)
         .filter((seat: SeatStateDto) => seat.status === "사용 중")
-        .map((seat: SeatStateDto) => {
-          const seatState: SeatState = {
-            ...seatPosition[seat.number - 1],
-            seat,
-          };
-
-          return seatState;
-        });
+        .map((seat: SeatStateDto) => ({
+          ...seatPosition[seat.number - 1],
+          seat,
+        }));
 
       setOccupiedSeatPosition(occupiedSeat);
     };
@@ -88,7 +98,9 @@ export const DigitalZoneScene = ({
       />
       <ChairInstance
         position={[20.5, 0, -6.8]}
-        seatPosition={seatPosition}
+        seatPosition={
+          PerformanceMode === "low" ? seatPositionLowPerformance : seatPosition as SeatState[]
+        }
         consistencyBreakPoint={50}
         itemsPerLine={itemsPerLine.current}
       />

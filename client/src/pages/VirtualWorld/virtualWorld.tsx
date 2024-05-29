@@ -9,10 +9,11 @@ import {
 } from "@react-three/drei";
 
 import { useKeyControls } from "components/models/character/useKeyControls";
-import { MenuList } from "components/virtualWorld/menuList/menuList";
+import { BottomNavBar } from "components/virtualWorld/sideBar/bottomNavBar";
 import { useDialogStore } from "stores/useOpenDialogStore";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { CameraAdjusting } from "shared/ui/Loading/CameraAdjusting/cameraAdjusting";
+import { TopNavBar } from "components/virtualWorld/sideBar/topNavBar";
 
 export const World = () => {
   const map = useKeyControls();
@@ -22,7 +23,8 @@ export const World = () => {
   return (
     <Suspense fallback={<div>월드 불러오는 중...</div>}>
       {isOpen && dialog}
-      <MenuList />
+      <TopNavBar />
+      <BottomNavBar />
       <KeyboardControls map={map}>
         <Canvas shadows camera={{ position: [0, 20, 20], fov: 40 }}>
           <Outlet />

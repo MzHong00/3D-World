@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IoMdSend } from "@react-icons/all-files/io/IoMdSend";
 import { FaUser } from "@react-icons/all-files/fa/FaUser";
 import styles from "./chat.module.css";
@@ -7,8 +7,14 @@ import { useChatStore } from "stores/useChatStore";
 
 export const Chat = () => {
   const [inputChat, setInputChat] = useState<string>("");
+  const chatDisplayRef = useRef<HTMLUListElement>(null);
+  
   const { socket, chat, userCount } = useChatStore();
   const { userId } = useUserStore();
+
+  useEffect(() => {
+    chatDisplayRef.current?.scrollTo(0, chatDisplayRef.current.scrollHeight)
+  }, [chat]);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputChat(e.target.value);
@@ -44,7 +50,7 @@ export const Chat = () => {
           <span>익명-{userId}</span>
         </div>
       </section>
-      <section className={styles.chatDisplay}>
+      <section className={styles.chatDisplay} ref={chatDisplayRef}>
         {chat.map((data, idx) => (
           <li key={idx} className={styles.chatBalloon}>
             <div>

@@ -5,8 +5,8 @@ import { type Euler, type Vector3, useFrame } from '@react-three/fiber'
 import { easing } from 'maath'
 import { DetailAreaDialog } from "../dialog/detailAreaDialog"
 import { IntersectionEvent } from "@react-three/fiber/dist/declarations/src/core/events"
-import { Area } from "./spinCardList"
 import { useDialogStore } from "stores/useOpenDialogStore"
+import { type Area } from "shared/types/type"
 
 interface Props {
     area: Area
@@ -43,7 +43,7 @@ export const Card = ({
         const mouseInterval = Math.abs(mouseDownPosX - e.pointer.x);
         if (mouseInterval > 0.05) return
 
-        setDialog(<DetailAreaDialog area={area.name} bgUrl={area.bgUrl} />)
+        setDialog(<DetailAreaDialog {...area} />)
         setDialogOpen();
     }
     const pointerDown = (e: IntersectionEvent<MouseEvent>) => {

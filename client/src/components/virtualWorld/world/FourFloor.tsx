@@ -11,12 +11,16 @@ import { organizeMapPosition } from "components/virtualWorld/worldComponents/lap
 import { room2MapPosition } from "components/virtualWorld/worldComponents/room2/position/room2MapPosition";
 import { useFetchRoom1Zone, useFetchRoom2Zone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
+import { useWebSocket } from "shared/hooks/useWebSocket";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 
 export const FourFloor = () => {
   //크롤링한 도서관 Data 상태
   const { isPending: Room1Pending, data: Room1Data } = useFetchRoom1Zone();
   const { isPending: Room2Pending, data: Room2Data } = useFetchRoom2Zone();
   const { setDialog } = useDialogStore();
+  const { setPerformanceMode } = usePerformanceMode();
+  useWebSocket();
 
   useEffect(() => {
     const initMap = () => {
@@ -34,7 +38,11 @@ export const FourFloor = () => {
     };
 
     initMap();
-  }, [Room1Pending, Room2Pending, Room1Data, Room2Data, setDialog]);
+
+    return () => {
+      setPerformanceMode('high');
+    }
+  }, [Room1Pending, Room2Pending, Room1Data, Room2Data, setDialog, setPerformanceMode]);
 
   return (
     <Physics>

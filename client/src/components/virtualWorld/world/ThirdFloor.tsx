@@ -13,12 +13,14 @@ import { digitZoneMapPosition } from "components/virtualWorld/worldComponents/di
 import { useFetchDigitalZone, useFetchLabtopZone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
 import { useWebSocket } from "shared/hooks/useWebSocket";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 
 export const ThirdFloor = () => {
   //크롤링한 도서관 Data 상태
   const { isPending: LaptopPending, data: LaptopData } = useFetchLabtopZone();
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();
   const { setDialog } = useDialogStore();
+  const { setPerformanceMode } = usePerformanceMode();
   useWebSocket();
 
   useEffect(() => {
@@ -37,9 +39,11 @@ export const ThirdFloor = () => {
     };
 
     initMap();
-  }, [LaptopPending, DigitPending, LaptopData, DigitData, setDialog]);
 
- 
+    return () => {
+      setPerformanceMode('high');
+    }
+  }, [LaptopPending, DigitPending, LaptopData, DigitData, setDialog, setPerformanceMode]);
 
   return (
     <Physics>
