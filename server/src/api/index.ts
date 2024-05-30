@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { digitalZoneCrawling, firstReadingRoomCrawling, lapTopZoneCrawling, secondReadingRoomCrawling } from "services/zoneSeatState";
+import { digitalZoneCrawling, firstReadingRoomCrawling, lapTopZoneCrawling, secondReadingRoomCrawling } from "../services/zoneSeatState";
 
 const router = Router();
 

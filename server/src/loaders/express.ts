@@ -1,9 +1,9 @@
 import express,{Response} from "express";
-import config from "config";
+import config from "../config";
 import cors from "cors";
 import helmet from "helmet";
 
-import routes from "api";
+import routes from "../api";
 
 export default () => {
   const app = express();

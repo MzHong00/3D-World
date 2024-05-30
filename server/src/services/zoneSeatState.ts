@@ -1,5 +1,5 @@
 import { type Request, type Response } from "express"
-import Crawler from 'loaders/wsLibCrawler';
+import Crawler from '../loaders/wsLibCrawler';
 
 const zone = {
     '노트북존': 'https://library.wsu.ac.kr/Clicker/UserSeat/20190508144137153?DeviceName=normal',
