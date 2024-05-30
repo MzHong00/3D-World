@@ -1,4 +1,4 @@
-import express from "express";
+import express,{Response} from "express";
 import config from "config";
 import cors from "cors";
 import helmet from "helmet";
@@ -21,6 +21,10 @@ export default () => {
   const server = app.listen(config.port, () => {
     console.log(`http://localhost:${config.port}`);
   });
+
+  app.get('/', (res: Response) => {
+    res.send("Hello")
+  })
 
   return server;
 };
