@@ -22,7 +22,7 @@ export default () => {
     console.log(`http://localhost:${config.port}`);
   });
 
-  app.get('/', (res: Response) => {
+  app.get('/', (req, res: Response) => {
     res.send("Hello")
   })
 
