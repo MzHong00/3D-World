@@ -11,7 +11,6 @@ import { organizeMapPosition } from "components/virtualWorld/worldComponents/lap
 import { room2MapPosition } from "components/virtualWorld/worldComponents/room2/position/room2MapPosition";
 import { useFetchRoom1Zone, useFetchRoom2Zone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
-import { useWebSocket } from "shared/hooks/useWebSocket";
 import { usePerformanceMode } from "stores/usePerformanceMode";
 
 export const FourFloor = () => {
@@ -20,7 +19,6 @@ export const FourFloor = () => {
   const { isPending: Room2Pending, data: Room2Data } = useFetchRoom2Zone();
   const { setDialog } = useDialogStore();
   const { setPerformanceMode } = usePerformanceMode();
-  useWebSocket();
 
   useEffect(() => {
     const initMap = () => {

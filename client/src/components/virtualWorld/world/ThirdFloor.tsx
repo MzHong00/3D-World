@@ -12,7 +12,6 @@ import { DigitalZoneScene } from "components/virtualWorld/worldComponents//digit
 import { digitZoneMapPosition } from "components/virtualWorld/worldComponents/digital/position/digitZoneMapPosition";
 import { useFetchDigitalZone, useFetchLabtopZone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
-import { useWebSocket } from "shared/hooks/useWebSocket";
 import { usePerformanceMode } from "stores/usePerformanceMode";
 
 export const ThirdFloor = () => {
@@ -21,7 +20,6 @@ export const ThirdFloor = () => {
   const { isPending: DigitPending, data: DigitData } = useFetchDigitalZone();
   const { setDialog } = useDialogStore();
   const { setPerformanceMode } = usePerformanceMode();
-  useWebSocket();
 
   useEffect(() => {
     const initMap = () => {
