@@ -30,6 +30,8 @@ export const ThirdFloor = () => {
       const digitSeatPosition = digitZoneMapPosition(DigitData, width);
 
       const Floor3SeatPosition = [...laptopSeatPosition, ...digitSeatPosition];
+      console.log(Floor3SeatPosition);
+      
 
       setDialog(
         <Map seatPosition={Floor3SeatPosition} xSpeed={12} ySpeed={10.2} />
