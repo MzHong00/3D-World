@@ -22,9 +22,5 @@ export default () => {
     console.log(`http://localhost:${config.port}`);
   });
 
-  app.get('/', (req, res: Response) => {
-    res.send("Hello")
-  })
-
   return server;
 };
