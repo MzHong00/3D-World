@@ -26,7 +26,7 @@ export const SeatedUserInstance = ({
   useEffect(() => {
     sitAction["mixamo.com"]?.play();
   }, [sitAction]);
-
+  
   return (
     <group {...props}>
       {seatPosition.map((seat, idx) => {
@@ -35,7 +35,7 @@ export const SeatedUserInstance = ({
             ((seat.seat.number - 1) % (itemsPerLine * 2)) / itemsPerLine
           ) === 0;
 
-        if (seat.seat.number >= consistencyBreakPoint)
+        if (seat.seat.number > consistencyBreakPoint)
           return (
             <Clone
               key={idx}
