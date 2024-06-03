@@ -1,12 +1,11 @@
-import { BsGear } from "@react-icons/all-files/bs/BsGear";
+import { useNavigate } from "react-router-dom";
 import { IoExitOutline } from "@react-icons/all-files/io5/IoExitOutline";
+import { BsGear } from "@react-icons/all-files/bs/BsGear";
 
+import { usePerformanceMode } from "stores/usePerformanceMode";
 import { RoundButton } from "shared/ui/Button/roundButton";
 import { useToggle } from "shared/hooks/useToggle";
-
 import styles from "./topNavBar.module.css";
-import { usePerformanceMode } from "stores/usePerformanceMode";
-import { useNavigate } from "react-router-dom";
 
 export const TopNavBar = () => {
   const { state: isNavBarOpen, handler: setIsNavBarOpen } = useToggle();
@@ -27,8 +26,8 @@ export const TopNavBar = () => {
 
   const onClickToHome = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    navigate("/")
-  }
+    navigate("/");
+  };
 
   return (
     <nav className={styles.topNavBarContainer}>

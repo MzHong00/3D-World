@@ -1,7 +1,7 @@
+import { useRef } from "react";
 import * as THREE from "three";
 import { GroupProps } from "@react-three/fiber";
 import { Instance, Instances } from "@react-three/drei";
-import { useRef } from "react";
 
 export const MultiFlexSofa = (props: GroupProps) => {
   const chairColor = useRef("gray");
@@ -96,10 +96,7 @@ export const MultiFlexSofa = (props: GroupProps) => {
               side={THREE.FrontSide}
             />
           </mesh>
-          <mesh
-            position={[4.25, 1, 3.085]} 
-            rotation={[0, Math.PI * 0.8, 0]}
-          >
+          <mesh position={[4.25, 1, 3.085]} rotation={[0, Math.PI * 0.8, 0]}>
             <planeGeometry args={[0.5, 2]} />
             <meshPhysicalMaterial
               color={chairColor.current}

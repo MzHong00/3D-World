@@ -1,11 +1,10 @@
-import { GroupProps } from "@react-three/fiber";
-import { MultiFlexSofa } from "./mulitFlexSofa";
-
-import Monitor from "shared/asset/3d/wall-hanging-monitor.glb";
-import { Instance, Instances, useGLTF, useTexture } from "@react-three/drei";
 import { useRef } from "react";
 import { DoubleSide } from "three";
+import { GroupProps } from "@react-three/fiber";
+import { Instance, Instances, useGLTF, useTexture } from "@react-three/drei";
 
+import { MultiFlexSofa } from "./mulitFlexSofa";
+import Monitor from "shared/asset/3d/wall-hanging-monitor.glb";
 import WSULogo from "shared/asset/image/wsu-logo.png";
 
 export const MultiFlexZone = (props: GroupProps) => {

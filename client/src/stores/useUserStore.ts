@@ -5,5 +5,5 @@ interface UserState {
 }
 
 export const useUserStore = create<UserState>()((set) => ({
-  userId: Math.floor(Math.random() * 999) + 1
+  userId: Math.floor(Math.random() * 999) + 1,
 }));

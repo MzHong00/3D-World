@@ -1,4 +1,4 @@
-import express,{Response} from "express";
+import express from "express";
 import config from "../config";
 import cors from "cors";
 import helmet from "helmet";
@@ -9,7 +9,7 @@ export default () => {
   const app = express();
 
   const corsOptions = {
-    origin: "http://wslib-client.vercel.app",
+    origin: "http://wslib.vercel.app",
     credentials: true,
   };
 

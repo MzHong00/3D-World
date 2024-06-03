@@ -2,8 +2,8 @@ import WebSocket from "ws";
 
 export default (server: any) => {
   const socket = new WebSocket.Server({ server });
-  let participants = 0
-  
+  let participants = 0;
+
   socket.on("connection", (ws, req) => {
     const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     ws.send(++participants);
@@ -17,7 +17,7 @@ export default (server: any) => {
 
     ws.on("close", () => {
       participants--;
-      console.log('퇴장', ip);
-    }); 
+      console.log("퇴장", ip);
+    });
   });
 };

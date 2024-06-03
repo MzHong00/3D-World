@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
-import { IoCameraReverseSharp } from '@react-icons/all-files/io5/IoCameraReverseSharp'
+import { IoCameraReverseSharp } from "@react-icons/all-files/io5/IoCameraReverseSharp";
 
-import styles from "./cameraAdjusting.module.css";
 import { useDialogStore } from "stores/useOpenDialogStore";
+import styles from "./cameraAdjusting.module.css";
 
 export const CameraAdjusting = () => {
   const screenFense = useRef<HTMLDivElement>(null);
@@ -41,8 +41,8 @@ export const CameraAdjusting = () => {
       className={styles.container}
       onClick={(e) => e.stopPropagation()}
     >
-        <IoCameraReverseSharp size={100}/>
-        <p>카메라 조정중...</p>
+      <IoCameraReverseSharp size={100} />
+      <p>카메라 조정중...</p>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { GroupProps } from "@react-three/fiber"
 
 import { TableInstance } from "../../../../models/table/tableInstance"
-
 import { room2TablePosition } from "../position/room2TablePosition"
 
 interface Props extends GroupProps {

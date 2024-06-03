@@ -4,7 +4,6 @@ import { GroupProps } from "@react-three/fiber";
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
 import { MultiFlexZone } from "./models/multiFlexZone";
-
 import { Plant } from "components/models/items/plant";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import { ChairInstance } from "components/models/chair/chairInstance";

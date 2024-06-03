@@ -4,7 +4,7 @@ import { type GroupProps } from "@react-three/fiber";
 import { PillarInstance } from "./pillarInstance";
 import { WindowInstance } from "../window/windowInstance";
 import { LaidPillar } from "./laidPillar";
-import { Coordinate } from "shared/types/type";
+import { type Coordinate } from "shared/types/type";
 
 export const SideWall = (props: GroupProps) => {
   const [pillarPosition, setPillarPosition] = useState<Coordinate[]>([]);
@@ -54,14 +54,17 @@ export const SideWall = (props: GroupProps) => {
   return (
     <group {...props}>
       <LaidPillar />
-      <PillarInstance position={[0, 0.5, - 32.5]} pillarPosition={pillarPosition} />
+      <PillarInstance
+        position={[0, 0.5, -32.5]}
+        pillarPosition={pillarPosition}
+      />
       <WindowInstance
-        position={[-0.5, 0.95, - 32.5]}
+        position={[-0.5, 0.95, -32.5]}
         windowSize={[0.1, 1, windowWidth.current]}
         windowPosition={windowPosition}
       />
       <WindowInstance
-        position={[-0.5, 2, - 32.5]}
+        position={[-0.5, 2, -32.5]}
         windowSize={[0.1, 1, windowWidth.current]}
         windowPosition={windowPosition}
       />

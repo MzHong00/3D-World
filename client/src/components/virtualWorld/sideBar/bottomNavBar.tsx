@@ -4,10 +4,10 @@ import { RiVidiconLine } from "@react-icons/all-files/ri/RiVidiconLine";
 import { BsChatDots } from "@react-icons/all-files/bs/BsChatDots";
 
 import { Chat } from "../chat/chat";
-import { useToggle } from "shared/hooks/useToggle";
-import { RoundButton } from "shared/ui/Button/roundButton";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { useDialogStore } from "stores/useOpenDialogStore";
+import { RoundButton } from "shared/ui/Button/roundButton";
+import { useToggle } from "shared/hooks/useToggle";
 
 import styles from "./bottomNavBar.module.css";
 
@@ -26,7 +26,10 @@ export const BottomNavBar = () => {
   };
 
   return (
-    <nav className={styles.bottomNavBarContainer} onClick={(e) => e.stopPropagation()}>
+    <nav
+      className={styles.bottomNavBarContainer}
+      onClick={(e) => e.stopPropagation()}
+    >
       <RoundButton className={styles.menuButton} onClick={handleChatOpen}>
         <BsChatDots />
       </RoundButton>

@@ -1,9 +1,9 @@
+import { useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
 import {
   InstancedRigidBodies,
   InstancedRigidBodyProps,
 } from "@react-three/rapier";
-import { useMemo } from "react";
 
 export const CustomWindowInstance = (props: GroupProps) => {
   const windowPosition: InstancedRigidBodyProps[] = useMemo(

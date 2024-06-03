@@ -3,15 +3,14 @@ import { GroupProps } from "@react-three/fiber";
 
 import { room2SeatPosition } from "./position/room2SeatPosition";
 import { Room2Table } from "./models/room2ZoneTable";
-
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 import {
   type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
-import { usePerformanceMode } from "stores/usePerformanceMode";
 
 interface Props extends GroupProps {
   isPending?: boolean;

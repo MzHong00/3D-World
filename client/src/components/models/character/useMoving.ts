@@ -16,7 +16,7 @@ export const useMoving = (ref: React.RefObject<RapierRigidBody>) => {
   const [, get] = useKeyboardControls<Controls>();
   const [isMoving, setIsMoving] = useState<boolean>(false);
   const { setPosition } = useCharacterPos();
-  const { modeState } = useCameraModeStore((state) => state);
+  const { modeState } = useCameraModeStore();
   const SPEED = 6;
 
   useFrame((state) => {

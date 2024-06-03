@@ -2,7 +2,7 @@ import { useRef } from "react"
 import { type GroupProps } from "@react-three/fiber"
 import { Instance, Instances } from "@react-three/drei"
 
-import { Coordinate } from "shared/types/type"
+import { type Coordinate } from "shared/types/type"
 
 interface Props extends GroupProps {
     pillarPosition: Coordinate[]

@@ -10,15 +10,15 @@ import {
 
 import { useKeyControls } from "components/models/character/useKeyControls";
 import { BottomNavBar } from "components/virtualWorld/sideBar/bottomNavBar";
+import { TopNavBar } from "components/virtualWorld/sideBar/topNavBar";
 import { useDialogStore } from "stores/useOpenDialogStore";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { CameraAdjusting } from "shared/ui/Loading/CameraAdjusting/cameraAdjusting";
-import { TopNavBar } from "components/virtualWorld/sideBar/topNavBar";
 
 export const World = () => {
   const map = useKeyControls();
   const { dialog, isOpen } = useDialogStore();
-  const { modeState } = useCameraModeStore((state) => state);
+  const { modeState } = useCameraModeStore();
 
   return (
     <Suspense fallback={<div>월드 불러오는 중...</div>}>

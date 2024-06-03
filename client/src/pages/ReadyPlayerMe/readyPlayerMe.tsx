@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useAvatarStore } from "stores/useAvatarStore";
 import {
   AssetUnlockedEvent,
   AvatarCreator,
@@ -6,8 +8,6 @@ import {
   UserAuthorizedEvent,
   UserSetEvent,
 } from "@readyplayerme/react-avatar-creator";
-import { useNavigate } from "react-router-dom";
-import { useAvatarStore } from "stores/useAvatarStore";
 
 const config: AvatarCreatorConfig = {
   clearCache: true,
@@ -29,7 +29,7 @@ export default function ReadyPlayerMe() {
   const handleOnAvatarExported = (event: AvatarExportedEvent) => {
     console.log(`Avatar URL is: ${event.data.url}`);
     setAvatar(event.data.url);
-    navigate('/')
+    navigate("/");
   };
 
   const handleUserAuthorized = (event: UserAuthorizedEvent) => {

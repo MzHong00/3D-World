@@ -1,9 +1,9 @@
+import { DialogHTMLAttributes } from "react";
+
 import { UserPointer, type UserStartPosition } from "./userPointer";
 import { Dialog } from "shared/hooks/Dialog/useDialog";
-
-import styles from "./map.module.css";
-import { DialogHTMLAttributes } from "react";
 import { CharSpeed, SeatState } from "shared/types/type";
+import styles from "./map.module.css";
 
 interface Props
   extends DialogHTMLAttributes<HTMLDialogElement>,

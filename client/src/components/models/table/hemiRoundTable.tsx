@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { GroupProps } from "@react-three/fiber";
+import { type GroupProps } from "@react-three/fiber";
 
 export const HemiRoundTable = (props: GroupProps) => {
   return (

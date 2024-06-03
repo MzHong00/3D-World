@@ -1,6 +1,7 @@
 import { Instance, Instances } from "@react-three/drei";
-import { GroupProps } from "@react-three/fiber";
-import { Coordinate } from "shared/types/type";
+import { type GroupProps } from "@react-three/fiber";
+
+import { type Coordinate } from "shared/types/type";
 
 interface Props extends GroupProps {
   windowPosition: Coordinate[];

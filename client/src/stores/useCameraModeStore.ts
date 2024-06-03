@@ -1,10 +1,11 @@
-import { create } from "zustand"
+import { create } from "zustand";
 
 interface ModeState {
-    modeState: boolean
-    setModeState: (mode: boolean) => void
+  modeState: boolean;
+  setModeState: (mode: boolean) => void;
 }
+
 export const useCameraModeStore = create<ModeState>()((set) => ({
-    modeState: true,
-    setModeState: (mode) => set(() => ({ modeState: mode })),
-}))
+  modeState: true,
+  setModeState: (mode) => set(() => ({ modeState: mode })),
+}));

@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import { GroupProps } from "@react-three/fiber";
 import { Clone, useAnimations, useFBX, useGLTF } from "@react-three/drei";
 
 import { type SeatState } from "shared/types/type";
 import personModel from "shared/asset/3d/man.glb";
 import sitAnimation from "shared/asset/animations/Sitting.fbx";
-import { useEffect } from "react";
 
 interface Props extends GroupProps {
   seatPosition: SeatState[];
@@ -26,7 +26,7 @@ export const SeatedUserInstance = ({
   useEffect(() => {
     sitAction["mixamo.com"]?.play();
   }, [sitAction]);
-  
+
   return (
     <group {...props}>
       {seatPosition.map((seat, idx) => {

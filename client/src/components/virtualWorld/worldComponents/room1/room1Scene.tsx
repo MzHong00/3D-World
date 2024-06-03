@@ -3,12 +3,11 @@ import { GroupProps } from "@react-three/fiber";
 
 import { organizeSeatPos } from "../laptop/position/organizeSeatPosition";
 import { Room1Table } from "./models/room1Table";
-
 import { ChairInstance } from "components/models/chair/chairInstance";
 import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
 import { usePerformanceMode } from "stores/usePerformanceMode";
 import {
-  SeatState,
+  type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
