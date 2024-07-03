@@ -4,8 +4,8 @@ import { GroupProps } from "@react-three/fiber";
 import { organizeSeatPos } from "./position/organizeSeatPosition";
 import { LaptopZoneTable } from "./models/laptopZoneTable";
 
-import { ChairInstance } from "components/models/Chair/chairInstance";
 import { SeatedUserInstance } from "components/character/seatedUserInstance";
+import { ChairInstance } from "shared/ui/Chair/chairInstance";
 import {
   type SeatState,
   type Coordinate,
