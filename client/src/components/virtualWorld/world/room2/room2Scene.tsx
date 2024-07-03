@@ -3,7 +3,7 @@ import { GroupProps } from "@react-three/fiber";
 
 import { room2SeatPosition } from "./position/room2SeatPosition";
 import { Room2Table } from "./models/room2ZoneTable";
-import { ChairInstance } from "components/models/Chair/chairInstance";
+import { ChairInstance } from "shared/ui/Chair/chairInstance";
 import { SeatedUserInstance } from "components/character/seatedUserInstance";
 import { usePerformanceMode } from "stores/usePerformanceMode";
 import {
