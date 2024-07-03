@@ -8,7 +8,7 @@ import {
   PointerLockControls,
 } from "@react-three/drei";
 
-import { useKeyControls } from "components/models/character/useKeyControls";
+import { useKeyControls } from "components/character/useKeyControls";
 import { BottomNavBar } from "components/virtualWorld/sideBar/bottomNavBar";
 import { TopNavBar } from "components/virtualWorld/sideBar/topNavBar";
 import { useDialogStore } from "stores/useOpenDialogStore";

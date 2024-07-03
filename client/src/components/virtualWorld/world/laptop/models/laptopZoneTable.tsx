@@ -1,7 +1,7 @@
 import { GroupProps } from "@react-three/fiber";
 
-import { TableInstance } from "../../../../models/table/tableInstance";
 import { organizeTablePos } from "../position/organizeTablePosition";
+import { TableInstance } from "shared/ui/Table/tableInstance";
 
 interface Props extends GroupProps {
   itemsPerLine: number;

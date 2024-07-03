@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { Physics } from "@react-three/rapier";
 
-import { AppearanceTophography } from "../worldComponents/laptop/models/appearanceTophography";
-import { ColliderTophography } from "../worldComponents/laptop/models/colliderTophography";
-import { Player } from "components/models/character/player";
+import { AppearanceTophography } from "../world/laptop/models/appearanceTophography";
+import { ColliderTophography } from "../world/laptop/models/colliderTophography";
+import { Player } from "components/character/player";
 import { Map } from "components/virtualWorld/map/map";
-import { Room1Scene } from "components/virtualWorld/worldComponents/room1/room1Scene";
-import { Room2Scene } from "components/virtualWorld/worldComponents/room2/room2Scene";
-import { organizeMapPosition } from "components/virtualWorld/worldComponents/laptop/position/organizeMapPosition";
-import { room2MapPosition } from "components/virtualWorld/worldComponents/room2/position/room2MapPosition";
+import { Room1Scene } from "components/virtualWorld/world/room1/room1Scene";
+import { Room2Scene } from "components/virtualWorld/world/room2/room2Scene";
+import { organizeMapPosition } from "components/virtualWorld/world/laptop/position/organizeMapPosition";
+import { room2MapPosition } from "components/virtualWorld/world/room2/position/room2MapPosition";
 import { useFetchRoom1Zone, useFetchRoom2Zone } from "queries/useFetchSeat";
 import { useDialogStore } from "stores/useOpenDialogStore";
 import { usePerformanceMode } from "stores/usePerformanceMode";

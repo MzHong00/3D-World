@@ -1,14 +1,14 @@
 import { useMemo, useRef } from "react";
 import { GroupProps } from "@react-three/fiber";
 
-import { ZoneConnectFloor } from "components/models/floor/zoneConnectFloor";
-import { ZoneTriangleFloor } from "components/models/floor/zoneTriangleFloor";
-import { PillarInstance } from "components/models/wall/pillarInstance";
-import { WindowInstance } from "components/models/window/windowInstance";
+import { ZoneConnectFloor } from "shared/ui/Floor/zoneConnectFloor";
 import { Coordinate } from "shared/types/type";
-import { ZoneFloor } from "components/models/floor/zoneFloor";
-import { SideWall } from "components/models/wall/sideWall";
-import { CylinderPillarInstance } from "components/models/wall/cylinderPillarInstance";
+import { ZoneFloor } from "shared/ui/Floor/zoneFloor";
+import { PillarInstance } from "shared/ui/wall/pillarInstance";
+import { CylinderPillarInstance } from "shared/ui/wall/cylinderPillarInstance";
+import { ZoneTriangleFloor } from "shared/ui/Floor/zoneTriangleFloor";
+import { SideWall } from "shared/ui/wall/sideWall";
+import { WindowInstance } from "shared/ui/Window/windowInstance";
 
 export const AppearanceTophography = (props: GroupProps) => {
   const xGap = useRef<number>(17);

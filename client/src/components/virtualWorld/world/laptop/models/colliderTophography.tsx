@@ -2,7 +2,7 @@ import { GroupProps } from "@react-three/fiber";
 import { Box, Plane } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
-import { CustomWindowInstance } from "components/models/window/customWindowInstance";
+import { CustomWindowInstance } from "shared/ui/Window/customWindowInstance";
 
 export const ColliderTophography = (props: GroupProps) => {
   return (

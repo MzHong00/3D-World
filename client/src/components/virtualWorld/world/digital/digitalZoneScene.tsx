@@ -4,12 +4,12 @@ import { GroupProps } from "@react-three/fiber";
 import { digitZoneSeatPosition } from "./position/digitZoneSeatPosition";
 import { DigitalZoneTable } from "./models/digitalZoneTable";
 import { MultiFlexZone } from "./models/multiFlexZone";
-import { Plant } from "components/models/items/plant";
-import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
-import { ChairInstance } from "components/models/chair/chairInstance";
-import { MonitorInstance } from "components/models/items/monitorInstance";
-import { CylinderTableInstance } from "components/models/table/cylinderTableInstance";
-import { HemiRoundTable } from "components/models/table/hemiRoundTable";
+import { Plant } from "shared/ui/Plant/plant";
+import { SeatedUserInstance } from "components/character/seatedUserInstance";
+import { ChairInstance } from "shared/ui/Chair/chairInstance";
+import { MonitorInstance } from "shared/ui/Monitor/monitorInstance";
+import { CylinderTableInstance } from "shared/ui/Table/cylinderTableInstance";
+import { HemiRoundTable } from "shared/ui/Table/hemiRoundTable";
 import { usePerformanceMode } from "stores/usePerformanceMode";
 import {
   type SeatState,

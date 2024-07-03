@@ -1,9 +1,9 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { type GroupProps } from "@react-three/fiber";
 
-import { PillarInstance } from "./pillarInstance";
-import { WindowInstance } from "../window/windowInstance";
-import { LaidPillar } from "./laidPillar";
+import { PillarInstance } from "shared/ui/wall/pillarInstance";
+import { LaidPillar } from "shared/ui/wall/laidPillar";
+import { WindowInstance } from "shared/ui/Window/windowInstance";
 import { type Coordinate } from "shared/types/type";
 
 export const SideWall = (props: GroupProps) => {

@@ -1,7 +1,7 @@
 import { GroupProps } from "@react-three/fiber"
 
 import { digitalZoneTablePosition } from "../position/digitZoneTablePosition"
-import { TableInstance } from "components/models/table/tableInstance"
+import { TableInstance } from "components/models/Table/tableInstance"
 
 interface Props extends GroupProps {
     numberOfSeat: number

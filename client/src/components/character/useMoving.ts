@@ -4,9 +4,9 @@ import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { RapierRigidBody } from "@react-three/rapier";
 
-import { Controls } from "./useKeyControls";
 import { useCameraModeStore } from "stores/useCameraModeStore";
 import { useCharacterPos } from "stores/useCharacterPos";
+import { Controls } from "./useKeyControls";
 
 const direction = new THREE.Vector3();
 const frontVector = new THREE.Vector3();

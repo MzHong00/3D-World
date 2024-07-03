@@ -1,42 +1,39 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { GroupProps } from "@react-three/fiber";
 
-import { room2SeatPosition } from "./position/room2SeatPosition";
-import { Room2Table } from "./models/room2ZoneTable";
-import { ChairInstance } from "components/models/chair/chairInstance";
-import { SeatedUserInstance } from "components/models/character/seatedUserInstance";
-import { usePerformanceMode } from "stores/usePerformanceMode";
+import { organizeSeatPos } from "./position/organizeSeatPosition";
+import { LaptopZoneTable } from "./models/laptopZoneTable";
+
+import { ChairInstance } from "components/models/Chair/chairInstance";
+import { SeatedUserInstance } from "components/character/seatedUserInstance";
 import {
   type SeatState,
   type Coordinate,
   type SeatStateDto,
 } from "shared/types/type";
+import { usePerformanceMode } from "stores/usePerformanceMode";
 
 interface Props extends GroupProps {
   isPending?: boolean;
   data?: Array<any>;
 }
-
-export const Room2Scene = ({
+export const LaptopZoneScene = ({
   isPending = true,
   data = [],
   ...props
 }: Props) => {
-  const numberOfSeat = useRef<number>(240);
-  const itemsPerLine = useRef<number>(12);
+  //총 좌석의 개수, 한 줄당 좌석의 개수
+  const numberOfSeat = useRef<number>(218);
+  const itemsPerLine = useRef<number>(10);
   const { PerformanceMode } = usePerformanceMode();
-
-  const [occupiedSeatPosition, setOccupiedSeatPosition] = useState<SeatState[]>(
-    []
-  );
+  //사용 중인 좌석들의 좌표
+  const [occupiedPosition, setOccupiedSeatPosition] = useState<SeatState[]>([]);
 
   //모든 좌석의 좌표
-  const seatPosition: Coordinate[] = useMemo(() => {
-    const seatWidth = 1;
-    const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
-
-    return seatPosition;
-  }, []);
+  const seatPosition: Coordinate[] = useMemo(
+    () => organizeSeatPos(numberOfSeat.current, 1.466),
+    []
+  );
 
   const seatPositionLowPerformance = useMemo(() => {
     if (isPending) return [];
@@ -54,8 +51,8 @@ export const Room2Scene = ({
     const initPerson = () => {
       if (isPending) return;
 
-      const seatWidth = 1.4;
-      const seatPosition = room2SeatPosition(numberOfSeat.current, seatWidth);
+      const seatWidth = 2.057;
+      const seatPosition = organizeSeatPos(numberOfSeat.current, seatWidth);
 
       const occupiedSeat = data
         .filter((seat: SeatStateDto) => seat.status === "사용 중")
@@ -74,23 +71,22 @@ export const Room2Scene = ({
     <group {...props}>
       {!isPending && (
         <SeatedUserInstance
-          position={[8.15, 0.1, -5.15]}
-          seatPosition={occupiedSeatPosition}
-          consistencyBreakPoint={240}
+          position={[-7.9, 0.1, -4.5]}
+          seatPosition={occupiedPosition}
+          consistencyBreakPoint={200}
           itemsPerLine={itemsPerLine.current}
         />
       )}
-      <Room2Table
-        numberOfSeat={numberOfSeat.current}
-        position={[30, 0, -5.4]}
+      <LaptopZoneTable
+        position={[-10, 0, -4.7]}
         itemsPerLine={itemsPerLine.current}
       />
       <ChairInstance
-        position={[8.15, 0, -5]}
+        position={[-7.9, 0, -4.3]}
         seatPosition={
           PerformanceMode === "low" ? seatPositionLowPerformance : seatPosition as SeatState[]
         }
-        consistencyBreakPoint={240}
+        consistencyBreakPoint={200}
         itemsPerLine={itemsPerLine.current}
       />
     </group>

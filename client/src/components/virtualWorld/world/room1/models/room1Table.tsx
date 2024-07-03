@@ -1,6 +1,6 @@
 import { GroupProps } from "@react-three/fiber";
 
-import { TableInstance } from "../../../../models/table/tableInstance";
+import { TableInstance } from "../../../../../shared/ui/Table/tableInstance";
 import { organizeTablePos } from "../../laptop/position/organizeTablePosition";
 
 interface Props extends GroupProps {
