@@ -1,9 +1,8 @@
-https://github.com/HSU-README/ReadMeFrontend?tab=readme-ov-file
 <p align="center">
 <img width="83" alt="image" src="https://github.com/MzHong00/3D-World/assets/140405001/08353376-0ba8-4037-81dc-c7137ea8d152">
 </p>
 
-> 배포 링크: https://wslib.vecel.app
+> 배포 링크: [https://wslib.vecel.app](https://wslib.vercel.app/)
 
 ## 개요
 우송 도서관의 열람실 내부를 3D 웹으로 구현한 개인 프로젝트이다.  
