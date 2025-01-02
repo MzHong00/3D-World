@@ -44,6 +44,7 @@ export const digitalZoneCrawling = async (req: Request, res: Response) => {
         Cname: "userseat",
       }),
     });
+    console.log(response);
 
     const result = await response.json();
     const seatStateDto = result._Model_lg_clicker_for_compact_object_list.map(
