@@ -36,9 +36,16 @@ export const lapTopZoneCrawling = async (req: Request, res: Response) => {
 
 export const digitalZoneCrawling = async (req: Request, res: Response) => {
   console.log("디지털존 요청");
+  const response = await fetch(postWsLibUrl, {
+      method: "POST",
+      body: new URLSearchParams({
+        strRoomId: zoneId["디지털존"],
+        Cname: "userseat",
+      }),
+    });
   try {
 
-    res.send("hello");
+    res.send(response);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Server Error");
