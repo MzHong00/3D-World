@@ -1,9 +1,1 @@
-{
-  "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-  "functions": {
-    "app/api/**/*": {
-      "maxDuration": 60
-    }
-  }
-}
+{ "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }] }
