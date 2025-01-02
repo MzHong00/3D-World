@@ -1,3 +1,4 @@
+import axios from "axios";
 import { type Request, type Response } from "express";
 const postWsLibUrl = "https://library.wsu.ac.kr/Clicker/GetSeatObjects";
 
@@ -37,17 +38,20 @@ export const lapTopZoneCrawling = async (req: Request, res: Response) => {
 
 export const digitalZoneCrawling = async (req: Request, res: Response) => {
   console.log("디지털존 요청");
-  
+
   try {
-const response = await fetch(postWsLibUrl, {
-      redirect: "manual",
-      method: "POST",
-      body: new URLSearchParams({
-        strRoomId: zoneId["디지털존"],
-        Cname: "userseat",
-      }),
+    const response = await axios.post(postWsLibUrl, {
+      strRoomId: zoneId["디지털존"],
+      Cname: "userseat",
     });
-    res.send(response);
+
+    const data = response.data['_Model_lg_clicker_for_compact_object_list'].map(
+      (data: any) => ({
+        number: data.l_seat_number,
+        status: data.l_tooltip,
+      }));
+    
+    res.send(data);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
