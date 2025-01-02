@@ -37,24 +37,8 @@ export const lapTopZoneCrawling = async (req: Request, res: Response) => {
 export const digitalZoneCrawling = async (req: Request, res: Response) => {
   console.log("디지털존 요청");
   try {
-    const response = await fetch(postWsLibUrl, {
-      method: "POST",
-      body: new URLSearchParams({
-        strRoomId: zoneId["디지털존"],
-        Cname: "userseat",
-      }),
-    });
-    console.log(response);
 
-    const result = await response.json();
-    const seatStateDto = result._Model_lg_clicker_for_compact_object_list.map(
-      (data: any) => ({
-        number: data.l_seat_number,
-        status: data.l_tooltip,
-      })
-    );
-
-    res.send(seatStateDto);
+    res.send("hello");
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("Server Error");
