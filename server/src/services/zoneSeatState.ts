@@ -1,5 +1,5 @@
-import axios from "axios";
 import { type Request, type Response } from "express";
+
 const postWsLibUrl = "https://library.wsu.ac.kr/Clicker/GetSeatObjects";
 
 const zoneId = {
@@ -14,20 +14,20 @@ export const lapTopZoneCrawling = async (req: Request, res: Response) => {
   try {
     const response = await fetch(postWsLibUrl, {
       method: "POST",
-      body: new URLSearchParams({
+      body: JSON.stringify({
         strRoomId: zoneId["노트북존"],
         Cname: "userseat",
       }),
     });
-
-    console.log(response);
     const result = await response.json();
+
     const seatStateDto = result._Model_lg_clicker_for_compact_object_list.map(
       (data: any) => ({
         number: data.l_seat_number,
         status: data.l_tooltip,
       })
     );
+    console.log(seatStateDto);
 
     res.send(seatStateDto);
   } catch (error) {
@@ -40,17 +40,23 @@ export const digitalZoneCrawling = async (req: Request, res: Response) => {
   console.log("디지털존 요청");
 
   try {
-    const response = await axios.post(postWsLibUrl, {
-      strRoomId: zoneId["디지털존"],
-      Cname: "userseat",
+    const response = await fetch(postWsLibUrl, {
+      method: "POST",
+      body: JSON.stringify({
+        strRoomId: zoneId["디지털존"],
+        Cname: "userseat",
+      }),
     });
-
-    const data = response.data['_Model_lg_clicker_for_compact_object_list'].map(
+    const result = await response.json();
+    
+    const data = result._Model_lg_clicker_for_compact_object_list.map(
       (data: any) => ({
         number: data.l_seat_number,
         status: data.l_tooltip,
-      }));
-    
+      })
+    );
+    console.log(data);
+
     res.send(data);
   } catch (error) {
     console.error(error);
@@ -63,7 +69,7 @@ export const firstReadingRoomCrawling = async (req: Request, res: Response) => {
   try {
     const response = await fetch(postWsLibUrl, {
       method: "POST",
-      body: new URLSearchParams({
+      body: JSON.stringify({
         strRoomId: zoneId["제1열람실"],
         Cname: "userseat",
       }),
@@ -90,7 +96,7 @@ export const secondReadingRoomCrawling = async (
   try {
     const response = await fetch(postWsLibUrl, {
       method: "POST",
-      body: new URLSearchParams({
+      body: JSON.stringify({
         strRoomId: zoneId["제2열람실"],
         Cname: "userseat",
       }),
