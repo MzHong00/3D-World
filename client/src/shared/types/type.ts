@@ -3,9 +3,11 @@ export interface Coordinate {
   z: number;
 }
 
+export type SeatStatus = "사용 중" | "배정가능";
+
 export interface SeatStateDto {
   number: number;
-  status: string;
+  status: SeatStatus;
 }
 
 export interface SeatState extends Coordinate {

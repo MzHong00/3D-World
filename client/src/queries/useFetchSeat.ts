@@ -6,7 +6,7 @@ import {
   fetchRoom2Zone,
 } from "shared/api/fetchSeatState";
 
-const staleTime = 30000;
+const staleTime = 60 * 60 * 1000;
 
 export const useFetchLabtopZone = () => {
   return useQuery({
@@ -14,6 +14,7 @@ export const useFetchLabtopZone = () => {
     queryFn: () => fetchLabtopZone(),
     refetchInterval: staleTime,
     staleTime: staleTime,
+    retry: false
   });
 };
 
@@ -23,6 +24,7 @@ export const useFetchDigitalZone = () => {
     queryFn: () => fetchDigitalZone(),
     refetchInterval: staleTime,
     staleTime: staleTime,
+    retry: false
   });
 };
 
@@ -32,6 +34,7 @@ export const useFetchRoom1Zone = () => {
     queryFn: () => fetchRoom1Zone(),
     refetchInterval: staleTime,
     staleTime: staleTime,
+    retry: false
   });
 };
 
@@ -41,5 +44,6 @@ export const useFetchRoom2Zone = () => {
     queryFn: () => fetchRoom2Zone(),
     refetchInterval: staleTime,
     staleTime: staleTime,
+    retry: false
   });
 };

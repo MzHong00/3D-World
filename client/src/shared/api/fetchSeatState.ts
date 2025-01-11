@@ -1,6 +1,13 @@
 import axios from "axios";
 
-export const fetchLabtopZone = async () => {
+import { SeatStateDto, SeatStatus } from "shared/types/type";
+
+const LAPTOP_SEAT_COUNT = 200;
+const DIGITAL_SEAT_COUNT = 50;
+const ROOM1_SEAT_COUNT = 180;
+const ROOM2_SEAT_COUNT = 240;
+
+export const fetchLabtopZone = async (): Promise<SeatStateDto[]> => {
   try {
     const digitalZoneSeat = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/api/seat-laptop`
@@ -8,7 +15,7 @@ export const fetchLabtopZone = async () => {
 
     return digitalZoneSeat.data;
   } catch (error) {
-    throw error;
+    return exampleSeatData(LAPTOP_SEAT_COUNT);
   }
 };
 
@@ -20,7 +27,7 @@ export const fetchDigitalZone = async () => {
 
     return digitalZoneSeat.data;
   } catch (error) {
-    throw error;
+    return exampleSeatData(DIGITAL_SEAT_COUNT);
   }
 };
 
@@ -32,7 +39,7 @@ export const fetchRoom1Zone = async () => {
 
     return digitalZoneSeat.data;
   } catch (error) {
-    throw error;
+    return exampleSeatData(ROOM1_SEAT_COUNT);
   }
 };
 
@@ -44,6 +51,20 @@ export const fetchRoom2Zone = async () => {
 
     return digitalZoneSeat.data;
   } catch (error) {
-    throw error;
+    return exampleSeatData(ROOM2_SEAT_COUNT);
   }
+};
+
+const SEAT_PROBABILITY = 0.05;
+const SEAT_STATUS: SeatStatus[] = ["사용 중", "배정가능"];
+
+const exampleSeatData = (count: number) => {
+  const seat: SeatStateDto[] = Array.from({
+    length: count,
+  }).map((_, i) => ({
+    number: i+1,
+    status: Math.random() < SEAT_PROBABILITY ? SEAT_STATUS[0] : SEAT_STATUS[1],
+  }));
+
+  return seat;
 };

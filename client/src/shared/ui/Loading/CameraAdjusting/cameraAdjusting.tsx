@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
 import { IoCameraReverseSharp } from "@react-icons/all-files/io5/IoCameraReverseSharp";
 
-import { useDialogStore } from "stores/useOpenDialogStore";
+import { useDialogStore } from "shared/stores/useDialogStore";
+
 import styles from "./cameraAdjusting.module.css";
 
 export const CameraAdjusting = () => {
@@ -9,12 +10,12 @@ export const CameraAdjusting = () => {
   const { setDialogClose } = useDialogStore();
 
   useEffect(() => {
-    const handlePointerLockChange = (e: Event) => {
+    const handlePointerLockChange = () => {
       if (!document.pointerLockElement) {
         if (screenFense.current) {
           screenFense.current.style.display = "flex";
         }
-        setDialogClose(e);
+        setDialogClose();
 
         setTimeout(() => {
           if (screenFense.current) {
@@ -26,7 +27,6 @@ export const CameraAdjusting = () => {
 
     document.addEventListener("pointerlockchange", handlePointerLockChange);
 
-    // Cleanup function to remove the event listener
     return () => {
       document.removeEventListener(
         "pointerlockchange",

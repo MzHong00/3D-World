@@ -1,0 +1,1 @@
+export { ITEMS_PER_LINE, SEAT_COUNT } from "./consts/consts";

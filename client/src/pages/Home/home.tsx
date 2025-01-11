@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Sky, OrbitControls } from "@react-three/drei";
-import { PreviewAvatar } from "components/home/previewAvatar/previewAvatar";
-import { SpinCardList } from "components/home/card/spinCardList";
-import { FloatingText } from "components/home/text/floatingText";
-import { useDialogStore } from "stores/useOpenDialogStore";
+
+import { useDialogStore } from "shared/stores/useDialogStore";
+import { SpinCardList } from "components/spinCardList/ui/spinCardList";
+import { Text } from "components/text";
+import { PreviewAvatar } from "components/previewAvatar/ui/previewAvatar";
 
 export const Home = () => {
   const { dialog, isOpen } = useDialogStore();
@@ -21,7 +22,7 @@ export const Home = () => {
         <directionalLight position={[0, 10, 5]} intensity={2} />
         <directionalLight intensity={2} />
         <Sky sunPosition={[0, 1, 2]} />
-        <FloatingText text={`Enter\nOur World!`} color={`#87ecfb`} />
+        <Text text={`Enter\nOur World!`} color={`#87ecfb`} />
         <SpinCardList />
         <OrbitControls
           enableZoom={false}

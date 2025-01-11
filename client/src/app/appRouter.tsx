@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import ReadyPlayerMe from "pages/ReadyPlayerMe/readyPlayerMe";
+import ReadyPlayerMe from "pages/createPlayerAvatar/createPlayerAvatar";
 
 import { Home } from "pages/Home/home";
-import { World } from "pages/VirtualWorld/virtualWorld";
-import { ThirdFloor } from "components/virtualWorld/floor/ThirdFloor";
-import { FourFloor } from "components/virtualWorld/floor/FourFloor";
+import { World } from "pages/world/world";
+import { FourFloor } from "pages/FourFloor/FourFloor";
+import { ThirdFloor } from "pages/ThirdFloor/ThirdFloor";
 
 const appRouter = createBrowserRouter([
   {
