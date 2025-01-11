@@ -7,7 +7,9 @@ const DIGITAL_SEAT_COUNT = 50;
 const ROOM1_SEAT_COUNT = 180;
 const ROOM2_SEAT_COUNT = 240;
 
+// 우송 도서관에서 요청하는 데이터를 가져다 썼는데 최근에 막혀서 임시 데이터를 제공하는 방식으로 수정
 export const fetchLabtopZone = async (): Promise<SeatStateDto[]> => {
+  return exampleSeatData(LAPTOP_SEAT_COUNT);
   try {
     const digitalZoneSeat = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/api/seat-laptop`
@@ -20,6 +22,7 @@ export const fetchLabtopZone = async (): Promise<SeatStateDto[]> => {
 };
 
 export const fetchDigitalZone = async () => {
+  return exampleSeatData(DIGITAL_SEAT_COUNT);
   try {
     const digitalZoneSeat = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/api/seat-digital`
@@ -32,6 +35,7 @@ export const fetchDigitalZone = async () => {
 };
 
 export const fetchRoom1Zone = async () => {
+  return exampleSeatData(ROOM1_SEAT_COUNT);
   try {
     const digitalZoneSeat = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/api/seat-room1`
@@ -44,6 +48,7 @@ export const fetchRoom1Zone = async () => {
 };
 
 export const fetchRoom2Zone = async () => {
+  return exampleSeatData(ROOM2_SEAT_COUNT);
   try {
     const digitalZoneSeat = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/api/seat-room2`
@@ -62,7 +67,7 @@ const exampleSeatData = (count: number) => {
   const seat: SeatStateDto[] = Array.from({
     length: count,
   }).map((_, i) => ({
-    number: i+1,
+    number: i + 1,
     status: Math.random() < SEAT_PROBABILITY ? SEAT_STATUS[0] : SEAT_STATUS[1],
   }));
 

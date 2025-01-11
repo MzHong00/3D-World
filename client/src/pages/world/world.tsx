@@ -1,7 +1,7 @@
 import { Suspense} from "react";
 import { Outlet } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
-import { Sky } from "@react-three/drei";
+import { Sky, Stats } from "@react-three/drei";
 import {
   Environment,
   KeyboardControls,
@@ -34,6 +34,7 @@ export const World = () => {
         </Canvas>
       </KeyboardControls>
       <CameraAdjusting />
+      <Stats />
     </Suspense>
   );
 };
