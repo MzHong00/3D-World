@@ -2,7 +2,9 @@
 <img width="83" alt="image" src="https://github.com/MzHong00/3D-World/assets/140405001/08353376-0ba8-4037-81dc-c7137ea8d152">
 </p>
 
-> 배포 링크: [우송 도서관](https://wslib.vercel.app/)
+배포 링크: [우송 도서관](https://wslib.vercel.app/)
+
+기술 정리: [사용 기술에 대한 관련 글](https://velog.io/@mzhong/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-react-three-fiber-%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-%EC%A0%95%EB%A6%AC#threejs%EC%97%90%EC%84%9C-%EB%AA%A8%EB%8B%AC-%EC%B0%BD-%EA%B4%80%EB%A6%AC)
 
 ## 개요
 우송 도서관의 열람실 내부를 3D 웹으로 구현한 개인 프로젝트이다.  
@@ -57,4 +59,3 @@
 ### 모달 관리
 `canvas` 컴포넌트 내부에서 모달을 열고 닫기 위해, `zustand`를 사용하여 모달 창을 전역으로 관리했다.
 
-[사용 기술에 대한 관련 글](https://velog.io/@mzhong/%EC%82%AC%EC%9D%B4%EB%93%9C-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-react-three-fiber-%EC%82%AC%EC%9A%A9-%EA%B8%B0%EC%88%A0-%EC%A0%95%EB%A6%AC#threejs%EC%97%90%EC%84%9C-%EB%AA%A8%EB%8B%AC-%EC%B0%BD-%EA%B4%80%EB%A6%AC)
