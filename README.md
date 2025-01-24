@@ -19,12 +19,15 @@
 
 ## 기술 스택
 우송 도서관에서 요청하는 API를 나의 express 서버에서도 가져다 썼는데, 최근에 타임아웃 에러를 반환해서 막힌 것 같다. 따라서 현재는 서버를 안쓰고 클라이언트에서 임시 데이터로 좌석의 데이터를 표현하고 있다.
-<img width="675" alt="image" src="https://github.com/MzHong00/3D-World/assets/140405001/84612d05-ee90-46f8-ad94-373c0a934de0">  
+<img width="675" alt="image" src="https://github.com/user-attachments/assets/a1618276-3162-490d-88d0-0c72e4d62ac4">  
 
 ## IA
 <img width="610" alt="image" src="https://github.com/user-attachments/assets/9d5567a7-ed0d-4cd8-aa18-a54e82525821">
 
-## 성능
+## 결과
+<img width="610" alt="image" src="https://github.com/user-attachments/assets/f46f3487-d76c-4615-ab91-c93f29ffa400">
+
+## 성능 문제 해결
 ### 유리 재질 비용
 `material`의 `transparent`속성을 `true`로 하면 유리 효과를 구현할 수 있다. 그러나 투과로 인한 **더 많은 계산과 버퍼 처리로 인해 성능 비용이 매우 크다.**
 
