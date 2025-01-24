@@ -27,7 +27,7 @@
 <img width="610" alt="image" src="https://github.com/user-attachments/assets/9d5567a7-ed0d-4cd8-aa18-a54e82525821">
 
 ## 결과
-<img width="610" alt="image" src="https://github.com/user-attachments/assets/f46f3487-d76c-4615-ab91-c93f29ffa400">
+<img width="610" alt="image" src="https://github.com/user-attachments/assets/6ad1ebfe-2aea-4132-b0ba-a48d4b31405c">
 
 ## 성능 문제 해결
 ### 유리 재질 비용
