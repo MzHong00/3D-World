@@ -1,4 +1,4 @@
-export { SpinCardList } from "./ui/spinCardList";
+export { CardList } from "./ui/cardList";
 
 export { useCursorEvent } from "./model/useCursorEvent";
 export { useCardAnimation } from "./model/useCardAnimation";

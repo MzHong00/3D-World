@@ -1,5 +1,5 @@
 .contentBox {
-    height: inherit;
+    height: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -34,6 +34,7 @@
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(2px);
     word-spacing: 1rem;
+    cursor: pointer;
 }
 
 .admissionButton:hover {
@@ -45,7 +46,6 @@
 }
 
 @keyframes bgRightFlow {
-
     0%,
     100% {
         background-position: left;
@@ -53,19 +53,5 @@
 
     50% {
         background-position: right;
-    }
-}
-
-.bgDownAnimation {
-    animation: bgDownFlow 3s ease forwards;
-}
-
-@keyframes bgDownFlow {
-    from {
-        background-position: top;
-    }
-
-    to {
-        background-position: bottom;
     }
 }

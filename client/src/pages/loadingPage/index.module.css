@@ -1,0 +1,29 @@
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.container svg {
+    color:black;
+    font-size: 2em;
+    animation: spin 0.75s linear infinite;
+}
+
+.container >:first-child {
+    width: 5em;
+    height: 5em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url('/public/logo.png');
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

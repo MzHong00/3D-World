@@ -21,25 +21,26 @@ export const Map = ({
 }: Props) => {
   return (
     <Dialog className={styles.dialog} {...props}>
-      <div className={styles.laptopZone}>
-      <UserPointer xSpeed={xSpeed} ySpeed={ySpeed} />
-        {seatPosition?.map((seat, idx) => (
-          <div
-            key={idx}
-            className={styles.seat}
-            style={{
-              right: seat.x,
-              bottom: seat.z,
-              backgroundColor: `${
-                seat.seat.status === "배정가능" ? "#85d604" : "#f18fee"
-              }`
-            }}
-          >
-            <span className={styles.seatFont}>{seat.seat.number}</span>
-          </div>
-        ))}
+      <div>
+        <div className={styles.laptopZone}>
+          <UserPointer xSpeed={xSpeed} ySpeed={ySpeed} />
+          {seatPosition?.map((seat, idx) => (
+            <div
+              key={idx}
+              className={styles.seat}
+              style={{
+                right: seat.x,
+                bottom: seat.z,
+                backgroundColor: `${
+                  seat.seat.status === "배정가능" ? "#85d604" : "#f18fee"
+                }`,
+              }}
+            >
+              <span className={styles.seatFont}>{seat.seat.number}</span>
+            </div>
+          ))}
+        </div>
       </div>
-      {children}
     </Dialog>
   );
 };

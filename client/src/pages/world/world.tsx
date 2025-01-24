@@ -14,6 +14,7 @@ import { CameraAdjusting } from "shared/ui/Loading/CameraAdjusting/cameraAdjusti
 import { TopNavBar } from "components/sideBar/topNavBar";
 import { useKeyControls } from "components/player/model/useKeyControls";
 import { BottomNavBar } from "components/sideBar/bottomNavBar";
+import { LoadingPage } from "pages/loadingPage";
 
 export const World = () => {
   const map = useKeyControls();
@@ -21,7 +22,7 @@ export const World = () => {
   const { modeState } = useCameraModeStore();
 
   return (
-    <Suspense fallback={<div>월드 불러오는 중...</div>}>
+    <Suspense fallback={<LoadingPage />}>
       {isOpen && dialog}
       <TopNavBar />
       <BottomNavBar />

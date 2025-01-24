@@ -2,14 +2,14 @@ import * as THREE from "three";
 import { Text, Image, Shadow } from "@react-three/drei";
 import type { Euler, Vector3 } from "@react-three/fiber";
 
-import type { Area } from "shared/types/type";
+import type { IArea } from "shared/types/type";
 import { DetailAreaDialog } from "components/dialog";
 import { useDialogStore } from "shared/stores/useDialogStore";
 import { useCardAnimation } from "../model/useCardAnimation";
 import { useCursorEvent } from "../model/useCursorEvent";
 
 interface Props {
-  area: Area;
+  area: IArea;
   position: Vector3;
   rotation: Euler;
 }
@@ -27,7 +27,7 @@ export const Card = ({ area, position, rotation }: Props) => {
   return (
     <group position={position} rotation={rotation}>
       <Image
-        scale={2}
+        scale={3}
         ref={cardRef}
         url={area.bgUrl}
         transparent

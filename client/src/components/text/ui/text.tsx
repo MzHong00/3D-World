@@ -10,7 +10,7 @@ export const Text = ({
   color: string;
 }) => {
   return (
-    <Center top position={[0, 1, -2]} rotation={[0.25, 0, 0]}>
+    <Center top position={[0, 1, 0]} rotation={[0.25, 0, 0]}>
       <Float floatIntensity={1} speed={0.7}>
         <Text3D
           curveSegments={32}

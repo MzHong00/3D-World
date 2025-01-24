@@ -21,10 +21,7 @@ export const useDialogStore = create<DialogState>()((set) => ({
     set(() => ({
       isOpen: true,
     })),
-  setDialogClose: () =>
-    set(() => {
-      return { isOpen: false };
-    }),
+  setDialogClose: () => set(() => ({ isOpen: false })),
   setDialogBackdrop: (e: MouseEvent<HTMLElement>) =>
     set(() => {
       return e.target === e.currentTarget

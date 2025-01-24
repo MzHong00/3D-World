@@ -25,7 +25,7 @@ export interface ChatDto {
   chat: string;
 }
 
-export interface Area {
+export interface IArea {
   name: string;
   bgUrl: string;
   floor: string;
