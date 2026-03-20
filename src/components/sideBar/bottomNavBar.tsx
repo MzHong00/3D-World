@@ -10,14 +10,14 @@ import { useCameraModeStore } from "shared/stores/useCameraModeStore";
 import styles from "./bottomNavBar.module.css";
 
 export const BottomNavBar = () => {
-  const { state: isTopCameraMode, handler: handleCameraMode } = useToggle({
+  const { state: isTopCameraMode, handler: toggleCameraMode } = useToggle({
     initState: true,
   });
   const { setDialogOpen } = useDialogStore();
   const { setModeState } = useCameraModeStore();
 
   const onClickCameraMode = () => {
-    handleCameraMode();
+    toggleCameraMode();
     setModeState(!isTopCameraMode);
   };
 

@@ -9,13 +9,13 @@ import { usePerformanceModeStore } from "shared/stores/usePerformanceModeStore";
 import styles from "./topNavBar.module.css";
 
 export const TopNavBar = () => {
-  const { state: isNavBarOpen, handler: setIsNavBarOpen } = useToggle();
+  const { state: isNavBarOpen, handler: toggleNavBar } = useToggle();
   const { PerformanceMode, setPerformanceMode } = usePerformanceModeStore();
   const navigate = useNavigate();
 
   const onClickToggleButton = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setIsNavBarOpen();
+    toggleNavBar();
   };
 
   const onClickSetPerformanceMode = (e: React.MouseEvent<HTMLElement>) => {
