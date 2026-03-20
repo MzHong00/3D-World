@@ -12,19 +12,14 @@ import { useDialogStore } from "shared/stores/useDialogStore";
 import { usePerformanceModeStore } from "shared/stores/usePerformanceModeStore";
 import { AppearanceTophography } from "components/laptop/ui/appearanceTophography";
 import { ColliderTophography } from "components/laptop/ui/colliderTophography";
-import { useSuspenseQueries } from "@tanstack/react-query";
-import { SeatQueries } from "queries/useFetchSeat";
+import { generateSeatData } from "shared/utils/generateSeatData";
+
+const LaptopData = generateSeatData(200);
+const DigitData = generateSeatData(50);
 
 export const ThirdFloor = () => {
-  //크롤링한 도서관 Data 상태
   const { setPerformanceMode } = usePerformanceModeStore();
   const { setDialog, setDialogClose } = useDialogStore();
-  const [{ data: LaptopData }, { data: DigitData }] = useSuspenseQueries({
-    queries: [
-      SeatQueries.fetchLabtopZoneOptions(),
-      SeatQueries.fetchDigitalZoneOptions(),
-    ],
-  });
 
   useEffect(() => {
     const initMap = () => {
@@ -45,7 +40,7 @@ export const ThirdFloor = () => {
       setPerformanceMode("high");
       setDialogClose();
     };
-  }, [LaptopData, DigitData, setDialog, setDialogClose, setPerformanceMode]);
+  }, [setDialog, setDialogClose, setPerformanceMode]);
 
   return (
     <Physics>

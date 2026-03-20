@@ -1,7 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import ReadyPlayerMe from "pages/createPlayerAvatar/createPlayerAvatar";
-
 import { Home } from "pages/Home/home";
 import { World } from "pages/world/world";
 import { FourFloor } from "pages/FourFloor/FourFloor";
@@ -11,10 +9,6 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
-  },
-  {
-    path: "/create-avatar",
-    element: <ReadyPlayerMe />,
   },
   {
     path: "/world",

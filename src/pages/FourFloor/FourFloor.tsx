@@ -9,20 +9,16 @@ import { Room1Scene } from "components/room1/ui/room1Scene";
 import { Room2Scene } from "components/room2/ui/room2Scene";
 import { organizeMapPosition } from "components/laptop/models/organizeMapPosition";
 import { room2MapPosition } from "components/room2/models/room2MapPosition";
-import { SeatQueries } from "queries/useFetchSeat";
 import { useDialogStore } from "shared/stores/useDialogStore";
 import { usePerformanceModeStore } from "shared/stores/usePerformanceModeStore";
-import { useSuspenseQueries} from "@tanstack/react-query";
+import { generateSeatData } from "shared/utils/generateSeatData";
+
+const Room1Data = generateSeatData(180);
+const Room2Data = generateSeatData(240);
 
 export const FourFloor = () => {
   const { setPerformanceMode } = usePerformanceModeStore();
   const { setDialog, setDialogClose } = useDialogStore();
-  const [{ data: Room1Data }, { data: Room2Data }] = useSuspenseQueries({
-    queries: [
-      SeatQueries.fetchRoom1ZoneOptions(),
-      SeatQueries.fetchRoom2ZoneOptions(),
-    ],
-  });
 
   useEffect(() => {
     const initMap = () => {
@@ -46,7 +42,7 @@ export const FourFloor = () => {
       setPerformanceMode("high");
       setDialogClose();
     };
-  }, [Room1Data, Room2Data, setDialog, setDialogClose, setPerformanceMode]);
+  }, [setDialog, setDialogClose, setPerformanceMode]);
 
   return (
     <Physics>

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 
 import { Dialog } from "shared/ui/Dialog/useDialog";
@@ -17,9 +16,6 @@ export const PreviewAvatar = () => {
           <color attach="background" args={["#FFF5EE"]} />
           <AvatarModel />
         </Canvas>
-        <Link to="/create-avatar" className={styles.avatarChangeButton}>
-          캐릭터 변경
-        </Link>
       </Dialog>
     );
 
